@@ -30,7 +30,7 @@ public class Login {
 	
 	public String LoginOK(){
 		if(username.equals("hej") && password.equals("hej")){
-			return "register";
+			return "welcomePage";
 		}
 		else {
 			System.out.println("Wrong username or password!!!!");
