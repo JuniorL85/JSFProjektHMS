@@ -6,34 +6,31 @@
 	
 	<h:head>
 		<title>Register new user</title>
+		<link rel="stylesheet" href="css/style.css"/>
 	</h:head>
 	
-	<h1>Register new user</h1>
+	
 	
 	<h:body>
-		<h:form>
-			SSN: <h:inputText value="#{admin.ssn}"/>
-			<br/><br/>
+		<h:form class="login">
+		<h1>Register new user</h1>
+		
+			SSN: <h:inputText value="#{admin.ssn}" class="login-input"/>
 			
-			First name: <h:inputText value="#{admin.firstName}"/>
-			<br/><br/>
+			First name: <h:inputText value="#{admin.firstName}" class="login-input"/>
 			
-			Last name: <h:inputText  value="#{admin.lastName}"/>
-			<br/><br/>
+			Last name: <h:inputText  value="#{admin.lastName}" class="login-input"/>
 			
-			Username: <h:inputText  value="#{admin.userName}"/>
-			<br/><br/>
+			Username: <h:inputText  value="#{admin.userName}" class="login-input"/>
 			
-			Password: <h:inputText  value="#{admin.password}"/>
-			<br/><br/>
+			Password: <h:inputText  value="#{admin.password}" class="login-input"/>
 			
 			Staff Role:
-			<h:selectOneMenu value="#{admin.staffRole}">
+			<h:selectOneMenu value="#{admin.staffRole}" class="login-input">
 				<a:selectItems value="#{admin.staffRoleOptions}"/>
 			</h:selectOneMenu>
-			<br/><br/>
 			
-			<h:commandButton value="Submit" action="#{admin.getFormValues}"/>		
+			<h:commandButton value="Submit" class="login-submit" action="#{admin.getFormValues}"/>		
 		</h:form>
 	
 	</h:body>
