@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.*;
+import javax.faces.view.facelets.*;
 
 @ManagedBean
 public class Admin {

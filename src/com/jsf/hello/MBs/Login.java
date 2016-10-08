@@ -29,7 +29,7 @@ public class Login {
 	}
 	
 	public String LoginOK(){
-		if(username.equals("hej") && password.equals("hej")){
+		if(this.username.equals("admin") && this.password.equals("1234")){
 			return "welcomePage";
 		}
 		else {
