@@ -15,9 +15,12 @@
 	
 	<h:body>
 		<h:form class="login">
-		<h1>Register new user</h1>
+		<h1>Register User</h1>
+		<center><img src="hospitalLogo.png" height="70" width="70"/></center>
 		
-			SSN: <h:inputText value="#{admin.ssn}" class="login-input"/>
+			SSN: <h:inputText id="ssn" value="#{admin.ssn}" class="login-input" validatorMessage="SSN is invalid">
+			<a:validateLength minimum="10" maximum="12"/></h:inputText>
+			<h:message for="ssn"></h:message>
 			<br/> 
 			
 			First name: <h:inputText id="firstname" value="#{admin.firstName}" class="login-input" required="true" requiredMessage="Firstname is required"/>

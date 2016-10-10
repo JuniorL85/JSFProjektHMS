@@ -2,53 +2,76 @@
 <HTML lang="en"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/core">
+	xmlns:a="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/passthrough">
 	
 	<h:head>
+	
 		<title>Welcome</title>
 		<link rel="stylesheet" href="css/Startpagestyle.css"/>
+		
 	</h:head>
 	
 	<h:body>
-<div id="wrap">
+		<div id="wrap">
 
-<div id="header">
-<h1><a>Welcome to HMS</a></h1>
-</div>
-
-
-<div class="left"> 
-
-<div class="articles"> 
-<br /><br />
-
-<br /><br />
-</div>
-<h2>News</h2>
-<div class="articles">
-</div>
-</div>
-
-<div class="right"> 
-
-<h2>Categories:</h2>
-<ul>
-<li><a href="register.xhtml">Register new user</a></li> 
-<li><a href="#">Test</a></li> 
-<li><a href="#">Test</a></li> 
-<li><a href="#">Test</a></li> 
-<li><a href="#">Test</a></li> 
-</ul>
-
-</div>
-<div style="clear: both;"> </div>
+		<div id="header">
+		
+			<h1><a>Welcome to HMS</a></h1>
+			<h:graphicImage value="hospitalLogo.png" height="70" width="70" style="float:right;"/>
+			
+		</div>
 
 
+		<div class="left"> 
 
-<div id="footer">
-Logged in as: #{login.username}
-</div>
-</div>
+		<div class="articles"> 
+		
+		<h:form>
+        	<h:inputText id="search" f:placeholder="Search by SSN or name" value="#{admin.text}" />
+        	<h:commandButton value="Search" class="login-submit" update="display">
+        	<a:ajax execute="@all" render="display"/>
+        	</h:commandButton>
+        	<br/><br/>
+        	<h:outputText id="display" value="#{admin.text}" />
+		</h:form>
+		
+		<br /><br />
+
+		<br /><br />
+		
+		</div>
+		
+			<h2>News</h2>
+			
+		<div class="articles">
+		</div>
+		</div>
+
+		<div class="right"> 
+
+			<h2>Categories:</h2>
+			
+				<ul>
+				
+					<li><a href="register.xhtml">User</a></li> 
+					<li><a href="#">Department</a></li> 
+					<li><a href="#">Room</a></li> 
+					<li><a href="#">Patient</a></li> 
+					
+				</ul>
+
+		</div>
+		<div style="clear: both;"> </div>
+
+
+
+		<div id="footer">
+		
+			Logged in as: #{login.staffRole}
+			
+		</div>
+		</div>
 	
 	</h:body>
 	

@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.component.*;
-import javax.faces.view.facelets.*;
 
 @ManagedBean
 public class Admin {
 
 	private String firstName;
 	private String lastName;
-	private int ssn;
+	private long ssn;
 	private String userName;
 	private String password;
 	private String staffRole;
+	private String text;
 
 	//list of StaffRole
 	List<String> staffRoleOptions;
@@ -54,11 +53,11 @@ public class Admin {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getSsn() {
+	public long getSsn() {
 		return ssn;
 	}
 
-	public void setSsn(int ssn) {
+	public void setSsn(long ssn) {
 		this.ssn = ssn;
 	}
 
@@ -87,6 +86,15 @@ public class Admin {
 		this.staffRole = staffRole;
 	}
 	
+	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public String getFormValues(){
 		System.out.println("firstname ="+ firstName);
 		return "submittedUserInfo.xhtml";
