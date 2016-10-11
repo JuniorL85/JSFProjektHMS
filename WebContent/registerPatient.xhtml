@@ -20,23 +20,27 @@
 		
 			SSN: <h:inputText id="ssn" value="#{admin.ssn}" class="login-input" validatorMessage="SSN is invalid">
 			<a:validateLength minimum="10" maximum="12"/></h:inputText>
-			<h:message for="ssn"></h:message>
+			<h:message for="ssn" style="color:red"/>
 			<br/> 
 			
-			First name: <h:inputText id="firstname" value="#{admin.firstName}" class="login-input" required="true" requiredMessage="Firstname is required"/>
-			<h:message for="firstname"></h:message>
+			First name: <h:inputText id="firstname" value="#{admin.firstName}" class="login-input" required="true" 
+			requiredMessage="Firstname is required" validatorMessage="Firstname is invalid">
+			<a:validateRegex pattern="[a-zA-Z]*"/></h:inputText>
+			<h:message for="firstname" style="color:red"/>
 			<br/>
 			
-			Last name: <h:inputText id="lastname" value="#{admin.lastName}" class="login-input" required="true" requiredMessage="Lastname is required"/>
-			<h:message for="lastname"></h:message>
+			Last name: <h:inputText id="lastname" value="#{admin.lastName}" class="login-input" required="true" 
+			requiredMessage="Lastname is required" validatorMessage="Lastname is invalid">
+			<a:validateRegex pattern="[a-zA-Z]*"/></h:inputText>
+			<h:message for="lastname" style="color:red"/>
 			<br/>
 			
 			Username: <h:inputText id="username" value="#{admin.userName}" class="login-input" required="true" requiredMessage="Username is required"/>
-			<h:message for="username"></h:message>
+			<h:message for="username" style="color:red"/>
 			<br/>
 			
 			Password: <h:inputText id="password" value="#{admin.password}" class="login-input" required="true" requiredMessage="Password is required"/>
-			<h:message for="password"></h:message>¨
+			<h:message for="password" style="color:red"/>¨
 			<br/>
 			
 			<h:commandButton value="Submit" class="login-submit" action="#{admin.getFormValues}"/>		
