@@ -64,11 +64,26 @@ public class Login {
 	
 	public String LoginOK(){
 		if(this.username.equals("admin") && this.password.equals("1234") && this.staffRole.equals("Admin")){
-			return "welcomePage";
+			return "welcomePage.xhtml";
+		}
+		
+		else if(this.username.equals("doctor") && this.password.equals("1234") && this.staffRole.equals("Doctor")){
+			return "welcomePage.xhtml?faces-redirect=true";
+		}
+		
+		else if(this.username.equals("nurse") && this.password.equals("1234") && this.staffRole.equals("Nurse")){
+			return "welcomePage.xhtml?faces-redirect=true";
+		}
+		
+		else if(this.username.equals("receptionist") && this.password.equals("1234") && this.staffRole.equals("Receptionist")){
+			return "welcomePage.xhtml?faces-redirect=true";
 		}
 		else {
 			System.out.println("Wrong username or password!!!!");
+			return "forgotPassword";
 		}
-		return "hej";
+	}
+	public String LogOut(){
+		return "login.xhtml";
 	}
 }

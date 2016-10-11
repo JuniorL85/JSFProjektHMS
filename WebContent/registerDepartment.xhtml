@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<HTML lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<h:head>
+		<title>Register Department</title>
+		<link rel="stylesheet" href="css/style.css"/>
+	</h:head>
+	
+	
+	
+	<h:body>
+		<h:form class="login">
+		<h1>Register Department</h1>
+		<center><img src="hospitalLogo.png" height="70" width="70"/></center>
+		
+			Department name: <h:inputText id="departmentname" value="#{department.departmentName}" class="login-input" validatorMessage="Department Name is invalid">
+			<a:validateRegex pattern="[a-zA-Z]*"/></h:inputText>
+			<h:message for="departmentname"></h:message>
+			<br/> 
+			
+		    Department Type:
+			<h:selectOneMenu value="#{department.departmentType}" class="login-input">
+				<a:selectItems value="#{department.departmentTypeOptions}"/>
+			</h:selectOneMenu>
+			<br/> 
+			
+			<h:commandButton value="Submit" class="login-submit" action="#{department.getDepartmentValues}"/>		
+		</h:form>
+	
+	</h:body>
+	
+</HTML>

@@ -33,7 +33,7 @@ padding: 12px 0 5px 10px;
 }
 #header h1 a {
 color: #fff;
-text-decoration: none;
+text-decoration: underline;
 }
 #header h1 a:hover {
 color: #aaa;
