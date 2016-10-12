@@ -19,7 +19,6 @@
 		<div id="header">
 		
 			<h1><a>Welcome to HMS</a></h1>
-			<h:graphicImage value="hospitalLogo.png" height="70" width="70" style="float:right;"/>
 			
 		</div>
 
@@ -44,6 +43,7 @@
 		</div>
 		
 			<h2>News</h2>
+			<h:graphicImage value="img/hospitalpic.jpg" class="img1"/>
 			
 		<div class="articles">
 		</div>
@@ -69,9 +69,12 @@
 
 		<div id="footer">
 		
+			<h:graphicImage value="img/hospitalLogo.png" height="70" width="70" style="float:left"/>
+			<h:form>
 			Logged in as: #{login.staffRole}
 			<br /><br />
-			<h:commandButton value="Log out" class="login-submit" action="#{login.LogOut}"/>
+			<h:commandLink value="Log out" action="#{login.LogOut}"/>
+			</h:form>
 		</div>
 		</div>
 	

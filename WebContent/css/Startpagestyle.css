@@ -15,6 +15,9 @@ img { border: none; }
 a { color: #97C4FF; text-decoration: none;}
 a:hover { text-decoration: underline; color : #aaa; }
 
+.img1 {
+	width: 500px;
+}
 #wrap {
 margin: 40px auto 0 auto;
 width: 800px;

@@ -64,7 +64,7 @@ public class Login {
 	
 	public String LoginOK(){
 		if(this.username.equals("admin") && this.password.equals("1234") && this.staffRole.equals("Admin")){
-			return "welcomePage.xhtml";
+			return "welcomePage.xhtml?faces-redirect=true";
 		}
 		
 		else if(this.username.equals("doctor") && this.password.equals("1234") && this.staffRole.equals("Doctor")){
@@ -84,6 +84,6 @@ public class Login {
 		}
 	}
 	public String LogOut(){
-		return "login.xhtml";
+		return "login.xhtml?faces-redirect=true";
 	}
 }
