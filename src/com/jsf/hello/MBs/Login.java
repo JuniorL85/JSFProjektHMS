@@ -1,12 +1,16 @@
 package com.jsf.hello.MBs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-public class Login {
+@SessionScoped
+public class Login implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String username;
 	private String password;
@@ -64,7 +68,7 @@ public class Login {
 	
 	public String LoginOK(){
 		if(this.username.equals("admin") && this.password.equals("1234") && this.staffRole.equals("Admin")){
-			return "welcomePage.xhtml?faces-redirect=true";
+			return "adminWelcomePage.xhtml?faces-redirect=true";
 		}
 		
 		else if(this.username.equals("doctor") && this.password.equals("1234") && this.staffRole.equals("Doctor")){
