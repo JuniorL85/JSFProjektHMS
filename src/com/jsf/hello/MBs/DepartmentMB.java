@@ -5,15 +5,15 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
-public class Department {
+@ManagedBean(name="department")
+public class DepartmentMB {
 
 	private String departmentName;
 	private String departmentType;
 	
 	List<String> departmentTypeOptions;
 	
-	public Department(){
+	public DepartmentMB(){
 		//populate list of StaffRole
 		departmentTypeOptions = new ArrayList<>();
 		
