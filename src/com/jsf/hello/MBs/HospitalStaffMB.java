@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+
+import com.jsf.hello.EJBs.HospitalStaffEJB;
  
 @ManagedBean(name = "staff")
 @RequestScoped
@@ -110,7 +112,6 @@ public class HospitalStaffMB {
 	public String add(){
 		
 		try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
 	        String myStat ="INSERT INTO employee(jobTitle,firstName,lastName,departmentId,userName,password) VALUES(?,?,?,?,?,?)";
 	        stat = con.prepareStatement(myStat); 
@@ -135,4 +136,29 @@ public class HospitalStaffMB {
 	    }
     	return null;
     }
+	
+	public void delete(int employeeId) {
+		
+		if (employeeId !=0){
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
+	        String myStat ="delete FROM employee WHERE employeeId=" + employeeId;
+	        stat = con.prepareStatement(myStat); 
+	        int i = stat.executeUpdate();
+	        if (i >0){
+
+	        System.out.println("user deleted successfully");
+	        }
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+	//list.remove(userBean);
+	//return list;
+	    }}
 }

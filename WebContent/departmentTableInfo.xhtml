@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    	<link rel="stylesheet" href="css/table-style.css"/>
+    </h:head>
+    <h:body>
+    	<h:form>
+    		<h:dataTable value="#{deptBean.getDeptList()}" var="u"
+    			styleClass="book-table"
+    			headerClass="book-table-header"
+    			rowClasses="book-table-odd-row,book-table-even-row">
+    			<h:column>
+    				<f:facet name="header">Department ID</f:facet>#{u.departmentId}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Department Name</f:facet>#{u.deptName}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Delete" action="#{department.delete(u.departmentId)}" style="color:black;"/>
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Update" action="#{userBean.deleteAction(u)}" style="color:black;"/>
+    			</h:column>
+    		</h:dataTable>
+    		<h3>Enter info</h3>
+    		<table>
+    		<tr>
+    			<td>Department ID</td>
+    			<td><h:inputText size="20" value="#{department.departmentId}"/></td>
+    		</tr>
+    		<tr>
+    			<td>Department Name</td>
+    			<td><h:inputText size="20" value="#{department.deptName}"/></td>
+    		</tr>
+    		</table>
+    		<h:commandButton value="Add" action="#{department.add()}"/>
+    	</h:form>
+    </h:body>
+</html>

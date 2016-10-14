@@ -9,38 +9,34 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import com.jsf.hello.MBs.HospitalStaffMB;
+import com.jsf.hello.MBs.DepartmentMB;
 
-@ManagedBean(name="userBean")
+@ManagedBean(name="deptBean")
 @SessionScoped
-public class HospitalStaffEJB {
 
-	List<HospitalStaffMB> list;
+public class DepartmentEJB {
+	
+	List<DepartmentMB> list;
 	
 	Connection con = null;
 	PreparedStatement stat = null;
 	ResultSet rs = null;
 	
-	public List<HospitalStaffMB> getUserList()
+	public List<DepartmentMB> getDeptList()
 	{
 		list = new ArrayList<>();
 
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
-			String myStat = "SELECT * FROM employee";
+			String myStat = "SELECT * FROM department";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){
 				
-				HospitalStaffMB usr = new HospitalStaffMB();
-				usr.setEmployeeId(rs.getInt("employeeId"));
-				usr.setJobTitle(rs.getString("jobTitle"));
-				usr.setFirstName(rs.getString("firstName"));
-				usr.setLastName(rs.getString("lastName"));
+				DepartmentMB usr = new DepartmentMB();
 				usr.setDepartmentId(rs.getInt("departmentId"));
-				usr.setUserName(rs.getString("userName"));
-				usr.setPassword(rs.getString("password"));
+				usr.setDeptName(rs.getString("deptName"));
 				list.add(usr);
 			}
 			con.close();
@@ -54,7 +50,5 @@ public class HospitalStaffEJB {
 		}
 		return list;
 	}
-	
 
-	
 }
