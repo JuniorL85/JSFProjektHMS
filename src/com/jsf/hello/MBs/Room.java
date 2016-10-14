@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name="room")
-public class RoomMB {
+@ManagedBean
+public class Room {
 
 	private int roomNumber;
 	private String roomType;
@@ -14,7 +14,7 @@ public class RoomMB {
 	
 	List<String> roomTypeOptions;
 	
-	public RoomMB(){
+	public Room(){
 		//populate list of StaffRole
 				roomTypeOptions = new ArrayList<>();
 				

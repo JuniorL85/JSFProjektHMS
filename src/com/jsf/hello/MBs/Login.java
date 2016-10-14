@@ -7,9 +7,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name="login")
+@ManagedBean
 @SessionScoped
-public class LoginMB implements Serializable {
+public class Login implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String username;
@@ -19,7 +19,7 @@ public class LoginMB implements Serializable {
 	//list of StaffRole
 	List<String> staffRoleOptions;
 	
-	public LoginMB(){
+	public Login(){
 		//populate list of StaffRole
 		staffRoleOptions = new ArrayList<>();
 		
