@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name="admin")
-public class AdminMB {
+@ManagedBean
+public class Admin {
 
 	private String firstName;
 	private String lastName;
@@ -20,7 +20,7 @@ public class AdminMB {
 	List<String> staffRoleOptions;
 	
 	//create no-arg constructor
-	public AdminMB(){
+	public Admin(){
 		//populate list of StaffRole
 		staffRoleOptions = new ArrayList<>();
 		

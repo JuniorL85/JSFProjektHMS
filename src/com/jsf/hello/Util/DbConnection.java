@@ -17,34 +17,23 @@ public class DbConnection {
 			Statement stat = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 			//System.out.print(conn);
 			
-			String myStat = "SELECT * FROM employee";
+			String myStat = "SELECT * FROM department";
 		      ResultSet rs = stat.executeQuery(myStat);
 		      //STEP 5: Extract data from result set
 		      while(rs.next()){
 		         //Retrieve by column name
-		         int employeeId  = rs.getInt("employeeId");
-		         String jobTitle = rs.getString("jobTitle");
-		         String firstName = rs.getString("firstName");
-		     	 String lastName = rs.getString("lastName");
-		     	 int departmentId = rs.getInt("departmentId");
-		     	 String userName = rs.getString("userName");
-		     	 String password = rs.getString("password");
+		         int departmentId  = rs.getInt("departmentId");
+		         String deptName = rs.getString("deptName");
 
 		         //Display values
-		         System.out.print("ID: " + employeeId);
-		         System.out.print(", Title: " + jobTitle);
-		         System.out.print(", First name: " + firstName);
-		         System.out.print(", Last name: " + lastName);
-		         System.out.print(", Dept ID: " + departmentId);
-		         System.out.print(", Username: " + userName);
-		         System.out.println(", Password: " + password);
+		         System.out.print("ID: " + departmentId);
+		         System.out.println(", DeptName: " + deptName);
 		      }
 		      rs.close();
 		}
 		catch (SQLException e){
 			e.printStackTrace();
 		}
-		
 		
 	}
 

@@ -2,13 +2,14 @@ body{
 	background: #437dd6;
 	color: #ffffff;
 }
+
 .book-table{
 	text-align: center;
 }
-
 .book-table-header{
 	bbook-bottom:1px solid #BBB;
 	padding:16px;
+	text-align: center;
 	text-decoration: underline;
 }
 
