@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    	<link rel="stylesheet" href="css/table-style.css"/>
+    </h:head>
+    <h:body>
+    	<h:form>
+    		<h:dataTable value="#{roomBean.getRoomList()}" var="u"
+    			styleClass="book-table"
+    			headerClass="book-table-header"
+    			rowClasses="book-table-odd-row,book-table-even-row">
+    			<h:column>
+    				<f:facet name="header">Room ID</f:facet>#{u.roomId}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Room Type</f:facet>#{u.roomType}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Room Status</f:facet>#{u.roomStatus}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Receptionist ID</f:facet>#{u.receptionistId}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Delete" action="#{room.delete(u.roomId)}" style="color:black;"/>
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Update" action="#{userBean.deleteAction(u)}" style="color:black;"/>
+    			</h:column>
+    		</h:dataTable>
+    		<h3>Enter info</h3>
+    		<table>
+    		<tr>
+    			<td>Room Type</td>
+    			<td><h:selectOneMenu value="#{room.roomType}">
+						<f:selectItems value="#{room.roomTypeOptions}"/>
+					</h:selectOneMenu></td>
+    		</tr>
+    		<tr>
+    			<td>Room Status</td>
+    			<td><h:inputText size="20" value="#{room.roomStatus}"/></td>
+    		</tr>
+    		</table>
+    		<h:commandButton value="Add" action="#{room.add()}"/>
+    	</h:form>
+    </h:body>
+</html>
