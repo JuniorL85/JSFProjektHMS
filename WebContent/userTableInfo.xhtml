@@ -54,11 +54,15 @@
     		</tr>
     		<tr>
     			<td>First Name</td>
-    			<td><h:inputText size="20" value="#{staff.firstName}" /></td>
+    			<td><h:inputText id="firstname" size="20" value="#{staff.firstName}" required="true" 
+    			requiredMessage="Firstname is required" validatorMessage="Firstname is invalid">
+    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="firstname" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Last Name</td>
-    			<td><h:inputText size="20" value="#{staff.lastName}"/></td>
+    			<td><h:inputText id="lastname" size="20" value="#{staff.lastName}" required="true" 
+    			requiredMessage="Lastname is required" validatorMessage="Lastname is invalid">
+    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="lastname" style="color:red"/></td>   			
     		</tr>
     		<tr>
     			<td>Department ID</td>
@@ -68,11 +72,13 @@
 			</tr>
     		<tr>
     			<td>Username</td>
-    			<td><h:inputText size="20" value="#{staff.userName}"/></td>
+    			<td><h:inputText id="username" size="20" value="#{staff.userName}" 
+    			required="true" requiredMessage="Username is required"/><h:message for="username" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Password</td>
-    			<td><h:inputText size="20" value="#{staff.password}"/></td>
+    			<td><h:inputText id="password" size="20" value="#{staff.password}" 
+    			required="true" requiredMessage="Password is required"/><h:message for="password" style="color:red"/></td> 			
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{staff.add()}"/>
