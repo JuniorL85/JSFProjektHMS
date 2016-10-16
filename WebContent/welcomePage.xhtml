@@ -28,12 +28,31 @@
 		<div class="articles"> 
 		
 		<h:form>
-        	<h:inputText id="search" f:placeholder="Search by SSN or name" value="#{admin.text}" />
-        	<h:commandButton value="Search" class="login-submit" update="display">
+        	<h:inputText id="search" f:placeholder="Enter SSN" value="#{admin.text}" />
+        	<h:commandLink value="Search" class="login-submit" update="display">
         	<a:ajax execute="@all" render="display"/>
-        	</h:commandButton>
-        	<br/><br/>
-        	<h:outputText id="display" value="#{admin.text}" />
+        	<!-- <h:outputText id="display" value="#{admin.text}" /> -->
+        	</h:commandLink>
+        	<br /><br />
+        <h:panelGrid columns="2">	
+        
+
+            	<h:outputLabel value="Social Security Number: "/>            
+                <h:inputText id="ssn" value="#{admin.ssn}" validatorMessage="SSN is invalid">             
+                <a:validateLength minimum="10" maximum="12"/>
+                <h:message for="ssn" style="color:red"></h:message>
+                </h:inputText>
+                
+                <h:outputLabel value="Medicine: " class="label"/>            
+                <h:inputTextarea id="display" value="#{admin.text}"/>
+                
+                <h:outputLabel value="Patient Notes: " class="label"/>                           
+                <h:inputTextarea value="#{admin.text}" cols="20" rows="5"/>
+                
+                <h:outputLabel value="" class="label"/>
+                <h:commandLink value="Submit" class="login-submit"/>
+                
+        </h:panelGrid>
 		</h:form>
 		
 		<br /><br />
@@ -68,6 +87,9 @@
 					<li><a href="#"></a></li> 
 					
 				</ul>
+				<br /><br />
+				<br /><br />
+				<br /><br />
 		
 </div>
 		<div style="clear: both;"> </div>

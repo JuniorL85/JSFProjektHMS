@@ -29,14 +29,11 @@
                 <h:message for="ssn" style="color:red"></h:message>
                 </h:inputText>
                 
-                <h:outputLabel value="First Name: " class="label"/>            
-                <h:inputText value="#{admin.firstName}"/>
-                            
-                <h:outputLabel value="Last Name: " class="label"/>
-                <h:inputText value="#{admin.lastName}"/>
+                <h:outputLabel value="Medicine: " class="label"/>            
+                <h:inputTextarea value="#{admin.text}"/>
                 
                 <h:outputLabel value="Patient Notes: " class="label"/>                           
-                <h:inputTextarea  value="#{admin.text}"/>
+                <h:inputTextarea value="#{admin.text}"/>
                 
                 <h:commandButton value="Submit" class="login-submit"/>
                 
