@@ -163,7 +163,51 @@ public class HospitalStaffMB {
 	        System.out.println(" SQLException :(");
 	        e.printStackTrace();
 	    }
-	//list.remove(userBean);
-	//return list;
+
 	    }}
+	public void update(int employeeId) {
+		
+		if (employeeId !=0){
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="UPDATE employee set jobTitle=?, firstName =?, lastName=?, departmentId=?, userName=?, password=?" + "WHERE employeeId=?";
+	        stat = con.prepareStatement(myStat);
+	        
+	        stat.setString(1, jobTitle);
+	        stat.setString(2, firstName);
+	        stat.setString(3, lastName);
+	        stat.setString(4, lastName);
+	        stat.setInt(5, departmentId);
+	        stat.setString(6, userName);
+	        stat.setString(7, password);
+	        int i = stat.executeUpdate();
+	        if (i >0){
+
+	        System.out.println("User updated successfully");
+	        }
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }}
+	public void staffById(String jobTitle, String firstName, String lastName, int departmentId, String userName, String password){
+		this.jobTitle = jobTitle;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.departmentId = departmentId;
+		this.userName = userName;
+		this.password = password;
+	}
+	
+	public void updateStaff(){
+		//RoomEJB room1 = new RoomEJB();
+		//room1.getRoomList();
+		update(employeeId);
+	}
 }

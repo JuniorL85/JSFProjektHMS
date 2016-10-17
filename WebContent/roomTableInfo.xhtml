@@ -29,7 +29,7 @@
     			</h:column>
     			<h:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Update" action="#{userBean.deleteAction(u)}" style="color:black;"/>
+    				<h:commandLink value="Update" action="updateRoom" actionListener="#{room.roomById(u.roomType, u.roomStatus)}" style="color:black;"/>
     			</h:column>
     		</h:dataTable>
     		<br /><br />

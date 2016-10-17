@@ -109,7 +109,42 @@ public class DepartmentMB {
 	        System.out.println(" SQLException :(");
 	        e.printStackTrace();
 	    }
-	//list.remove(userBean);
-	//return list;
+
 	    }}
+	public void update(int departmentId) {
+		
+		if (departmentId !=0){
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="UPDATE department set departmentId=?, deptName =?" + "WHERE departmentId=?";
+	        stat = con.prepareStatement(myStat);
+	        	        
+	        stat.setInt(1, departmentId);
+	        stat.setString(2, deptName);
+	        int i = stat.executeUpdate();
+	        if (i >0){
+
+	        System.out.println("Department updated successfully");
+	        }
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }}
+	public void deptById(int departmentId, String deptName){
+		this.departmentId = departmentId;
+		this.deptName = deptName;
+	}
+	
+	public void updateDept(){
+		//RoomEJB room1 = new RoomEJB();
+		//room1.getRoomList();
+		update(departmentId);
+	}
 }

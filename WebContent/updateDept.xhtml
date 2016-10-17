@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    	<link rel="stylesheet" href="css/table-style.css"/>
+    </h:head>
+    
+    <h:form>
+    
+    		<h3>Update info</h3>
+    		<table>
+    		<tr>
+    			<td>Department ID</td>
+    			<td><h:inputText size="20" value="#{department.departmentId}"/></td>
+    		</tr>
+    		<tr>
+    			<td>Department Name</td>
+    			<td><h:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
+    			requiredMessage="Dept name is required" validatorMessage="Dept name is invalid">
+    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="departmentname" style="color:red"/></td>
+    		</tr>
+    		</table>
+    		<h:commandButton value="Update" actionListener="#{department.updateDept()}"/>
+    		<h:commandButton value="Go back" action="departmentTableInfo.xhtml?faces-redirect=true"/>
+    
+    </h:form>
+</html>

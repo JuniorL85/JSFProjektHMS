@@ -10,6 +10,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.jsf.hello.EJBs.RoomEJB;
+
 @ManagedBean(name="room")
 @SessionScoped
 public class RoomMB {
@@ -116,7 +118,7 @@ public class RoomMB {
 	        int i = stat.executeUpdate();
 	        if (i >0){
 
-	        System.out.println("user deleted successfully");
+	        System.out.println("Room deleted successfully");
 	        }
 	        con.close();
 			stat.close();
@@ -129,4 +131,41 @@ public class RoomMB {
 	//list.remove(userBean);
 	//return list;
 	    }}
+	
+	public void update(int roomId) {
+		
+		if (roomId !=0){
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="UPDATE room set roomType=?, roomStatus =?" + "WHERE roomId=?";
+	        stat = con.prepareStatement(myStat);
+	        
+	        stat.setString(1, roomType);
+	        stat.setInt(2, roomStatus);
+	        int i = stat.executeUpdate();
+	        if (i >0){
+
+	        System.out.println("Room updated successfully");
+	        }
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }}
+	public void roomById(String roomType, int roomStatus){
+		this.roomType = roomType;
+		this.roomStatus = roomStatus;
+	}
+	
+	public void updateRoom(){
+		//RoomEJB room1 = new RoomEJB();
+		//room1.getRoomList();
+		update(roomId);
+	}
 }
