@@ -9,8 +9,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
-import com.jsf.hello.EJBs.HospitalStaffEJB;
+import javax.validation.constraints.*;
  
 @ManagedBean(name = "staff")
 @RequestScoped
@@ -19,7 +18,13 @@ public class HospitalStaffMB {
 	
 	private int employeeId;
 	private String jobTitle;
+	
+	@NotNull
+	@Pattern(regexp="[a-zA-Z]*")
 	private String firstName;
+	
+	@NotNull
+	@Pattern(regexp="[a-zA-Z]*")
 	private String lastName;
 	private int departmentId;
 	private String userName;
@@ -112,7 +117,7 @@ public class HospitalStaffMB {
 	public String add(){
 		
 		try {
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="INSERT INTO employee(jobTitle,firstName,lastName,departmentId,userName,password) VALUES(?,?,?,?,?,?)";
 	        stat = con.prepareStatement(myStat); 
 	        
@@ -142,7 +147,7 @@ public class HospitalStaffMB {
 		if (employeeId !=0){
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="delete FROM employee WHERE employeeId=" + employeeId;
 	        stat = con.prepareStatement(myStat); 
 	        int i = stat.executeUpdate();

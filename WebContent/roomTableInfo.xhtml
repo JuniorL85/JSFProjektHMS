@@ -24,9 +24,6 @@
     				<f:facet name="header">Room Status</f:facet>#{u.roomStatus}
     			</h:column>
     			<h:column>
-    				<f:facet name="header">Receptionist ID</f:facet>#{u.receptionistId}
-    			</h:column>
-    			<h:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Delete" action="#{room.delete(u.roomId)}" style="color:black;"/>
     			</h:column>
@@ -35,7 +32,15 @@
     				<h:commandLink value="Update" action="#{userBean.deleteAction(u)}" style="color:black;"/>
     			</h:column>
     		</h:dataTable>
-    		<h3>Enter info</h3>
+    		<br /><br />
+    		<h:commandButton value="Add new room" action="#{admin.show()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		<h:commandButton value="Go back" action="adminWelcomePage.xhtml?faces-redirect=true"/>
+    		<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    			<div class="popup-panel">
+    			
+			<h3>Enter info</h3>
     		<table>
     		<tr>
     			<td>Room Type</td>
@@ -49,6 +54,12 @@
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{room.add()}"/>
+    		<h:commandButton value="Close" action="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
     	</h:form>
     </h:body>
 </html>

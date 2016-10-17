@@ -29,7 +29,15 @@
     				<h:commandLink value="Update" action="#{userBean.deleteAction(u)}" style="color:black;"/>
     			</h:column>
     		</h:dataTable>
-    		<h3>Enter info</h3>
+    		<br /><br />
+    		<h:commandButton value="Add new department" action="#{admin.show()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		<h:commandButton value="Go back" action="adminWelcomePage.xhtml?faces-redirect=true"/>
+    		<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    			<div class="popup-panel">
+    			
+    			<h3>Enter info</h3>
     		<table>
     		<tr>
     			<td>Department ID</td>
@@ -37,12 +45,18 @@
     		</tr>
     		<tr>
     			<td>Department Name</td>
-    			<td><h:inputText id="departmentname" size="20" value="#{department.deptName}" required="true" 
+    			<td><h:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
     			requiredMessage="Dept name is required" validatorMessage="Dept name is invalid">
     			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="departmentname" style="color:red"/></td>
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{department.add()}"/>
+    		<h:commandButton value="Close" action="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>	
     	</h:form>
     </h:body>
 </html>

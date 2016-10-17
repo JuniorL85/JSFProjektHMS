@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.validation.constraints.*;
 
 @ManagedBean(name="department")
 public class DepartmentMB {
 
 	private int departmentId;
+	
+	@Pattern(regexp="[a-zA-Z]*", message="DeptName2 is invalid")
 	private String deptName;
 	
 	
@@ -64,7 +67,7 @@ public class DepartmentMB {
 	public String add(){
 		
 		try {
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="INSERT INTO department(departmentId,deptName) VALUES(?,?)";
 	        stat = con.prepareStatement(myStat); 
 	        
@@ -90,7 +93,7 @@ public class DepartmentMB {
 		if (departmentId !=0){
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="delete FROM department WHERE departmentId=" + departmentId;
 	        stat = con.prepareStatement(myStat); 
 	        int i = stat.executeUpdate();

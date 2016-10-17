@@ -28,7 +28,7 @@ public class DepartmentEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb", "root", "Sommar15");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 			String myStat = "SELECT * FROM department";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();

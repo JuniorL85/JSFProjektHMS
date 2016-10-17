@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
+@SessionScoped
 public class Admin {
 
 	private String firstName;
@@ -15,6 +17,7 @@ public class Admin {
 	private String password;
 	private String staffRole;
 	private String text;
+	private boolean showPopUp;
 
 	//list of StaffRole
 	List<String> staffRoleOptions;
@@ -94,10 +97,19 @@ public class Admin {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public boolean isShowPopUp() {
+		return showPopUp;
+	}
 
-	public String getFormValues(){
-		System.out.println("firstname ="+ firstName);
-		return "submittedUserInfo.xhtml";
+	public void setShowPopUp(boolean showPopUp) {
+		this.showPopUp = showPopUp;
+	}
+
+	public void show(){
+		showPopUp=true;
+	}
+	public void hide(){
+		showPopUp=false;
 	}
 	
 }

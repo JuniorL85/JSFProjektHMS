@@ -44,6 +44,14 @@
     				<h:commandLink value="Update" action="#{userBean.deleteAction(u)}" style="color:black;"/>
     			</h:column>
     		</h:dataTable>
+    		<br /><br />
+    		<h:commandButton value="Add new user" action="#{admin.show()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		<h:commandButton value="Go back" action="adminWelcomePage.xhtml?faces-redirect=true"/>
+    		<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    			<div class="popup-panel">
+    			
     		<h3>Enter info</h3>
     		<table>
     		<tr>
@@ -82,6 +90,12 @@
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{staff.add()}"/>
+    		<h:commandButton value="Close" action="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>	
     	</h:form>
     </h:body>
 </html>
