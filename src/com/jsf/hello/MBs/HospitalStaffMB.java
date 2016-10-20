@@ -44,6 +44,7 @@ public class HospitalStaffMB {
 		//populate list of StaffRole
 				staffRoleOptions = new ArrayList<>();
 				
+				staffRoleOptions.add("Admin");
 				staffRoleOptions.add("Doctor");
 				staffRoleOptions.add("Nurse");
 				staffRoleOptions.add("Receptionist");

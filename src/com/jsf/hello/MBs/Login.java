@@ -1,6 +1,10 @@
 package com.jsf.hello.MBs;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +16,20 @@ import javax.faces.bean.SessionScoped;
 public class Login implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String username;
+	private String userName;
 	private String password;
 	private String staffRole;
+	private String dbuserName;
+	private String jobTitle;
+	  
+    private String dbpassword;
 
 	//list of StaffRole
 	List<String> staffRoleOptions;
+	
+	Connection con = null;
+	Statement stat = null;
+	ResultSet rs = null;
 	
 	public Login(){
 		//populate list of StaffRole
@@ -51,11 +63,11 @@ public class Login implements Serializable {
 
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
 
 	public String getPassword() {
@@ -66,27 +78,73 @@ public class Login implements Serializable {
 		this.password = password;
 	}
 	
-	public String LoginOK(){
-		if(this.username.equals("admin") && this.password.equals("1234") && this.staffRole.equals("Admin")){
-			return "adminWelcomePage.xhtml?faces-redirect=true";
-		}
-		
-		else if(this.username.equals("doctor") && this.password.equals("1234") && this.staffRole.equals("Doctor")){
-			return "welcomePage.xhtml?faces-redirect=true";
-		}
-		
-		else if(this.username.equals("nurse") && this.password.equals("1234") && this.staffRole.equals("Nurse")){
-			return "welcomePage.xhtml?faces-redirect=true";
-		}
-		
-		else if(this.username.equals("receptionist") && this.password.equals("1234") && this.staffRole.equals("Receptionist")){
-			return "welcomePage.xhtml?faces-redirect=true";
-		}
-		else {
-			System.out.println("Wrong username or password!!!!");
-			return "forgotPassword";
-		}
+	public String getDbuserName() {
+		return dbuserName;
 	}
+
+
+	public void setDbuserName(String dbuserName) {
+		this.dbuserName = dbuserName;
+	}
+
+
+	public String getDbpassword() {
+		return dbpassword;
+	}
+
+
+	public void setDbpassword(String dbpassword) {
+		this.dbpassword = dbpassword;
+	}
+	
+	public String getJobTitle() {
+		return jobTitle;
+	}
+
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+
+
+	public void dbData(String userName){
+		
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        stat = con.createStatement();
+	        String myStat ="SELECT * from employee WHERE userName like('"+userName+"')";
+	        rs = stat.executeQuery(myStat);
+	        rs.next();
+	        dbuserName = rs.getString("UserName");
+	        dbpassword = rs.getString("password");
+	        staffRole = rs.getString("jobTitle");
+   
+	    } 
+		catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+    }
+	
+	public String LoginOK(){
+		dbData(userName);
+		if(userName.equals(dbuserName) && password.equals(dbpassword) && staffRole.equals("Admin")){
+			return "adminWelcomePage.xhtml";
+		}
+		if(userName.equals(dbuserName) && password.equals(dbpassword)){
+			return "welcomePage.xhtml";
+		}
+		if(userName.equals(dbuserName) && password.equals(dbpassword)){
+			return "welcomePage.xhtml";
+		}
+		if(userName.equals(dbuserName) && password.equals(dbpassword)){
+			return "welcomePage.xhtml";
+		}
+		else{
+				return "forgotPassword.xhtml";
+			}
+		}
+	
 	public String LogOut(){
 		return "login.xhtml?faces-redirect=true";
 	}

@@ -23,10 +23,10 @@
 			<h:inputSecret id="password" value="#{login.password}" class="login-input" required="true" requiredMessage="Password is required"/>
 			<h:message for="password" style="color:red"/>
 			
-			Staff Role:
+			<!-- Staff Role:
 			<h:selectOneMenu value="#{login.staffRole}" class="login-input">
 				<a:selectItems value="#{login.staffRoleOptions}"/>
-			</h:selectOneMenu>
+			</h:selectOneMenu> -->
 			
 			<h:commandButton value="Log in" class="login-submit" action="#{login.LoginOK}"/>
 			
