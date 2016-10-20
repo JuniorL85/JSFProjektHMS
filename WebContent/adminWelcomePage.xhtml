@@ -2,14 +2,32 @@
 <HTML lang="en"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/core"
-	xmlns:f="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 	
 	<h:head>
-	
+	<h:form>
+	<p:menubar>
+    <p:menuitem value="Home" url="adminWelcomePage.xhtml" />
+    <p:submenu label="User">
+    <p:menuitem value="Show Users" url="userTableInfo.xhtml" />
+    </p:submenu>
+    <p:submenu label="Department">
+    <p:menuitem value="Show Departments" url="departmentTableInfo.xhtml" />
+    </p:submenu>
+    <p:submenu label="Room">
+    <p:menuitem value="Show Rooms" url="roomTableInfo.xhtml" />
+    </p:submenu>
+    <p:menuitem value="Log Out" action="#{login.LogOut}" />
+    <f:facet name="options">
+    <h:outputText value="Logged in as: #{login.staffRole}" style="margin-right:10px" />
+    </f:facet>
+	</p:menubar>
+	</h:form>
 		<title>Welcome</title>
-		<link rel="stylesheet" href="css/Startpagestyle.css"/>
+		<link rel="stylesheet" href="css/table-style.css"/>
 		
 	</h:head>
 	
@@ -17,77 +35,19 @@
 		<div id="wrap">
 
 		<div id="header">
-		
 			<h1><a>Welcome to HMS</a></h1>
 			
-		</div>
-
-
-		<div class="left"> 
-
-		<div class="articles"> 
-		
-			<h2>Categories:</h2>
 			
-				<ul>
-				
-					<li><a href="userTableInfo.xhtml">User</a></li> 
-					<li><a href="departmentTableInfo.xhtml">Department</a></li> 
-					<li><a href="roomTableInfo.xhtml">Room</a></li> 
-					<li><a href="registerPatient.xhtml">Patient</a></li>
-					
-				</ul>
-		
-		<br /><br />
-
-		<br /><br />
-		
 		</div>
-		
-			<h:graphicImage value="img/hospitalpic.jpg" class="img1"/>
 			
 		<div class="articles">
-		</div>
-		</div>
 		
-		<div class="right">
-			<h2>News</h2>
-			
-				<ul>
-				
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li> 
-					<li><a href="#"></a></li>
-					
-				</ul>
-				<br /><br />
-				<br /><br />
-				<br /><br />
+		<h:graphicImage value="img/hospitalpic.jpg" class="img1"/>
 		
-</div>
+		</div>
+
 
 		<div style="clear: both;"> </div>
-
-
-
-		<div id="footer">
-		
-			<h:graphicImage value="img/hospitalLogo.png" height="70" width="70" style="float:left"/>
-			<h:form>
-			Logged in as: #{login.staffRole}
-			<br /><br />
-			<h:commandLink value="Log out" action="#{login.LogOut}"/>
-			</h:form>
-		</div>
 		</div>
 	
 	</h:body>

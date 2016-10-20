@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<HTML lang="en"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -13,34 +15,35 @@
 	</h:head>
 	
 	<h:body>
-			<h:form>
-			
-        
-        <h:panelGrid columns="2">
-                   
-                <p:inputText id="ssn" value="#{admin.ssn}" validatorMessage="SSN is invalid" placeholder="Enter SSN">             
+        <h:form>   
+          <h:panelGrid columns="2"> 
+       
+                <p:inputText id="ssn" validatorMessage="SSN is invalid" placeholder="Enter SSN" >  
                 <f:validateLength minimum="10" maximum="12"/>
-                <h:message for="ssn" style="color:red"></h:message>
-                </p:inputText>         
-        	<p:commandButton value="Search" class="login-submit" update="display">
-        	<f:ajax execute="@all" render="display"/>
-        	</p:commandButton>
-			<p:outputLabel id="display" value="" class="label"/>
-        	<br/><br/><br/>
+                <p:message for="ssn" style="color:red"></p:message>
+                </p:inputText>            
+        
+        	<p:commandButton value="Search" class="login-submit" update="ssn"/>
+        	</h:panelGrid>
+        </h:form>
+        <h:form>
+        	<h:panelGrid columns="2">
+			<p:outputLabel/>
+        	<br/>
                 <p:outputLabel value="Medicine: " class="label"/>            
-                <p:inputTextarea value="#{admin.text}"/>
+                <p:inputTextarea id="medicine"/>
                 
                 <p:outputLabel value="Patient Notes: " class="label"/>                           
-                <p:inputTextarea value="#{admin.text}" cols="20" rows="5"/>
+                <p:inputTextarea id="patientnotes" cols="20" rows="5"/>
                 
-                <p:outputLabel value="" class="label"/>
-                <p:commandButton value="Submit" class="login-submit"/>
+                <p:outputLabel/>
+                <p:commandButton value="Submit"/>
                 
-                <p:outputLabel value="" class="label"/>
-                <h:commandButton type="button" value="Go back" action="welcomePage.xhtml?faces-redirect=true" />
-                
-        </h:panelGrid>
-		</h:form>
+                <p:outputLabel />
+                <p:commandButton value="Go back" action="welcomePage.xhtml?faces-redirect=true"/>
+                 
+        </h:panelGrid>  
+        </h:form> 
 	</h:body>
 	
 	
@@ -48,6 +51,6 @@
 	
 	
 	
-	</HTML>
+	</html>
 	
 	
