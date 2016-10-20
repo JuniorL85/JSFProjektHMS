@@ -4,33 +4,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
     	<link rel="stylesheet" href="css/table-style.css"/>
     </h:head>
     <h:body>
     	<h:form>
-    		<h:dataTable value="#{deptBean.getDeptList()}" var="u"
+    		<p:dataTable value="#{deptBean.getDeptList()}" var="u"
     			styleClass="book-table"
     			headerClass="book-table-header"
     			rowClasses="book-table-odd-row,book-table-even-row">
-    			<h:column>
+    			<p:column>
     				<f:facet name="header">Department ID</f:facet>#{u.departmentId}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Department Name</f:facet>#{u.deptName}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Delete" action="#{department.delete(u.departmentId)}" style="color:black;"/>
-    			</h:column>
-    			<h:column>
+    				<h:commandLink value="Delete" actionListener="#{department.delete(u.departmentId)}" style="color:black;"/>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Update" action="updateDept" actionListener="#{department.deptById(u.departmentId, u.deptName)}" style="color:black;"/>
-    			</h:column>
-    		</h:dataTable>
+    			</p:column>
+    		</p:dataTable>
     		<br /><br />
-    		<h:commandButton value="Add new department" action="#{admin.show()}">
+    		<h:commandButton value="Add new department" actionListener="#{admin.show()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		<h:commandButton value="Go back" action="adminWelcomePage.xhtml?faces-redirect=true"/>
@@ -41,17 +42,17 @@
     		<table>
     		<tr>
     			<td>Department ID</td>
-    			<td><h:inputText size="20" value="#{department.departmentId}"/></td>
+    			<td><p:inputText size="20" value="#{department.departmentId}"/></td>
     		</tr>
     		<tr>
     			<td>Department Name</td>
-    			<td><h:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
+    			<td><p:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
     			requiredMessage="Dept name is required" validatorMessage="Dept name is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="departmentname" style="color:red"/></td>
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="departmentname" style="color:red"/></td>
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{department.add()}"/>
-    		<h:commandButton value="Close" action="#{admin.hide()}">
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		

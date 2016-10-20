@@ -2,14 +2,25 @@
 <HTML lang="en"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/core"
-	xmlns:f="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 	
 	<h:head>
-	
+	<h:form>
+	<p:menubar>
+    <p:menuitem value="Home" url="welcomePage.xhtml" />
+    <p:menuitem value="Patient" url="searchPatient.xhtml" />
+    <p:menuitem value="View Schedule" url="#" />
+    <p:menuitem value="Log Out" action="#{login.LogOut}" />
+    <f:facet name="options">
+    <h:outputText value="Logged in as: #{login.staffRole}" style="margin-right:10px" />
+    </f:facet>
+	</p:menubar>
+	</h:form>
 		<title>Welcome</title>
-		<link rel="stylesheet" href="css/Startpagestyle.css"/>
+		<link rel="stylesheet" href="css/table-style.css"/>
 		
 	</h:head>
 	
@@ -17,55 +28,15 @@
 		<div id="wrap">
 
 		<div id="header">
-		
 			<h1><a>Welcome to HMS</a></h1>
 			
-		</div>
-
-
-		<div class="left"> 
-
-		<div class="articles"> 
-		
-		<h:form>
-        	<h:inputText id="search" f:placeholder="Enter SSN" value="#{admin.text}" />
-        	<h:commandLink value="Search" class="login-submit" update="display">
-        	<a:ajax execute="@all" render="display"/>
-        	<!-- <h:outputText id="display" value="#{admin.text}" /> -->
-        	</h:commandLink>
-        	<br /><br />
-        <h:panelGrid columns="2">	
-        
-
-            	<h:outputLabel value="Social Security Number: "/>            
-                <h:inputText id="ssn" value="#{admin.ssn}" validatorMessage="SSN is invalid">             
-                <a:validateLength minimum="10" maximum="12"/>
-                <h:message for="ssn" style="color:red"></h:message>
-                </h:inputText>
-                
-                <h:outputLabel value="Medicine: " class="label"/>            
-                <h:inputTextarea id="display" value="#{admin.text}"/>
-                
-                <h:outputLabel value="Patient Notes: " class="label"/>                           
-                <h:inputTextarea value="#{admin.text}" cols="20" rows="5"/>
-                
-                <h:outputLabel value="" class="label"/>
-                <h:commandLink value="Submit" class="login-submit"/>
-                
-        </h:panelGrid>
-		</h:form>
-		
-		<br /><br />
-
-		<br /><br />
-		
+			
 		</div>
 			
 		<div class="articles">
 		
 		<h:graphicImage value="img/hospitalpic.jpg" class="img1"/>
 		
-		</div>
 		</div>
 
 <div class="right">
@@ -93,18 +64,6 @@
 		
 </div>
 		<div style="clear: both;"> </div>
-
-
-
-		<div id="footer">
-		
-			<h:graphicImage value="img/hospitalLogo.png" height="70" width="70" style="float:left"/>
-			<h:form>
-			Logged in as: #{login.staffRole}
-			<br /><br />
-			<h:commandLink value="Log out" action="#{login.LogOut}"/>
-			</h:form>
-		</div>
 		</div>
 	
 	</h:body>

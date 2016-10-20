@@ -4,34 +4,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
     	<link rel="stylesheet" href="css/table-style.css"/>
     </h:head>
     <h:body>
     	<h:form>
-    		<h:dataTable value="#{roomBean.getRoomList()}" var="u"
+    		<p:dataTable value="#{roomBean.getRoomList()}" var="u"
     			styleClass="book-table"
     			headerClass="book-table-header"
     			rowClasses="book-table-odd-row,book-table-even-row">
-    			<h:column>
+    			<p:column>
     				<f:facet name="header">Room ID</f:facet>#{u.roomId}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Room Type</f:facet>#{u.roomType}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Room Status</f:facet>#{u.roomStatus}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Delete" action="#{room.delete(u.roomId)}" style="color:black;"/>
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Update" action="updateRoom" actionListener="#{room.roomById(u.roomType, u.roomStatus)}" style="color:black;"/>
-    			</h:column>
-    		</h:dataTable>
+    			</p:column>
+    		</p:dataTable>
     		<br /><br />
     		<h:commandButton value="Add new room" action="#{admin.show()}">
     			<f:ajax render="@form"/>
@@ -44,13 +45,13 @@
     		<table>
     		<tr>
     			<td>Room Type</td>
-    			<td><h:selectOneMenu value="#{room.roomType}">
+    			<td><p:selectOneMenu value="#{room.roomType}">
 						<f:selectItems value="#{room.roomTypeOptions}"/>
-					</h:selectOneMenu></td>
+					</p:selectOneMenu></td>
     		</tr>
     		<tr>
     			<td>Room Status</td>
-    			<td><h:inputText size="20" value="#{room.roomStatus}"/></td>
+    			<td><p:inputText size="20" value="#{room.roomStatus}"/></td>
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{room.add()}"/>

@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
     	<link rel="stylesheet" href="css/table-style.css"/>
     </h:head>
@@ -15,13 +16,13 @@
     		<table>
     		<tr>
     			<td>Department ID</td>
-    			<td><h:inputText size="20" value="#{department.departmentId}"/></td>
+    			<td><p:inputText size="20" value="#{department.departmentId}"/></td>
     		</tr>
     		<tr>
     			<td>Department Name</td>
-    			<td><h:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
+    			<td><p:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
     			requiredMessage="Dept name is required" validatorMessage="Dept name is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="departmentname" style="color:red"/></td>
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="departmentname" style="color:red"/></td>
     		</tr>
     		</table>
     		<h:commandButton value="Update" actionListener="#{department.updateDept()}"/>

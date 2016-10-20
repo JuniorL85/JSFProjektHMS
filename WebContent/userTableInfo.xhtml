@@ -4,46 +4,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
     	<link rel="stylesheet" href="css/table-style.css"/>
     </h:head>
     <h:body>
     	<h:form>
-    		<h:dataTable value="#{userBean.getUserList()}" var="u"
+    		<p:dataTable value="#{userBean.getUserList()}" var="u"
     			styleClass="book-table"
     			headerClass="book-table-header"
     			rowClasses="book-table-odd-row,book-table-even-row">
-    			<h:column>
+    			<p:column>
     				<f:facet name="header">Employee ID</f:facet>#{u.employeeId}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Job Title</f:facet>#{u.jobTitle}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">First Name</f:facet>#{u.firstName}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Last Name</f:facet>#{u.lastName}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Department ID</f:facet>#{u.departmentId}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Username</f:facet>#{u.userName}
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<!-- <h:column>
     				<f:facet name="header">Password</f:facet>#{u.password}
-    			</h:column>
-    			<h:column>
+    			</h:column> -->
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Delete" action="#{staff.delete(u.employeeId)}" style="color:black;"/>
-    			</h:column>
-    			<h:column>
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Update" action="updateStaff" actionListener="#{staff.staffById(u.jobTitle, u.firstName, u.lastName, u.departmentId, u.userName, u.password)}" style="color:black;"/>
-    			</h:column>
-    		</h:dataTable>
+    			</p:column>
+    		</p:dataTable>
     		<br /><br />
     		<h:commandButton value="Add new user" action="#{admin.show()}">
     			<f:ajax render="@form"/>
@@ -56,41 +57,41 @@
     		<table>
     		<tr>
     			<td>Job Title</td>
-    			<td><h:selectOneMenu value="#{staff.jobTitle}">
+    			<td><p:selectOneMenu value="#{staff.jobTitle}">
 						<f:selectItems value="#{staff.staffRoleOptions}"/>
-					</h:selectOneMenu></td>
+					</p:selectOneMenu></td>
     		</tr>
     		<tr>
     			<td>First Name</td>
-    			<td><h:inputText id="firstname" size="20" value="#{staff.firstName}" required="true" 
+    			<td><p:inputText id="firstname" size="20" value="#{staff.firstName}" required="true" 
     			requiredMessage="Firstname is required" validatorMessage="Firstname is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="firstname" style="color:red"/></td>
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="firstname" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Last Name</td>
-    			<td><h:inputText id="lastname" size="20" value="#{staff.lastName}" required="true" 
+    			<td><p:inputText id="lastname" size="20" value="#{staff.lastName}" required="true" 
     			requiredMessage="Lastname is required" validatorMessage="Lastname is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></h:inputText><h:message for="lastname" style="color:red"/></td>   			
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="lastname" style="color:red"/></td>   			
     		</tr>
     		<tr>
     			<td>Department ID</td>
-    			<td><h:selectOneMenu value="#{staff.departmentId}" converter="javax.faces.Integer">
+    			<td><p:selectOneMenu value="#{staff.departmentId}" converter="javax.faces.Integer">
 						<f:selectItems value="#{staff.deptId}"/>
-					</h:selectOneMenu></td>
+					</p:selectOneMenu></td>
 			</tr>
     		<tr>
     			<td>Username</td>
-    			<td><h:inputText id="username" size="20" value="#{staff.userName}" 
+    			<td><p:inputText id="username" size="20" value="#{staff.userName}" 
     			required="true" requiredMessage="Username is required"/><h:message for="username" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Password</td>
-    			<td><h:inputText id="password" size="20" value="#{staff.password}" 
+    			<td><p:inputText id="password" size="20" value="#{staff.password}" 
     			required="true" requiredMessage="Password is required"/><h:message for="password" style="color:red"/></td> 			
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{staff.add()}"/>
-    		<h:commandButton value="Close" action="#{admin.hide()}">
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		
