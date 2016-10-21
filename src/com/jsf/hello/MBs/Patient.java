@@ -18,6 +18,8 @@ import javax.validation.constraints.*;
 public class Patient {
 
 	
+
+	
 	
 	List<Patient> list;
 	Connection con = null;
@@ -29,15 +31,65 @@ public class Patient {
 	String lastName;
 	String userName;
 	String password;
+	int doctorId;
+	int nurseId;
+	int testId;
+	int roomId;
+	int receptionistId;
+	
 
-	public void patientById(int ssn, String firstName, String lastName, int departmentId, String userName,
-			String password) {
+	public void patientById(int ssn, String firstName, String lastName, String userName,
+			String password, int doctorId, int nurseId, int testId, int roomId, int receptionistId ) {
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;
-
 		this.userName = userName;
 		this.password = password;
+		this.doctorId = doctorId;
+		this.nurseId = nurseId;
+		this.testId = testId;
+		this.roomId = roomId;
+		this.receptionistId = receptionistId;
+	}
+
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public int getNurseId() {
+		return nurseId;
+	}
+
+	public void setNurseId(int nurseId) {
+		this.nurseId = nurseId;
+	}
+
+	public int getTestId() {
+		return testId;
+	}
+
+	public void setTestId(int testId) {
+		this.testId = testId;
+	}
+
+	public int getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	public int getReceptionistId() {
+		return receptionistId;
+	}
+
+	public void setReceptionistId(int receptionistId) {
+		this.receptionistId = receptionistId;
 	}
 
 	public int getSsn() {
@@ -85,16 +137,19 @@ public class Patient {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "INSERT INTO patient(ssn,firstName,lastName,userName,password) VALUES(?,?,?,?,?,?)";
+			String myStat = "INSERT INTO patient(ssn,firstName,lastName,userName,password, doctorId, nurseId, testId, roomId, receptionistId) VALUES(?,?,?,?,?,?,?,?,?,?)";
 			stat = con.prepareStatement(myStat);
 
 			stat.setInt(1, ssn);
 			stat.setString(2, firstName);
 			stat.setString(3, lastName);
-
 			stat.setString(4, userName);
 			stat.setString(5, password);
-
+			stat.setInt(6, doctorId);
+			stat.setInt(7, nurseId);
+			stat.setInt(8, testId);
+			stat.setInt(9, roomId);
+			stat.setInt(10, receptionistId);
 			stat.executeUpdate();
 
 			System.out.println("Info added successfully");
@@ -114,12 +169,13 @@ public class Patient {
 			
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 			String myStat = "Select * from patient where ssn like ('" + ssn +"')";
-			stat = con.prepareStatement(myStat);
-			rs = stat.executeQuery();
+			//stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery(myStat);
 			while(rs.next()){
 				
-				Patient usr = new Patient();
-				usr.setSsn(rs.getInt("ssn"));
+				
+				rs.getInt("ssn");
+				
 			
 				
 			}
