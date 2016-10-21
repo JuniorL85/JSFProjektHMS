@@ -42,6 +42,13 @@ public class PatientEJB {
 				usr.setLastName(rs.getString("lastName"));
 				usr.setUserName(rs.getString("userName"));
 				usr.setPassword(rs.getString("password"));
+
+				usr.setDoctorId(rs.getInt("doctorId"));
+				usr.setNurseId(rs.getInt("nurseId"));
+				usr.setTestId(rs.getInt("testId"));		
+				usr.setRoomId(rs.getInt("roomId"));
+				usr.setReceptionistId(rs.getInt("receptionistId"));
+
 				list.add(usr);
 			}
 			con.close();
