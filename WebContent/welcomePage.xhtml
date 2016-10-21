@@ -11,7 +11,10 @@
 	<h:form>
 	<p:menubar>
     <p:menuitem value="Home" url="welcomePage.xhtml" />
-    <p:menuitem value="Patient" url="searchPatient.xhtml" />
+    <p:submenu label="Patient">
+    <p:menuitem value="Search patients" url="searchPatient.xhtml" />
+    <p:menuitem value="Show patients" url="patientTableInfo.xhtml" />
+    </p:submenu>
     <p:menuitem value="View Schedule" url="test.xhtml" />
     <p:menuitem value="Log Out" action="#{login.LogOut}" />
     <f:facet name="options">
