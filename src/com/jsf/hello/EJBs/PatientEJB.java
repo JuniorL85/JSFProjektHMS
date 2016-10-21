@@ -57,9 +57,6 @@ public class PatientEJB {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		finally{
-			
-		}
 		return list;
 	}
 	

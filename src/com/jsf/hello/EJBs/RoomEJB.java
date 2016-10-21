@@ -47,8 +47,32 @@ public class RoomEJB {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		finally{
-			
+		return list;
+	}
+	public List<RoomMB> searchRoom(String search)
+	{
+		list = new ArrayList<>();
+
+		
+		try{
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			String myStat = "SELECT * FROM room WHERE roomType LIKE '%"+search+"%' OR roomStatus LIKE '%"+search+"%'";
+			stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery();
+			while(rs.next()){
+				
+				RoomMB usr = new RoomMB();
+				usr.setRoomId(rs.getInt("roomId"));
+				usr.setRoomType(rs.getString("roomType"));
+				usr.setRoomStatus(rs.getInt("roomStatus"));
+				usr.setReceptionistId(rs.getInt("receptionistId"));
+				list.add(usr);
+			}
+			con.close();
+			stat.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 		return list;
 	}

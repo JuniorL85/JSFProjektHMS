@@ -49,6 +49,7 @@
     		<h:commandButton value="Add new user" action="#{admin.show()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
+    		<h:commandButton value="Search" action="searchStaff"/>
     		<h:commandButton value="Go back" action="adminWelcomePage.xhtml?faces-redirect=true"/>
     		<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
     			<div class="popup-panel">

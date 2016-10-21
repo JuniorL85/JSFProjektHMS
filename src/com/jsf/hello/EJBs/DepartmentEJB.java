@@ -45,8 +45,30 @@ public class DepartmentEJB {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		finally{
-			
+		return list;
+	}
+	public List<DepartmentMB> searchDept(String search)
+	{
+		list = new ArrayList<>();
+
+		
+		try{
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			String myStat = "SELECT * FROM department WHERE deptName LIKE '%"+search+"%'";
+			stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery();
+			while(rs.next()){
+				
+				DepartmentMB usr = new DepartmentMB();
+				usr.setDepartmentId(rs.getInt("departmentId"));
+				usr.setDeptName(rs.getString("deptName"));
+				list.add(usr);
+			}
+			con.close();
+			stat.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 		return list;
 	}

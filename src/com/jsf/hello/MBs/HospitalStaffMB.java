@@ -9,26 +9,22 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.validation.constraints.*;
+import com.jsf.hello.EJBs.HospitalStaffEJB;;
  
 @ManagedBean(name = "staff")
 @RequestScoped
 public class HospitalStaffMB {
 	//private static final long serialVersionUID = 1L;
+	HospitalStaffEJB hospitalStaffEjb = new HospitalStaffEJB();
 	
 	private int employeeId;
 	private String jobTitle;
-	
-	@NotNull
-	@Pattern(regexp="[a-zA-Z]*")
 	private String firstName;
-	
-	@NotNull
-	@Pattern(regexp="[a-zA-Z]*")
 	private String lastName;
 	private int departmentId;
 	private String userName;
 	private String password;
+	private String search;
 	
 	//list of StaffRole
 	List<String> staffRoleOptions;
@@ -115,7 +111,15 @@ public class HospitalStaffMB {
 		this.deptId = deptId;
 	}
 
-	public String add(){
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public void add(){
 		
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
@@ -140,7 +144,6 @@ public class HospitalStaffMB {
 	        System.out.println(" SQLException :(");
 	        e.printStackTrace();
 	    }
-    	return null;
     }
 	
 	public void delete(int employeeId) {
@@ -211,4 +214,8 @@ public class HospitalStaffMB {
 		//room1.getRoomList();
 		update(employeeId);
 	}
+	public List<HospitalStaffMB> searchStaff(){
+		return hospitalStaffEjb.searchUser(search);
+	}
+	
 }

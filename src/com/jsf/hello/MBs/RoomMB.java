@@ -15,11 +15,14 @@ import com.jsf.hello.EJBs.RoomEJB;
 @ManagedBean(name="room")
 @SessionScoped
 public class RoomMB {
+	
+	RoomEJB roomEjb = new RoomEJB();
 
 	private int roomId;
 	private String roomType;
 	private int roomStatus;
 	private int receptionistId;
+	private String search;
 	
 	
 	List<String> roomTypeOptions;
@@ -75,13 +78,15 @@ public class RoomMB {
 	public void setReceptionistId(int receptionistId) {
 		this.receptionistId = receptionistId;
 	}
-
-	public String getRoomValues(){
-		System.out.println("Room Type =" + roomTypeOptions);
-		return "submittedRoomInfo.xhtml";
+	public String getSearch() {
+		return search;
 	}
-	
-	public String add(){
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public void add(){
 		
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
@@ -90,7 +95,6 @@ public class RoomMB {
 	        
 	        stat.setString(1, roomType);
 	        stat.setInt(2, roomStatus);
-	        //stat.setInt(3, receptionistId);
 
 
 	        stat.executeUpdate();
@@ -104,7 +108,6 @@ public class RoomMB {
 	        System.out.println(" SQLException :(");
 	        e.printStackTrace();
 	    }
-    	return null;
     }
 	
 	public void delete(int roomId) {
@@ -138,11 +141,11 @@ public class RoomMB {
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="UPDATE room set roomType=?, roomStatus =?" + "WHERE roomId=?";
+	        String myStat ="UPDATE room set roomType=?, roomStatus =? WHERE roomId=" + roomId;
 	        stat = con.prepareStatement(myStat);
 	        
-	        stat.setString(1, roomType);
-	        stat.setInt(2, roomStatus);
+	        stat.setString(1, getRoomType());
+	        stat.setInt(2, getRoomStatus());
 	        int i = stat.executeUpdate();
 	        if (i >0){
 
@@ -167,5 +170,8 @@ public class RoomMB {
 		//RoomEJB room1 = new RoomEJB();
 		//room1.getRoomList();
 		update(roomId);
+	}
+	public List<RoomMB> searchRoom(){
+		return roomEjb.searchRoom(search);
 	}
 }

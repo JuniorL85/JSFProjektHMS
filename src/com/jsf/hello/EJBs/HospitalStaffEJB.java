@@ -49,12 +49,38 @@ public class HospitalStaffEJB {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		finally{
-			
+		return list;
+	}
+	public List<HospitalStaffMB> searchUser(String search)
+	{
+		list = new ArrayList<>();
+
+		
+		try{
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			String myStat = "SELECT * FROM employee WHERE firstName LIKE '%"+search+"%' OR lastName LIKE '%"+search+"%' OR jobTitle LIKE '%"+search+"%'";
+			stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery();
+			while(rs.next()){
+				
+				HospitalStaffMB usr = new HospitalStaffMB();
+				usr.setEmployeeId(rs.getInt("employeeId"));
+				usr.setJobTitle(rs.getString("jobTitle"));
+				usr.setFirstName(rs.getString("firstName"));
+				usr.setLastName(rs.getString("lastName"));
+				usr.setDepartmentId(rs.getInt("departmentId"));
+				usr.setUserName(rs.getString("userName"));
+				usr.setPassword(rs.getString("password"));
+				list.add(usr);
+			}
+			con.close();
+			stat.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 		return list;
 	}
-	
 
 	
 }

@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.validation.constraints.*;
+import com.jsf.hello.EJBs.DepartmentEJB;
 
 @ManagedBean(name="department")
 public class DepartmentMB {
+	
+	DepartmentEJB departmentEjb = new DepartmentEJB();
 
 	private int departmentId;
-	
-	@Pattern(regexp="[a-zA-Z]*", message="DeptName2 is invalid")
 	private String deptName;
+	private String search;
 	
 	
 	List<String> departmentTypeOptions;
@@ -58,13 +59,15 @@ public class DepartmentMB {
 	public void setDepartmentTypeOptions(List<String> departmentTypeOptions) {
 		this.departmentTypeOptions = departmentTypeOptions;
 	}
-
-	public String getDepartmentValues(){
-		System.out.println("Department name =" + deptName);
-		return "submittedDeptInfo.xhtml";
+	public String getSearch() {
+		return search;
 	}
-	
-	public String add(){
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public void add(){
 		
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
@@ -85,7 +88,6 @@ public class DepartmentMB {
 	        System.out.println(" SQLException :(");
 	        e.printStackTrace();
 	    }
-    	return null;
     }
 	
 	public void delete(int departmentId) {
@@ -146,5 +148,8 @@ public class DepartmentMB {
 		//RoomEJB room1 = new RoomEJB();
 		//room1.getRoomList();
 		update(departmentId);
+	}
+	public List<DepartmentMB> searchDept(){
+		return departmentEjb.searchDept(search);
 	}
 }

@@ -129,19 +129,19 @@ public class Login implements Serializable {
 	public String LoginOK(){
 		dbData(userName);
 		if(userName.equals(dbuserName) && password.equals(dbpassword) && staffRole.equals("Admin")){
-			return "adminWelcomePage.xhtml";
+			return "adminWelcomePage.xhtml?faces-redirect=true";
+		}
+		if(userName.equals(dbuserName) && password.equals(dbpassword) && staffRole.equals("Receptionist")){
+			return "receptionistWelcomePage.xhtml?faces-redirect=true";
 		}
 		if(userName.equals(dbuserName) && password.equals(dbpassword)){
-			return "welcomePage.xhtml";
+			return "welcomePage.xhtml?faces-redirect=true";
 		}
 		if(userName.equals(dbuserName) && password.equals(dbpassword)){
-			return "welcomePage.xhtml";
-		}
-		if(userName.equals(dbuserName) && password.equals(dbpassword)){
-			return "welcomePage.xhtml";
+			return "welcomePage.xhtml?faces-redirect=true";
 		}
 		else{
-				return "forgotPassword.xhtml";
+				return "forgotPassword.xhtml?faces-redirect=true";
 			}
 		}
 	
