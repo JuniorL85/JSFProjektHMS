@@ -1,18 +1,13 @@
 package com.jsf.hello.MBs;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
-import javax.validation.constraints.*;
-
-import com.jsf.hello.EJBs.DepartmentEJB;
 import com.jsf.hello.EJBs.PatientEJB;
 
 
@@ -170,46 +165,12 @@ public class Patient {
 	public List<Patient> searchPat(){
 		return patientEjb.searchPat(search);
 	}
-	
-	
-	
-	public String add() {
-
-		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
-			String myStat = "INSERT INTO patient(ssn,firstName,lastName,userName,password, doctorId, nurseId, testId, roomId, receptionistId) VALUES(?,?,?,?,?,?,?,?,?,?)";
-			stat = con.prepareStatement(myStat);
-
-			stat.setInt(1, ssn);
-			stat.setString(2, firstName);
-			stat.setString(3, lastName);
-			stat.setString(4, userName);
-			stat.setString(5, password);
-			stat.setInt(6, doctorId);
-			stat.setInt(7, nurseId);
-			stat.setInt(8, testId);
-			stat.setInt(9, roomId);
-			stat.setInt(10, receptionistId);
-			stat.setInt(11, journalId);
-			stat.executeUpdate();
-
-			System.out.println("Info added successfully");
-
-			con.close();
-			stat.close();
-		} catch (Exception e) {
-			System.out.println(" SQLException :(");
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-
-	
-		
-		
-		
+	public List<Patient> getPatList(){
+		return patientEjb.getPatList();
+	}	
+	public void add() {
+		patientEjb.add(this);
+	}	
 }
 
 

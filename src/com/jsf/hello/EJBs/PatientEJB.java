@@ -11,7 +11,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.jsf.hello.MBs.HospitalStaffMB;
 import com.jsf.hello.MBs.Patient;
 @ManagedBean(name = "patBean")
 
@@ -58,6 +57,36 @@ public class PatientEJB {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	public void add(Patient patient) {
+
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
+					"root", "Sommar15");
+			String myStat = "INSERT INTO patient(ssn,firstName,lastName,userName,password, doctorId, nurseId, testId, roomId, receptionistId) VALUES(?,?,?,?,?,?,?,?,?,?)";
+			stat = con.prepareStatement(myStat);
+
+			stat.setInt(1, patient.getSsn());
+			stat.setString(2, patient.getFirstName());
+			stat.setString(3, patient.getLastName());
+			stat.setString(4, patient.getUserName());
+			stat.setString(5, patient.getPassword());
+			stat.setInt(6, patient.getDoctorId());
+			stat.setInt(7, patient.getNurseId());
+			stat.setInt(8, patient.getTestId());
+			stat.setInt(9, patient.getRoomId());
+			stat.setInt(10, patient.getReceptionistId());
+			stat.setInt(11, patient.getJournalId());
+			stat.executeUpdate();
+
+			System.out.println("Info added successfully");
+
+			con.close();
+			stat.close();
+		} catch (Exception e) {
+			System.out.println(" SQLException :(");
+			e.printStackTrace();
+		}
 	}
 	public List<Patient> searchPat(String search)
 	{
