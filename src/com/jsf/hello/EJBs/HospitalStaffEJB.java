@@ -51,6 +51,33 @@ public class HospitalStaffEJB {
 		}
 		return list;
 	}
+	public void update(HospitalStaffMB hospitalmb) {
+		
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="UPDATE employee SET jobTitle = ?, firstName = ?, lastName= ?, departmentId= ?, userName= ?, password= ? WHERE employeeId = ?";
+	        stat = con.prepareStatement(myStat);
+	        
+	        stat.setInt(1, hospitalmb.getEmployeeId());
+	        stat.setString(2, hospitalmb.getJobTitle());
+	        stat.setString(3, hospitalmb.getFirstName());
+	        stat.setString(4, hospitalmb.getLastName());
+	        stat.setInt(5, hospitalmb.getDepartmentId());
+	        stat.setString(6, hospitalmb.getUserName());
+	        stat.setString(7, hospitalmb.getPassword());
+	        stat.executeUpdate();
+	        
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }
 	public List<HospitalStaffMB> searchUser(String search)
 	{
 		list = new ArrayList<>();
