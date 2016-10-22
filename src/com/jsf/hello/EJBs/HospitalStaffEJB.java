@@ -51,6 +51,58 @@ public class HospitalStaffEJB {
 		}
 		return list;
 	}
+	
+	public void add(HospitalStaffMB hospitalstaffmb){
+		
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="INSERT INTO employee(jobTitle,firstName,lastName,departmentId,userName,password) VALUES(?,?,?,?,?,?)";
+	        stat = con.prepareStatement(myStat); 
+	        
+	        stat.setString(1, hospitalstaffmb.getJobTitle());
+	        stat.setString(2, hospitalstaffmb.getFirstName());
+	        stat.setString(3, hospitalstaffmb.getLastName());
+	        stat.setInt(4, hospitalstaffmb.getDepartmentId());
+	        stat.setString(5, hospitalstaffmb.getUserName());
+	        stat.setString(6, hospitalstaffmb.getPassword());
+
+	        stat.executeUpdate();
+
+	        System.out.println("Info added successfully");
+
+	        con.close();
+			stat.close();
+	    } 
+		catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+    }
+	
+	public void delete(int employeeId) {
+		
+		if (employeeId !=0){
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="delete FROM employee WHERE employeeId=" + employeeId;
+	        stat = con.prepareStatement(myStat); 
+	        int i = stat.executeUpdate();
+	        if (i >0){
+
+	        System.out.println("user deleted successfully");
+	        }
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }}
+	
 	public void update(HospitalStaffMB hospitalmb) {
 		
 	    try {

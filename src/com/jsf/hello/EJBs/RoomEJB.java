@@ -49,6 +49,74 @@ public class RoomEJB {
 		}
 		return list;
 	}
+	
+	public void add(RoomMB roommb){
+		
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="INSERT INTO room(roomType,roomStatus) VALUES(?,?)";
+	        stat = con.prepareStatement(myStat); 
+
+	        stat.setString(1, roommb.getRoomType());
+	        stat.setInt(2, roommb.getRoomStatus());
+
+	        stat.executeUpdate();
+
+	        System.out.println("Info added successfully");
+
+	        con.close();
+			stat.close();
+	    } 
+		catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+    }
+	
+	public void delete(int roomId) {
+		
+		if (roomId !=0){
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="delete FROM room WHERE roomId=" + roomId;
+	        stat = con.prepareStatement(myStat); 
+	        int i = stat.executeUpdate();
+	        if (i >0){
+
+	        System.out.println("Room deleted successfully");
+	        }
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }}
+	public void update(RoomMB roommb) {
+		
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="UPDATE room SET roomType = ?, roomStatus = ? WHERE roomId = ?";
+	        stat = con.prepareStatement(myStat);
+	        
+	        stat.setInt(1, roommb.getRoomId());
+	        stat.setString(2, roommb.getRoomType());
+	        stat.setInt(3, roommb.getRoomStatus());
+	        stat.executeUpdate();
+
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }}
 	public List<RoomMB> searchRoom(String search)
 	{
 		list = new ArrayList<>();

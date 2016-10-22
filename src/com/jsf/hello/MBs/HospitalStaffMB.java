@@ -1,10 +1,5 @@
 package com.jsf.hello.MBs;
 
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +9,8 @@ import com.jsf.hello.EJBs.HospitalStaffEJB;;
  
 @ManagedBean(name = "staff")
 @RequestScoped
-public class HospitalStaffMB implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class HospitalStaffMB {
+	//private static final long serialVersionUID = 1L;
 	HospitalStaffEJB hospitalStaffEjb = new HospitalStaffEJB();
 	
 	private int employeeId;
@@ -32,10 +27,6 @@ public class HospitalStaffMB implements Serializable {
 		
 	//list of DepartmentId
 	List<Integer> deptId;
-	
-	Connection con = null;
-	PreparedStatement stat = null;
-	ResultSet rs = null;
 	
 	public HospitalStaffMB(){
 		//populate list of StaffRole
@@ -119,67 +110,27 @@ public class HospitalStaffMB implements Serializable {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+	public List<HospitalStaffMB> getUserList(){
+		return hospitalStaffEjb.getUserList();
+	}
 
 	public void add(){
-		
-		try {
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="INSERT INTO employee(jobTitle,firstName,lastName,departmentId,userName,password) VALUES(?,?,?,?,?,?)";
-	        stat = con.prepareStatement(myStat); 
-	        
-	        stat.setString(1, jobTitle);
-	        stat.setString(2, firstName);
-	        stat.setString(3, lastName);
-	        stat.setInt(4, departmentId);
-	        stat.setString(5, userName);
-	        stat.setString(6, password);
-
-	        stat.executeUpdate();
-
-	        System.out.println("Info added successfully");
-
-	        con.close();
-			stat.close();
-	    } 
-		catch (Exception e) {
-	        System.out.println(" SQLException :(");
-	        e.printStackTrace();
-	    }
+		hospitalStaffEjb.add(this);
     }
 	
 	public void delete(int employeeId) {
-		
-		if (employeeId !=0){
-	    try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="delete FROM employee WHERE employeeId=" + employeeId;
-	        stat = con.prepareStatement(myStat); 
-	        int i = stat.executeUpdate();
-	        if (i >0){
-
-	        System.out.println("user deleted successfully");
-	        }
-	        con.close();
-			stat.close();
-
-
-	    } catch (Exception e) {
-	        System.out.println(" SQLException :(");
-	        e.printStackTrace();
-	    }
-
-	    }}
-
-	public void getData(){
-		setEmployeeId(employeeId);
-		setJobTitle(jobTitle);
-		setFirstName(firstName);
-		setLastName(lastName);
-		setDepartmentId(departmentId);
-		setUserName(userName);
-		setPassword(password);
+		hospitalStaffEjb.delete(employeeId);
 	}
+
+	//public void getData(){
+		//setEmployeeId(employeeId);
+		//setJobTitle(jobTitle);
+		//setFirstName(firstName);
+		//setLastName(lastName);
+		//setDepartmentId(departmentId);
+		//setUserName(userName);
+		//setPassword(password);
+	//}
 	
 	public void staffById(int employeeId, String jobTitle, String firstName, String lastName, int departmentId, String userName, String password){
 		this.employeeId = employeeId;
@@ -192,7 +143,6 @@ public class HospitalStaffMB implements Serializable {
 	}
 	
 	public void updateStaff(){
-		getData();
 		hospitalStaffEjb.update(this);
 	}
 	
