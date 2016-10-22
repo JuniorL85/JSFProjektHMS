@@ -42,12 +42,12 @@ public class PatientEJB {
 				usr.setLastName(rs.getString("lastName"));
 				usr.setUserName(rs.getString("userName"));
 				usr.setPassword(rs.getString("password"));
-
 				usr.setDoctorId(rs.getInt("doctorId"));
 				usr.setNurseId(rs.getInt("nurseId"));
 				usr.setTestId(rs.getInt("testId"));		
 				usr.setRoomId(rs.getInt("roomId"));
 				usr.setReceptionistId(rs.getInt("receptionistId"));
+				usr.setJournalId(rs.getInt("journalId"));
 
 				list.add(usr);
 			}
@@ -59,7 +59,44 @@ public class PatientEJB {
 		}
 		return list;
 	}
+	public List<Patient> searchPat(String search)
+	{
+		list = new ArrayList<>();
+
+		
+		try{
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			String myStat = "SELECT firstName, notes FROM patient INNER JOIN journal ON journal.ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
+			stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery();
+			while(rs.next()){
+				
+				Patient usr = new Patient();
+				usr.setSsn(rs.getInt("ssn"));
+				usr.setFirstName(rs.getString("firstName"));
+				usr.setLastName(rs.getString("lastName"));
+				usr.setUserName(rs.getString("userName"));
+				usr.setPassword(rs.getString("password"));
+
+				usr.setDoctorId(rs.getInt("doctorId"));
+				usr.setNurseId(rs.getInt("nurseId"));
+				usr.setTestId(rs.getInt("testId"));		
+				usr.setRoomId(rs.getInt("roomId"));
+				usr.setReceptionistId(rs.getInt("receptionistId"));
+				usr.setJournalId(rs.getInt("journalId"));
+				list.add(usr);
+			}
+			con.close();
+			stat.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
 	
+		
+	}
+
 
 	
 	

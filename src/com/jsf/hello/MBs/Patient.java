@@ -12,15 +12,21 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.*;
 
+import com.jsf.hello.EJBs.DepartmentEJB;
+import com.jsf.hello.EJBs.PatientEJB;
+
 
 @ManagedBean(name = "patient")
 @SessionScoped
 public class Patient {
 
 	
+	PatientEJB patientEjb = new PatientEJB();
+	
+	String search;
 
-	
-	
+
+
 	List<Patient> list;
 	Connection con = null;
 	PreparedStatement stat = null;
@@ -31,15 +37,17 @@ public class Patient {
 	String lastName;
 	String userName;
 	String password;
+	
 	int doctorId;
 	int nurseId;
 	int testId;
 	int roomId;
 	int receptionistId;
+	int journalId;
 	
 
 	public void patientById(int ssn, String firstName, String lastName, String userName,
-			String password, int doctorId, int nurseId, int testId, int roomId, int receptionistId ) {
+			String password, int doctorId, int nurseId, int testId, int roomId, int receptionistId, int journalId ) {
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -50,8 +58,24 @@ public class Patient {
 		this.testId = testId;
 		this.roomId = roomId;
 		this.receptionistId = receptionistId;
+		this.journalId = journalId;
 	}
 
+	public int getJournalId() {
+		return journalId;
+	}
+
+	public void setJournalId(int journalId) {
+		this.journalId = journalId;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public int getDoctorId() {
 		return doctorId;
 	}
@@ -132,6 +156,12 @@ public class Patient {
 		this.password = password;
 	}
 
+	public List<Patient> searchPat(){
+		return patientEjb.searchPat(search);
+	}
+	
+	
+	
 	public String add() {
 
 		try {
@@ -164,30 +194,11 @@ public class Patient {
 	}
 
 
-	public void search(){
-		try{
-			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "Select * from patient where ssn like ('" + ssn +"')";
-			//stat = con.prepareStatement(myStat);
-			rs = stat.executeQuery(myStat);
-			while(rs.next()){
-				
-				
-				rs.getInt("ssn");
-				
-			
-				
-			}
-			con.close();
-			stat.close();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-			
-		}
-	}
+	
+		
+		
+		
+}
 
 
 
