@@ -37,7 +37,10 @@ public class Patient {
 	String lastName;
 	String userName;
 	String password;
-	
+
+
+
+	String notes;
 	int doctorId;
 	int nurseId;
 	int testId;
@@ -47,7 +50,7 @@ public class Patient {
 	
 
 	public void patientById(int ssn, String firstName, String lastName, String userName,
-			String password, int doctorId, int nurseId, int testId, int roomId, int receptionistId, int journalId ) {
+			String password, String notes,int doctorId, int nurseId, int testId, int roomId, int receptionistId, int journalId ) {
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -59,6 +62,14 @@ public class Patient {
 		this.roomId = roomId;
 		this.receptionistId = receptionistId;
 		this.journalId = journalId;
+		this.notes = notes;
+	}
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	public int getJournalId() {
@@ -180,6 +191,7 @@ public class Patient {
 			stat.setInt(8, testId);
 			stat.setInt(9, roomId);
 			stat.setInt(10, receptionistId);
+			stat.setInt(11, journalId);
 			stat.executeUpdate();
 
 			System.out.println("Info added successfully");

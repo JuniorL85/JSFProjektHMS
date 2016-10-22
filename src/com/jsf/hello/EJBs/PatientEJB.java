@@ -66,14 +66,14 @@ public class PatientEJB {
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "SELECT firstName, notes FROM patient INNER JOIN journal ON journal.ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
+			String myStat = "SELECT patient.ssn, notes FROM patient INNER JOIN journal ON journal.ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){
 				
 				Patient usr = new Patient();
 				usr.setSsn(rs.getInt("ssn"));
-				usr.setFirstName(rs.getString("firstName"));
+				/*usr.setFirstName(rs.getString("firstName"));
 				usr.setLastName(rs.getString("lastName"));
 				usr.setUserName(rs.getString("userName"));
 				usr.setPassword(rs.getString("password"));
@@ -83,7 +83,8 @@ public class PatientEJB {
 				usr.setTestId(rs.getInt("testId"));		
 				usr.setRoomId(rs.getInt("roomId"));
 				usr.setReceptionistId(rs.getInt("receptionistId"));
-				usr.setJournalId(rs.getInt("journalId"));
+				usr.setJournalId(rs.getInt("journalId"));*/
+				usr.setNotes(rs.getString("notes"));
 				list.add(usr);
 			}
 			con.close();
