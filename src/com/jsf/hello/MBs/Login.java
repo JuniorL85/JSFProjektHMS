@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,14 +15,20 @@ import javax.faces.bean.SessionScoped;
 public class Login implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	//variables for staff Login
 	private String userName;
 	private String password;
 	private String staffRole;
 	private String dbuserName;
-	private String jobTitle;
-	  
+	private String jobTitle;  
     private String dbpassword;
 
+    //variables for patient Login
+    private String patientUserName;
+    private String patientPassword;
+    private String patientDbUserName;
+    private String patientDbPassword;
+    
 	//list of StaffRole
 	List<String> staffRoleOptions;
 	
@@ -106,7 +111,46 @@ public class Login implements Serializable {
 		this.jobTitle = jobTitle;
 	}
 
+	public String getPatientUserName() {
+		return patientUserName;
+	}
 
+
+	public void setPatientUserName(String patientUserName) {
+		this.patientUserName = patientUserName;
+	}
+
+
+	public String getPatientPassword() {
+		return patientPassword;
+	}
+
+
+	public void setPatientPassword(String patientPassword) {
+		this.patientPassword = patientPassword;
+	}
+
+
+	public String getPatientDbUserName() {
+		return patientDbUserName;
+	}
+
+
+	public void setPatientDbUserName(String patientDbUserName) {
+		this.patientDbUserName = patientDbUserName;
+	}
+
+
+	public String getPatientDbPassword() {
+		return patientDbPassword;
+	}
+
+
+	public void setPatientDbPassword(String patientDbPassword) {
+		this.patientDbPassword = patientDbPassword;
+	}
+
+	//Start of staff Login
 	public void dbData(String userName){
 		
 		try {
@@ -148,4 +192,36 @@ public class Login implements Serializable {
 	public String LogOut(){
 		return "login.xhtml?faces-redirect=true";
 	}
+	
+	//Start of patient Login
+	public void PatientdbData(String patientUserName){
+		
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        stat = con.createStatement();
+	        String myStat ="SELECT * from patient WHERE username like('"+patientUserName+"')";
+	        rs = stat.executeQuery(myStat);
+	        rs.next();
+	        patientDbUserName = rs.getString("username");
+	        patientDbPassword = rs.getString("password");
+   
+	    } 
+		catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+    }
+	public String PatientLoginOK(){
+		PatientdbData(patientUserName);
+		if(patientUserName.equals(patientDbUserName) && patientPassword.equals(patientDbPassword)){
+			return "patientWelcomePage.xhtml?faces-redirect=true";
+		}
+		else{
+				return "forgotPassword.xhtml?faces-redirect=true";
+			}
+		}
+	public String PatientLogOut(){
+		return "patientLogin.xhtml?faces-redirect=true";
+	}
+	
 }
