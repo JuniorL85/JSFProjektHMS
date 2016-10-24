@@ -43,10 +43,10 @@ public class PatientEJB {
 				usr.setPassword(rs.getString("password"));
 				usr.setDoctorId(rs.getInt("doctorId"));
 				usr.setNurseId(rs.getInt("nurseId"));
-				usr.setTestId(rs.getInt("testId"));		
-				usr.setRoomId(rs.getInt("roomId"));
+				//usr.setTestId(rs.getInt("testId"));		
+				//usr.setRoomId(rs.getInt("roomId"));
 				usr.setReceptionistId(rs.getInt("receptionistId"));
-				usr.setJournalId(rs.getInt("journalId"));
+				//usr.setJournalId(rs.getInt("journalId"));
 
 				list.add(usr);
 			}
@@ -63,7 +63,7 @@ public class PatientEJB {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "INSERT INTO patient(ssn,firstName,lastName,userName,password, doctorId, nurseId, testId, roomId, receptionistId) VALUES(?,?,?,?,?,?,?,?,?,?)";
+			String myStat = "INSERT INTO patient(ssn,firstName,lastName,username,password, doctorId, nurseId, receptionistId) VALUES(?,?,?,?,?,?,?,?)";
 			stat = con.prepareStatement(myStat);
 
 			stat.setInt(1, patient.getSsn());
@@ -73,10 +73,10 @@ public class PatientEJB {
 			stat.setString(5, patient.getPassword());
 			stat.setInt(6, patient.getDoctorId());
 			stat.setInt(7, patient.getNurseId());
-			stat.setInt(8, patient.getTestId());
-			stat.setInt(9, patient.getRoomId());
-			stat.setInt(10, patient.getReceptionistId());
-			stat.setInt(11, patient.getJournalId());
+			//stat.setInt(8, patient.getTestId());
+			//stat.setInt(9, patient.getRoomId());
+			stat.setInt(8, patient.getReceptionistId());
+			//stat.setInt(11, patient.getJournalId());
 			stat.executeUpdate();
 
 			System.out.println("Info added successfully");
