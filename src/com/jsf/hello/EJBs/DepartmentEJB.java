@@ -97,11 +97,11 @@ public class DepartmentEJB {
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="UPDATE department SET departmentId = ?, deptName = ? WHERE departmentId = ?";
+	        String myStat ="UPDATE department SET deptName = ? WHERE departmentId = ?";
 	        stat = con.prepareStatement(myStat);
-	        	        
-	        stat.setInt(1, departmentmb.getDepartmentId());
-	        stat.setString(2, departmentmb.getDeptName());
+	        	       
+	        stat.setString(1, departmentmb.getDeptName());
+	        stat.setInt(2, departmentmb.getDepartmentId());
 	        stat.executeUpdate();
 
 	        con.close();

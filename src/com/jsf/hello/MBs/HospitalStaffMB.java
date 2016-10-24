@@ -143,7 +143,9 @@ public class HospitalStaffMB {
 	}
 	
 	public void updateStaff(){
+		System.out.println("in update staff.. before calling update");
 		hospitalStaffEjb.update(this);
+		System.out.println("in update staff.. after calling update");
 	}
 	
 	public List<HospitalStaffMB> searchStaff(){

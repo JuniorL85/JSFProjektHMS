@@ -16,14 +16,8 @@
 	
 	<h:body>
         <h:form>   
-          <h:panelGrid columns="2"> 
-       
-                <p:inputText id="ssn" validatorMessage="SSN is invalid" placeholder="Enter SSN" >  
-                <f:validateLength minimum="10" maximum="12"/>
-                <p:message for="ssn" style="color:red"></p:message>
-                </p:inputText>            
-        
-        	<p:commandButton value="Search" class="login-submit" update="ssn"/>
+          <h:panelGrid columns="2">           
+        	<h:inputText value="#{patient.search}"/><h:commandButton value="Search"/>
         	</h:panelGrid>
         </h:form>
         <h:form>
@@ -34,7 +28,7 @@
                 <p:inputTextarea id="medicine"/>
                 
                 <p:outputLabel value="Patient Notes: " class="label"/>                           
-                <p:inputTextarea id="patientnotes" cols="20" rows="5"/>
+                <p:inputTextarea value="#{patient.searchPat()}" var="u" id="patientnotes" cols="20" rows="5"/>#{u.notes}
                 
                 <p:outputLabel/>
                 <p:commandButton value="Submit"/>

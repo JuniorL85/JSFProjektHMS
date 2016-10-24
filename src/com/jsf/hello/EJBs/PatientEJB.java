@@ -95,7 +95,7 @@ public class PatientEJB {
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "SELECT patient.ssn, notes FROM patient INNER JOIN journal ON journal.ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
+			String myStat = "SELECT patient.ssn, notes FROM patient INNER JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){

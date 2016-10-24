@@ -22,7 +22,7 @@
 			<h:graphicImage value="img/hospitalLogo.png" height="100" width="100" /><br/><br/>
 			
 				<p:commandButton align="center" value="Login here" type="button" onclick="PF('dlg2').show();" />
-				<p:dialog header="Are you a:" widgetVar="dlg2" modal="true" height="70">
+				<p:dialog header="Pick an option" widgetVar="dlg2" modal="true" height="70">
 				<h:form>
     			<p:commandButton value="Patient" type="button" onclick="patient()"/>
     			<p:remoteCommand name="patient" action="patientLogin.xhtml?faces-redirect=true"/>

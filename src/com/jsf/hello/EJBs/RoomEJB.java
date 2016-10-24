@@ -104,9 +104,9 @@ public class RoomEJB {
 	        String myStat ="UPDATE room SET roomType = ?, roomStatus = ? WHERE roomId = ?";
 	        stat = con.prepareStatement(myStat);
 	        
-	        stat.setInt(1, roommb.getRoomId());
-	        stat.setString(2, roommb.getRoomType());
-	        stat.setInt(3, roommb.getRoomStatus());
+	        stat.setString(1, roommb.getRoomType());
+	        stat.setInt(2, roommb.getRoomStatus());
+	        stat.setInt(3, roommb.getRoomId());
 	        stat.executeUpdate();
 
 	        con.close();

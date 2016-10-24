@@ -107,17 +107,20 @@ public class HospitalStaffEJB {
 		
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
+	    	System.out.println("in HospitalStaffEJB.update .. in try");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="UPDATE employee SET jobTitle = ?, firstName = ?, lastName= ?, departmentId= ?, userName= ?, password= ? WHERE employeeId = ?";
 	        stat = con.prepareStatement(myStat);
-	        
-	        stat.setInt(1, hospitalmb.getEmployeeId());
-	        stat.setString(2, hospitalmb.getJobTitle());
-	        stat.setString(3, hospitalmb.getFirstName());
-	        stat.setString(4, hospitalmb.getLastName());
-	        stat.setInt(5, hospitalmb.getDepartmentId());
-	        stat.setString(6, hospitalmb.getUserName());
-	        stat.setString(7, hospitalmb.getPassword());
+	        System.out.println("in HospitalStaffEJB.update .. in hospitalmb.getFirstName() = "+hospitalmb.getFirstName());	  
+	        stat.setString(1, hospitalmb.getJobTitle());
+	        stat.setString(2, hospitalmb.getFirstName());
+	        stat.setString(3, hospitalmb.getLastName());
+	        stat.setInt(4, hospitalmb.getDepartmentId());
+	        stat.setString(5, hospitalmb.getUserName());
+	        stat.setString(6, hospitalmb.getPassword());
+	        stat.setInt(7, hospitalmb.getEmployeeId());
+	        //stat.setInt(7, hospitalmb.getEmployeeId());
+	        System.out.println("in HospitalStaffEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();
 	        
 	        con.close();
