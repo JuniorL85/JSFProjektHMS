@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<link rel="stylesheet" href="css/table-style.css"/>
+    </h:head>
+    
+    <h:form>
+    
+				<h3>Update info</h3>
+				<table>
+					<tr>
+						<td>SSN</td>
+						<td><p:inputText id="ssn" size="20"
+								value="#{patient.ssn}" /></td>
+					</tr>
+
+					<tr>
+						<td>First Name</td>
+						<td><p:inputText id="firstName" size="20"
+								value="#{patient.firstName}" /></td>
+					</tr>
+
+					<tr>
+						<td>Last Name</td>
+						<td><p:inputText id="lastName" size="20"
+								value="#{patient.lastName}" /></td>
+					</tr>
+					<tr>
+						<td>Username</td>
+						<td><p:inputText id="Username" size="20"
+								value="#{patient.userName}" /></td>
+					</tr>
+
+					<tr>
+						<td>Password</td>
+						<td><p:inputText id="password" size="20"
+								value="#{patient.password}" /></td>
+					</tr>
+
+					<tr>
+						<td>Doctor Id</td>
+						<td><p:inputText id="doctorId" size="20"
+								value="#{patient.doctorId}" /></td>
+					</tr>
+					
+					<tr>
+						<td>Nurse ID </td>
+						<td><p:inputText id="nurseId" size="20"
+								value="#{patient.nurseId}" /></td>
+					</tr>
+    		</table>
+    		<br/>
+    		<h:commandButton value="Update" actionListener="#{patient.updatePatient()}" action="patientTableInfo"/>
+    		<h:commandButton value="Go back" action="patientTableInfo.xhtml?faces-redirect=true"/>
+    
+    </h:form>
+</html>

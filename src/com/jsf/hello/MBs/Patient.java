@@ -45,7 +45,7 @@ public class Patient {
 	
 
 	public void patientById(int ssn, String firstName, String lastName, String userName,
-			String password, String notes,int doctorId, int nurseId, int testId, int roomId, int receptionistId, int journalId ) {
+			String password, int doctorId, int nurseId) {
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -53,11 +53,19 @@ public class Patient {
 		this.password = password;
 		this.doctorId = doctorId;
 		this.nurseId = nurseId;
-		this.testId = testId;
-		this.roomId = roomId;
-		this.receptionistId = receptionistId;
-		this.journalId = journalId;
+		//this.testId = testId;
+		//this.roomId = roomId;
+		//this.receptionistId = receptionistId;
+		//this.journalId = journalId;
+		//this.notes = notes;
+	}
+	public void journalById(int ssn, String notes) {
+		this.ssn = ssn;
+		//this.journalId = journalId;
 		this.notes = notes;
+		//this.doctorId = doctorId;
+		//this.nurseId = nurseId;
+
 	}
 	public String getNotes() {
 		return notes;
@@ -171,6 +179,19 @@ public class Patient {
 	public void add() {
 		patientEjb.add(this);
 	}	
+	public void delete(int ssn){
+		patientEjb.delete(ssn);
+	}
+	public void updatePatient(){
+		System.out.println("in update patient.. before calling update");
+		patientEjb.update(this);
+		System.out.println("in update patient.. after calling update");
+	}
+	public void updateJournal(){
+		System.out.println("in update journal.. before calling update");
+		patientEjb.updateJournal(this);
+		System.out.println("in update journal.. after calling update");
+	}
 }
 
 

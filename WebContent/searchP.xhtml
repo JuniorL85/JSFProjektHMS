@@ -21,12 +21,20 @@
     				<f:facet name="header">Patients notes</f:facet>#{u.notes}
     			</p:column>
     			<p:column>
-    				<f:facet name="header">patient ID</f:facet>#{u.ssn}
+    				<f:facet name="header">Patient ID</f:facet>#{u.ssn}
+    			</p:column>
+    			<p:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Delete Patient" action="#{patient.delete(u.ssn)}" style="color:black;"/>
+    			</p:column>
+    			<p:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Update Journal" action="updateJournal" actionListener="#{patient.journalById(u.ssn, u.notes)}" style="color:black;"/>
     			</p:column>
     			
     		</p:dataTable>
     		<br /><br />
-    		<h:commandButton value="Go back" action="departmentTableInfo.xhtml?faces-redirect=true"/>
+    		<h:commandButton value="Go back" action="welcomePage.xhtml?faces-redirect=true"/>
     	</h:form>
     	</f:view>
     </h:body>

@@ -28,6 +28,14 @@
 			<p:column>
 				<f:facet name="header">Username</f:facet>#{u.userName}
     			</p:column>
+    			<p:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Release patient" action="#{patient.delete(u.ssn)}" style="color:black;"/>
+    			</p:column>
+    			<p:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Update" action="updatePatient" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.userName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
+    			</p:column>
 			<!-- <h:column>
     				<f:facet name="header">Password</f:facet>#{u.password}
     			</h:column> -->
@@ -37,7 +45,7 @@
 		<h:commandButton value="Add new Patient" action="#{admin.show()}">
 			<f:ajax render="@form" />
 		</h:commandButton>
-		<p:commandButton value="Go back"
+		<h:commandButton value="Go back"
 			action="welcomePage.xhtml?faces-redirect=true" />
 		<h:panelGroup layout="block" styleClass="popup-panel-overlay"
 			rendered="#{admin.showPopUp}">
