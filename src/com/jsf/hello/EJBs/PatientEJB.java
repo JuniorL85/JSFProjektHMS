@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
 import com.jsf.hello.MBs.HospitalStaffMB;
 import com.jsf.hello.MBs.Patient;
 @ManagedBean(name = "patBean")
-
+@SessionScoped
 public class PatientEJB {
 
 	List<Patient> list;
@@ -147,14 +147,15 @@ public class PatientEJB {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	    	System.out.println("in PatientEJB.update .. in try");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="UPDATE journal SET notes= ? WHERE patient_ssn = ?";
+	        String myStat ="UPDATE journal SET notes= ?, tests= ? WHERE patient_ssn = ?";
 	        stat = con.prepareStatement(myStat);
 	        System.out.println("in PatientEJB.update .. in patient.getFirstName() = "+journal.getSsn());
 	        //stat.setInt(1, journal.getJournalId());
 	        stat.setString(1, journal.getNotes());
 	        //stat.setInt(3, journal.getDoctorId());
-	        //stat.setInt(4, journal.getNurseId());
-	        stat.setInt(2, journal.getSsn());
+	        stat.setString(2, journal.getTests());
+	        stat.setInt(3, journal.getSsn());
+	        
 	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();
 	        
@@ -175,7 +176,7 @@ public class PatientEJB {
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "SELECT patient.ssn, notes FROM patient INNER JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
+			String myStat = "SELECT patient.ssn, notes, tests FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){
@@ -194,6 +195,7 @@ public class PatientEJB {
 				usr.setRoomId(rs.getInt("roomId"));
 				usr.setReceptionistId(rs.getInt("receptionistId"));*/
 				usr.setNotes(rs.getString("notes"));
+				usr.setTests(rs.getString("tests"));
 				list.add(usr);
 			}
 			con.close();

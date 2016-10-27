@@ -9,20 +9,15 @@ import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
 
-
 import com.jsf.hello.EJBs.PatientEJB;
-
 
 @ManagedBean(name = "patient")
 @SessionScoped
 public class Patient {
 
-	
 	PatientEJB patientEjb = new PatientEJB();
-	
+
 	String search;
-
-
 
 	List<Patient> list;
 	Connection con = null;
@@ -35,7 +30,7 @@ public class Patient {
 	String userName;
 	String password;
 
-
+	String tests;
 
 	String notes;
 	int doctorId;
@@ -44,10 +39,9 @@ public class Patient {
 	int roomId;
 	int receptionistId;
 	int journalId;
-	
 
-	public void patientById(int ssn, String firstName, String lastName, String userName,
-			String password, int doctorId, int nurseId) {
+	public void patientById(int ssn, String firstName, String lastName, String userName, String password, int doctorId,
+			int nurseId) {
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -55,20 +49,32 @@ public class Patient {
 		this.password = password;
 		this.doctorId = doctorId;
 		this.nurseId = nurseId;
-		//this.testId = testId;
-		//this.roomId = roomId;
-		//this.receptionistId = receptionistId;
-		//this.journalId = journalId;
-		//this.notes = notes;
+		// this.testId = testId;
+		// this.roomId = roomId;
+		// this.receptionistId = receptionistId;
+		// this.journalId = journalId;
+		// this.notes = notes;
 	}
-	public void journalById(int ssn, String notes) {
+
+	public void journalById(int ssn, String notes, String tests) {
 		this.ssn = ssn;
+		this.tests = tests;
 		//this.journalId = journalId;
 		this.notes = notes;
 		//this.doctorId = doctorId;
 		//this.nurseId = nurseId;
-
 	}
+	
+
+
+	public String getTests() {
+		return tests;
+	}
+
+	public void setTests(String tests) {
+		this.tests = tests;
+	}
+
 	public String getNotes() {
 		return notes;
 	}
@@ -92,6 +98,7 @@ public class Patient {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+
 	public int getDoctorId() {
 		return doctorId;
 	}
@@ -172,29 +179,31 @@ public class Patient {
 		this.password = password;
 	}
 
-	public List<Patient> searchPat(){
+	public List<Patient> searchPat() {
 		return patientEjb.searchPat(search);
 	}
-	public List<Patient> getPatList(){
+
+	public List<Patient> getPatList() {
 		return patientEjb.getPatList();
-	}	
+	}
+
 	public void add() {
 		patientEjb.add(this);
-	}	
-	public void delete(int ssn){
+	}
+
+	public void delete(int ssn) {
 		patientEjb.delete(ssn);
 	}
-	public void updatePatient(){
+
+	public void updatePatient() {
 		System.out.println("in update patient.. before calling update");
 		patientEjb.update(this);
 		System.out.println("in update patient.. after calling update");
 	}
-	public void updateJournal(){
+
+	public void updateJournal() {
 		System.out.println("in update journal.. before calling update");
 		patientEjb.updateJournal(this);
 		System.out.println("in update journal.. after calling update");
 	}
 }
-
-
-
