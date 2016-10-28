@@ -25,6 +25,9 @@
     				<f:facet name="header">Room Status</f:facet>#{u.roomStatus}
     			</p:column>
     			<p:column>
+    				<f:facet name="header">Patient SSN</f:facet>#{u.patient_ssn}
+    			</p:column>
+    			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<h:commandLink value="Delete" action="#{room.delete(u.roomId)}" style="color:black;"/>
     			</p:column>

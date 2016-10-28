@@ -39,6 +39,7 @@ public class RoomEJB {
 				usr.setRoomType(rs.getString("roomType"));
 				usr.setRoomStatus(rs.getInt("roomStatus"));
 				usr.setReceptionistId(rs.getInt("receptionistId"));
+				usr.setPatient_ssn(rs.getInt("patient_ssn"));
 				list.add(usr);
 			}
 			con.close();

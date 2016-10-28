@@ -19,8 +19,11 @@ public class RoomMB {
 	private int roomStatus;
 	private int receptionistId;
 	private String search;
+	private int patient_ssn;
 	
 	
+
+
 	List<String> roomTypeOptions;
 	
 	public RoomMB(){
@@ -32,6 +35,13 @@ public class RoomMB {
 				roomTypeOptions.add("Examination Room");
 	}
 
+	public int getPatient_ssn() {
+		return patient_ssn;
+	}
+
+	public void setPatient_ssn(int patient_ssn) {
+		this.patient_ssn = patient_ssn;
+	}	
 	public int getRoomId() {
 		return roomId;
 	}
