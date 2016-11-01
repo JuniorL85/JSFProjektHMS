@@ -31,6 +31,9 @@ public class Patient {
 	String password;
 
 	String tests;
+	String medicine;
+
+
 
 	String notes;
 	int doctorId;
@@ -56,16 +59,23 @@ public class Patient {
 		// this.notes = notes;
 	}
 
-	public void journalById(int ssn, String notes, String tests) {
+	public void journalById(int ssn, String notes, String tests, String medicine) {
 		this.ssn = ssn;
 		this.tests = tests;
 		//this.journalId = journalId;
 		this.notes = notes;
+		this.medicine = medicine;
 		//this.doctorId = doctorId;
 		//this.nurseId = nurseId;
 	}
 	
+	public String getMedicine() {
+		return medicine;
+	}
 
+	public void setMedicine(String medicine) {
+		this.medicine = medicine;
+	}
 
 	public String getTests() {
 		return tests;

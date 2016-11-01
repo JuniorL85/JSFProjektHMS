@@ -27,6 +27,9 @@
 				<p:column>
 					<f:facet name="header">Tests</f:facet>#{u.tests}
     			</p:column>
+    				<p:column>
+					<f:facet name="header">Medicine</f:facet>#{u.medicine}
+    			</p:column>
 				<p:column>
 					<f:facet name="header">Action</f:facet>
 					<h:commandLink value="Delete Patient"
@@ -35,7 +38,7 @@
 				<p:column>
 					<f:facet name="header">Action</f:facet>
 					<h:commandLink value="Update Journal" action="updateJournal"
-						actionListener="#{patient.journalById(u.ssn, u.notes, u.tests)}"
+						actionListener="#{patient.journalById(u.ssn, u.notes, u.tests, u.medicine)}"
 						style="color:black;" />
 				</p:column>
 
