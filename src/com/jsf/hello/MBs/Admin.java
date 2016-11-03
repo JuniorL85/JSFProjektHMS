@@ -24,6 +24,9 @@ public class Admin {
 	public void show(){
 		showPopUp=true;
 	}
+	public void showUpdate(){
+		showPopUp=true;
+	}
 	public void hide(){
 		showPopUp=false;
 	}

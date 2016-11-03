@@ -1,6 +1,6 @@
 body{
-	background: #437dd6;
-	color: #ffffff;
+	background: #eeeeee;
+	color: #101010;
 }
 
 .book-table{
@@ -30,10 +30,18 @@ body{
 }
 .popup-panel{
 	margin: 200px;
-	background-color: #437dd6;
+	background-color: #333333;
+	color: #ffffff;
 	padding: 20px;
 	border-radius: 5px;
 	border: 1px solid #DDD;		
+}
+
+.menubar{
+	background-color: #333333;
+	color: #ffffff;
+	padding: 5px;
+	
 }
 
 

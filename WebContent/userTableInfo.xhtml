@@ -6,6 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+      
     <h:head>
     	<link rel="stylesheet" href="css/table-style.css"/>
     </h:head>
@@ -42,7 +43,7 @@
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Update" action="updateStaff" actionListener="#{staff.staffById(u.employeeId, u.jobTitle, u.firstName, u.lastName, u.departmentId, u.userName, u.password)}" style="color:black;"/>
+    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{staff.staffById(u.employeeId, u.jobTitle, u.firstName, u.lastName, u.departmentId, u.userName, u.password)}" style="color:black;"/>
     			</p:column>
     		</p:dataTable>
     		<br /><br />
@@ -51,6 +52,7 @@
     			</h:commandButton>
     		<h:commandButton value="Search" action="searchStaff"/>
     		<h:commandButton value="Go back" action="adminWelcomePage.xhtml?faces-redirect=true"/>
+    		<!-- Popup-panel for adding new user -->
     		<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
     			<div class="popup-panel">
     			
@@ -91,7 +93,7 @@
     			required="true" requiredMessage="Password is required"/><h:message for="password" style="color:red"/></td> 			
     		</tr>
     		</table>
-    		<h:commandButton value="Add" action="#{staff.add()}"/>
+    		<h:commandButton value="Add" action="#{staff.add()}" actionListener="#{admin.hide()}"/>
     		<h:commandButton value="Close" actionListener="#{admin.hide()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
@@ -99,5 +101,58 @@
     			</div>
     		</h:panelGroup>	
     	</h:form>
+    	<!-- Popup-panel for update -->
+    	<h:form>
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<div class="popup-panel">
+    			
+    		<h3>Update info</h3>
+    		<table>
+    		
+    		<tr><td>EmployeeId</td>
+    			<td><p:inputText id="employeeId" size="20" value="#{staff.employeeId}"/></td></tr>
+    		<tr>
+    			<td>Job Title</td>
+    			<td><p:selectOneMenu value="#{staff.jobTitle}">
+						<f:selectItems value="#{staff.staffRoleOptions}"/>
+					</p:selectOneMenu></td>
+    		</tr>
+    		<tr>
+    			<td>First Name</td>
+    			<td><p:inputText id="firstname" size="20" value="#{staff.firstName}" required="true" 
+    			requiredMessage="Firstname is required" validatorMessage="Firstname is invalid">
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="firstname" style="color:red"/></td>
+    		</tr>
+    		<tr>
+    			<td>Last Name</td>
+    			<td><p:inputText id="lastname" size="20" value="#{staff.lastName}" required="true" 
+    			requiredMessage="Lastname is required" validatorMessage="Lastname is invalid">
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="lastname" style="color:red"/></td>   			
+    		</tr>
+    		<tr>
+    			<td>Department ID</td>
+    			<td><p:selectOneMenu value="#{staff.departmentId}" converter="javax.faces.Integer">
+						<f:selectItems value="#{staff.deptId}"/>
+					</p:selectOneMenu></td>
+			</tr>
+    		<tr>
+    			<td>Username</td>
+    			<td><p:inputText id="username" size="20" value="#{staff.userName}" 
+    			required="true" requiredMessage="Username is required"/><h:message for="username" style="color:red"/></td>
+    		</tr>
+    		<tr>
+    			<td>Password</td>
+    			<td><p:inputText id="password" size="20" value="#{staff.password}" 
+    			required="true" requiredMessage="Password is required"/><h:message for="password" style="color:red"/></td> 			
+    		</tr>
+    		</table>
+    		<h:commandButton value="Update" actionListener="#{staff.updateStaff()}" action="#{admin.hide()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
+    		</h:form>
     </h:body>
 </html>
