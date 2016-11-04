@@ -8,10 +8,10 @@ import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.EJBs.RoomEJB;
 
-@ManagedBean(name="room")
+@ManagedBean(name = "room")
 @SessionScoped
 public class RoomMB {
-	
+
 	RoomEJB roomEjb = new RoomEJB();
 
 	private int roomId;
@@ -20,19 +20,35 @@ public class RoomMB {
 	private int receptionistId;
 	private String search;
 	private int patient_ssn;
-	
-	
 
+	private int maxCapacity;
+	private int capacityNow;
 
 	List<String> roomTypeOptions;
-	
-	public RoomMB(){
-		//populate list of StaffRole
-				roomTypeOptions = new ArrayList<>();
-				
-				roomTypeOptions.add("Private Room");
-				roomTypeOptions.add("General Ward");
-				roomTypeOptions.add("Examination Room");
+
+	public RoomMB() {
+		// populate list of StaffRole
+		roomTypeOptions = new ArrayList<>();
+
+		roomTypeOptions.add("Private Room");
+		roomTypeOptions.add("General Ward");
+		roomTypeOptions.add("Examination Room");
+	}
+
+	public int getMaxCapacity() {
+		return maxCapacity;
+	}
+
+	public void setMaxCapacity(int maxCapacity) {
+		this.maxCapacity = maxCapacity;
+	}
+
+	public int getCapacityNow() {
+		return capacityNow;
+	}
+
+	public void setCapacityNow(int capacityNow) {
+		this.capacityNow = capacityNow;
 	}
 
 	public int getPatient_ssn() {
@@ -41,7 +57,8 @@ public class RoomMB {
 
 	public void setPatient_ssn(int patient_ssn) {
 		this.patient_ssn = patient_ssn;
-	}	
+	}
+
 	public int getRoomId() {
 		return roomId;
 	}
@@ -65,6 +82,7 @@ public class RoomMB {
 	public void setRoomTypeOptions(List<String> roomTypeOptions) {
 		this.roomTypeOptions = roomTypeOptions;
 	}
+
 	public int getRoomStatus() {
 		return roomStatus;
 	}
@@ -80,6 +98,7 @@ public class RoomMB {
 	public void setReceptionistId(int receptionistId) {
 		this.receptionistId = receptionistId;
 	}
+
 	public String getSearch() {
 		return search;
 	}
@@ -87,29 +106,30 @@ public class RoomMB {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-	
-	public List<RoomMB> getRoomList(){
+
+	public List<RoomMB> getRoomList() {
 		return roomEjb.getRoomList();
 	}
 
-	public void add(){
+	public void add() {
 		roomEjb.add(this);
-    }
-	
+	}
+
 	public void delete(int roomId) {
 		roomEjb.delete(roomId);
 	}
-	
-	public void roomById(int roomId, String roomType, int roomStatus){
+
+	public void roomById(int roomId, String roomType, int maxCapacity) {
 		this.roomId = roomId;
 		this.roomType = roomType;
-		this.roomStatus = roomStatus;
+		this.maxCapacity = maxCapacity;
 	}
-	
-	public void updateRoom(){
+
+	public void updateRoom() {
 		roomEjb.update(this);
 	}
-	public List<RoomMB> searchRoom(){
+
+	public List<RoomMB> searchRoom() {
 		return roomEjb.searchRoom(search);
 	}
 }

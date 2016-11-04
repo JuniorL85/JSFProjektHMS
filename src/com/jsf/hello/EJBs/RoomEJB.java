@@ -29,7 +29,7 @@ public class RoomEJB {
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "SELECT * FROM room";
+			String myStat = "SELECT * FROM rooms";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){
@@ -37,9 +37,9 @@ public class RoomEJB {
 				RoomMB usr = new RoomMB();
 				usr.setRoomId(rs.getInt("roomId"));
 				usr.setRoomType(rs.getString("roomType"));
-				usr.setRoomStatus(rs.getInt("roomStatus"));
-				usr.setReceptionistId(rs.getInt("receptionistId"));
-				usr.setPatient_ssn(rs.getInt("patient_ssn"));
+				usr.setMaxCapacity(rs.getInt("maxCapacity"));
+				usr.setCapacityNow(rs.getInt("capacityNow"));
+				
 				list.add(usr);
 			}
 			con.close();
@@ -55,11 +55,11 @@ public class RoomEJB {
 		
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="INSERT INTO room(roomType,roomStatus) VALUES(?,?)";
+	        String myStat ="INSERT INTO rooms(roomType,maxCapacity) VALUES(?,?)";
 	        stat = con.prepareStatement(myStat); 
 
 	        stat.setString(1, roommb.getRoomType());
-	        stat.setInt(2, roommb.getRoomStatus());
+	        stat.setInt(2, roommb.getMaxCapacity());
 
 	        stat.executeUpdate();
 
@@ -80,7 +80,7 @@ public class RoomEJB {
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="delete FROM room WHERE roomId=" + roomId;
+	        String myStat ="delete FROM rooms WHERE roomId=" + roomId;
 	        stat = con.prepareStatement(myStat); 
 	        int i = stat.executeUpdate();
 	        if (i >0){
@@ -102,11 +102,11 @@ public class RoomEJB {
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="UPDATE room SET roomType = ?, roomStatus = ? WHERE roomId = ?";
+	        String myStat ="UPDATE rooms SET roomType = ?, maxCapacity = ? WHERE roomId = ?";
 	        stat = con.prepareStatement(myStat);
 	        
 	        stat.setString(1, roommb.getRoomType());
-	        stat.setInt(2, roommb.getRoomStatus());
+	        stat.setInt(2, roommb.getMaxCapacity());
 	        stat.setInt(3, roommb.getRoomId());
 	        stat.executeUpdate();
 
