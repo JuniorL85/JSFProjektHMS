@@ -11,18 +11,48 @@ import com.jsf.hello.EJBs.WaitingEJB;
 @ManagedBean(name="waiting")
 @SessionScoped
 public class WaitingMB {
-	
+	String search;
+
 	WaitingEJB waitingEjb = new WaitingEJB();
 	private int waitingId;
 	private int receptionstId;
 	private int patient_ssn;
 	private int rooms_roomId;
+	private String roomType; 
+	private int maxCapacity;
+	private int capacityNow;
 
 	
-	
+	public String getSearch() {
+		return search;
+	}
 
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
+	public List<WaitingMB> searchPatroom() {
+		return waitingEjb.searchPatroom(search);
+	}
 
+	public int getMaxCapacity() {
+		return maxCapacity;
+	}
+	public void setMaxCapacity(int maxCapacity) {
+		this.maxCapacity = maxCapacity;
+	}
+	public int getCapacityNow() {
+		return capacityNow;
+	}
+	public void setCapacityNow(int capacityNow) {
+		this.capacityNow = capacityNow;
+	}
+	public String getRoomType() {
+		return roomType;
+	}
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
 	public int getWaitingId() {
 		return waitingId;
 	}
@@ -53,5 +83,12 @@ public class WaitingMB {
 	public List<WaitingMB> getPatientSsnList(){
 		return waitingEjb.getPatientSsnList();
 	}
-	
+	public void waitingById(int patient_ssn) {
+		
+		
+		this.patient_ssn = patient_ssn;
+	}
+	public void UpdateWaitPat() {
+		waitingEjb.update(this);
+	}
 }
