@@ -11,19 +11,6 @@
 	<h:form>
 	<p:menubar>
     <p:menuitem value="Home" url="patientWelcomePage.xhtml" />
-    <p:submenu label="Result Card">
-    <p:menuitem value="View Result Card" url="#" />
-    </p:submenu>
-    <p:submenu label="Medicine">
-    <p:menuitem value="View prescribed medicines" url="#" />
-    </p:submenu>
-    <p:submenu label="Test">
-    <p:menuitem value="View prescribed tests" url="#" />
-    </p:submenu>
-    <p:submenu label="Bills">
-    <p:menuitem value="Pay bills" url="#" />
-    </p:submenu>
-    <p:menuitem value="Log Out" action="#{login.PatientLogOut}" />
     <f:facet name="options">
     <h:outputText value="Logged in as: #{login.patientUserName}" style="margin-right:10px" />
     </f:facet>
@@ -43,11 +30,28 @@
 			
 		</div>
 			
-		<div class="articles" align="center">
+		<div align="center">
 		
-		<h:graphicImage value="img/hospitalpic.jpg" class="img1"/>
+		
+		<p:inputTextarea cols="130" rows="25"/>
+		
 		
 		</div>
+		<div align="center">
+		<p:commandButton value="Buy Medicine"/>	
+		<p:commandButton value="Pay Bills"/>
+		<p:commandButton value="View Tests"/>
+		<br/>
+		<br/>
+		<p:commandButton value="Log Out"/>	
+		</div>	
+		<br/>	
+		<div align="center">
+		
+		<h:outputText value="©Fredrik - Junior"/>
+		
+		</div>
+		
 		</div>
 	
 	</h:body>

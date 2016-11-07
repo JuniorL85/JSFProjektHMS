@@ -24,24 +24,24 @@ public class Patient {
 	PreparedStatement stat = null;
 	ResultSet rs = null;
 
-	int ssn;
-	String firstName;
-	String lastName;
-	String userName;
-	String password;
+	private int ssn;
+	private String firstName;
+	private String lastName;
+	private String userName;
+	private String password;
 
-	String tests;
-	String medicine;
+	private String tests;
+	private String medicine;
 
 
 
-	String notes;
-	int doctorId;
-	int nurseId;
-	int testId;
-	int roomId;
-	int receptionistId;
-	int journalId;
+	private String notes;
+	private int doctorId;
+	private int nurseId;
+	private int testId;
+	private int roomId;
+	private int receptionistId;
+	private int journalId;
 
 	public void patientById(int ssn, String firstName, String lastName, String userName, String password, int doctorId,
 			int nurseId) {
