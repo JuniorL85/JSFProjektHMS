@@ -25,11 +25,23 @@
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Delete Patient" action="#{patient.delete(u.ssn)}" style="color:black;"/>
+    				<p:commandLink value="Delete Patient" action="#{patient.delete(u.ssn)}" style="color:black;">
+    					<p:confirm header="Delete patient" message="Are you sure?" icon="ui-icon-alert" ajax="true" />
+    					<f:ajax render="@form"/>
+    				</p:commandLink>
     			</p:column>
     			
     		</p:dataTable>
+    		
+    		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+        		<f:ajax render="@form"/>
+        		</p:commandButton>
+        		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+    		
     		<br /><br />
+    		
     		<h:commandButton value="Go back" action="receptionistWelcomePage.xhtml?faces-redirect=true"/>
     	</h:form>
     	</f:view>

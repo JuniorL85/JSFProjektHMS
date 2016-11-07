@@ -25,16 +25,53 @@
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Delete" actionListener="#{department.delete(u.departmentId)}" style="color:black;"/>
+    				<p:commandLink value="Delete" actionListener="#{department.delete(u.departmentId)}" style="color:black;">
+    					<p:confirm header="Delete" message="Are you sure?" icon="ui-icon-alert" ajax="true" />
+    					<f:ajax render="@form"/>
+    				</p:commandLink>
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Update" action="updateDept" actionListener="#{department.deptById(u.departmentId, u.deptName)}" style="color:black;"/>
+    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{department.deptById(u.departmentId, u.deptName)}" style="color:black;"/>
     			</p:column>
     		</p:dataTable>
+    		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+        			<f:ajax render="@form"/>
+        		</p:commandButton>
+        		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+			
     		<br /><br />
+    		
     		<h:commandButton value="Go back" action="departmentTableInfo.xhtml?faces-redirect=true"/>
     	</h:form>
     	</f:view>
+    	
+    	<h:form>
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<div class="popup-panel">
+    			
+    		<h3>Update info</h3>
+    		<table>
+    		<tr>
+    			<td>Department ID</td>
+    			<td><p:inputText size="20" value="#{department.departmentId}"/></td>
+    		</tr>
+    		<tr>
+    			<td>Department Name</td>
+    			<td><p:inputText id="departmentname" size="20" value="#{department.deptName}"  required="true" 
+    			requiredMessage="Dept name is required" validatorMessage="Dept name is invalid">
+    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="departmentname" style="color:red"/></td>
+    		</tr>
+    		</table>
+    		<h:commandButton value="Update" actionListener="#{department.updateDept()}" action="#{admin.hide()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
+    		</h:form>
     </h:body>
 </html>

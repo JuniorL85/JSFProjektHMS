@@ -44,16 +44,22 @@ Lista på alla rum
 
 			<p:column>
 				<f:facet name="header">Action</f:facet>
-				<h:commandLink value="Delete" action="#{room.delete(u.roomId)}"
-					style="color:black;" />
+				<p:commandLink value="Delete" action="#{room.delete(u.roomId)}" style="color:black;" >
+					<p:confirm header="Delete" message="Are you sure?" icon="ui-icon-alert" ajax="true" />
+				</p:commandLink>
 			</p:column>
 			<p:column>
 				<f:facet name="header">Action</f:facet>
 				<h:commandLink value="Update" action="updateRoom"
-					actionListener="#{room.roomById(u.roomId, u.roomType, u.roomStatus)}"
-					style="color:black;" />
+					actionListener="#{room.roomById(u.roomId, u.roomType, u.roomStatus)}" style="color:black;" />
 			</p:column>
 		</p:dataTable>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+        			<f:ajax render="@form"/>
+        		</p:commandButton>
+        		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
 		<br />
 		<br />
 		

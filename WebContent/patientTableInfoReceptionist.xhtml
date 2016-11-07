@@ -30,18 +30,30 @@
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Release patient" action="#{patient.delete(u.ssn)}" style="color:black;"/>
+    				<p:commandLink value="Release patient" action="#{patient.delete(u.ssn)}" style="color:black;">
+    					<p:confirm header="Release patient" message="Are you sure?" icon="ui-icon-alert" ajax="true" />
+    					<f:ajax render="@form"/>
+    				</p:commandLink>
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Update" action="updatePatient" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.userName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
+    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.userName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
     			</p:column>
 			<!-- <h:column>
     				<f:facet name="header">Password</f:facet>#{u.password}
     			</h:column> -->
 		</p:dataTable>
+		
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+        		<f:ajax render="@form"/>
+        		</p:commandButton>
+        		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+		
 		<br />
 		<br />
+		
 		<h:commandButton value="Add new Patient" action="#{admin.show()}">
 			<f:ajax render="@form" />
 		</h:commandButton>
@@ -70,7 +82,7 @@
 						<td><p:inputText id="lastName" size="20"
 								value="#{patient.lastName}" /></td>
 					</tr>
-<tr>
+					<tr>
 						<td>Username</td>
 						<td><p:inputText id="Username" size="20"
 								value="#{patient.userName}" /></td>
@@ -100,7 +112,7 @@
 								value="patient.receptionistId" /></td>
 					</tr> -->
 				</table>
-				<h:commandButton value="Add" action="#{patient.add()}" />
+				<h:commandButton value="Add" action="#{patient.add()}" actionListener="#{admin.hide()}" />
 				<h:commandButton value="Close" action="#{admin.hide()}">
 					<f:ajax render="@form" />
 				</h:commandButton>
@@ -109,5 +121,61 @@
 		</h:panelGroup>
 
 	</h:form>
+	
+	    	<h:form>
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<div class="popup-panel">
+    			
+    		<h3>Update info</h3>
+				<table>
+					<tr>
+						<td>SSN</td>
+						<td><p:inputText id="ssn" size="20"
+								value="#{patient.ssn}" /></td>
+					</tr>
+
+					<tr>
+						<td>First Name</td>
+						<td><p:inputText id="firstName" size="20"
+								value="#{patient.firstName}" /></td>
+					</tr>
+
+					<tr>
+						<td>Last Name</td>
+						<td><p:inputText id="lastName" size="20"
+								value="#{patient.lastName}" /></td>
+					</tr>
+					<tr>
+						<td>Username</td>
+						<td><p:inputText id="Username" size="20"
+								value="#{patient.userName}" /></td>
+					</tr>
+
+					<tr>
+						<td>Password</td>
+						<td><p:inputText id="password" size="20"
+								value="#{patient.password}" /></td>
+					</tr>
+
+					<tr>
+						<td>Doctor Id</td>
+						<td><p:inputText id="doctorId" size="20"
+								value="#{patient.doctorId}" /></td>
+					</tr>
+					
+					<tr>
+						<td>Nurse ID </td>
+						<td><p:inputText id="nurseId" size="20"
+								value="#{patient.nurseId}" /></td>
+					</tr>
+    		</table>
+    		<h:commandButton value="Update" actionListener="#{patient.updatePatient()}" action="#{admin.hide()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
+    		</h:form>
 </h:body>
 </html>
