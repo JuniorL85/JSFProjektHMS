@@ -12,7 +12,7 @@
 	<p:menubar>
     <p:menuitem value="Home" url="patientWelcomePage.xhtml" />
     <f:facet name="options">
-    <h:outputText value="Logged in as: #{login.patientUserName}" style="margin-right:10px" />
+    <h:outputText value="Logged in as: #{login.patientSsn}" style="margin-right:10px" />
     </f:facet>
 	</p:menubar>
 	</h:form>
@@ -43,7 +43,7 @@
 		<p:commandButton value="View Tests"/>
 		<br/>
 		<br/>
-		<p:commandButton value="Log Out"/>	
+		<p:commandButton value="Log Out" action="#{login.PatientLogOut()}"/>	
 		</div>	
 		<br/>	
 		<div align="center">

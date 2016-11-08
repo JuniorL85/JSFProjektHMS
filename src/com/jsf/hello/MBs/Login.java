@@ -24,9 +24,9 @@ public class Login implements Serializable {
     private String dbpassword;
 
     //variables for patient Login
-    private String patientUserName;
+    private int patientSsn;
     private String patientPassword;
-    private String patientDbUserName;
+    private int patientDbSsn;
     private String patientDbPassword;
     
 	//list of StaffRole
@@ -111,15 +111,6 @@ public class Login implements Serializable {
 		this.jobTitle = jobTitle;
 	}
 
-	public String getPatientUserName() {
-		return patientUserName;
-	}
-
-
-	public void setPatientUserName(String patientUserName) {
-		this.patientUserName = patientUserName;
-	}
-
 
 	public String getPatientPassword() {
 		return patientPassword;
@@ -131,16 +122,6 @@ public class Login implements Serializable {
 	}
 
 
-	public String getPatientDbUserName() {
-		return patientDbUserName;
-	}
-
-
-	public void setPatientDbUserName(String patientDbUserName) {
-		this.patientDbUserName = patientDbUserName;
-	}
-
-
 	public String getPatientDbPassword() {
 		return patientDbPassword;
 	}
@@ -149,6 +130,26 @@ public class Login implements Serializable {
 	public void setPatientDbPassword(String patientDbPassword) {
 		this.patientDbPassword = patientDbPassword;
 	}
+
+	public int getPatientSsn() {
+		return patientSsn;
+	}
+
+
+	public void setPatientSsn(int patientSsn) {
+		this.patientSsn = patientSsn;
+	}
+
+
+	public int getPatientDbSsn() {
+		return patientDbSsn;
+	}
+
+
+	public void setPatientDbSsn(int patientDbSsn) {
+		this.patientDbSsn = patientDbSsn;
+	}
+
 
 	//Start of staff Login
 	public void dbData(String userName){
@@ -194,15 +195,15 @@ public class Login implements Serializable {
 	}
 	
 	//Start of patient Login
-	public void PatientdbData(String patientUserName){
+	public void PatientdbData(int patientSsn){
 		
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        stat = con.createStatement();
-	        String myStat ="SELECT * from patient WHERE username like('"+patientUserName+"')";
+	        String myStat ="SELECT * from patient WHERE ssn like('"+patientSsn+"')";
 	        rs = stat.executeQuery(myStat);
 	        rs.next();
-	        patientDbUserName = rs.getString("username");
+	        patientDbSsn = rs.getInt("ssn");
 	        patientDbPassword = rs.getString("password");
    
 	    } 
@@ -212,8 +213,8 @@ public class Login implements Serializable {
 	    }
     }
 	public String PatientLoginOK(){
-		PatientdbData(patientUserName);
-		if(patientUserName.equals(patientDbUserName) && patientPassword.equals(patientDbPassword)){
+		PatientdbData(patientSsn);
+		if(patientSsn == patientDbSsn && patientPassword.equals(patientDbPassword)){
 			return "patientWelcomePage.xhtml?faces-redirect=true";
 		}
 		else{
