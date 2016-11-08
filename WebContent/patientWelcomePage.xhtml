@@ -32,8 +32,37 @@
 			
 		<div align="center">
 		
-		
-		<p:inputTextarea cols="130" rows="25"/>
+
+	<h:body>
+	<f:view>
+    <h3>Journal</h3>
+    
+    <h:form>
+    
+    	<!-- <h:outputText value="#{login.patientSsn}"/> -->
+		<p:dataTable value="#{login.searchPat()}" var="u"
+				styleClass="book-table" headerClass="book-table-header"
+				rowClasses="book-table-odd-row,book-table-even-row">
+
+				<p:column>
+					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
+    			</p:column>
+				<p:column>
+					<f:facet name="header">Patients notes</f:facet>#{u.notes}
+    			</p:column>
+				<p:column>
+					<f:facet name="header">Tests</f:facet>#{u.tests}
+    			</p:column>
+    				<p:column>
+					<f:facet name="header">Medicine</f:facet>#{u.medicine}
+    			</p:column>
+    	</p:dataTable>
+    	
+    </h:form>
+ 	</f:view>
+	</h:body>
+	<br/>
+	<br/>
 		
 		
 		</div>

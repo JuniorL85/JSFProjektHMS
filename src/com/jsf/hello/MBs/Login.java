@@ -10,10 +10,14 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean
+import com.jsf.hello.EJBs.LoginEJB;
+
+@ManagedBean(name ="login")
 @SessionScoped
 public class Login implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	LoginEJB loginEjb = new LoginEJB();
 
 	//variables for staff Login
 	private String userName;
@@ -148,6 +152,10 @@ public class Login implements Serializable {
 
 	public void setPatientDbSsn(int patientDbSsn) {
 		this.patientDbSsn = patientDbSsn;
+	}
+	
+	public List<Patient> searchPat() {
+		return loginEjb.searchPat(patientSsn);
 	}
 
 
