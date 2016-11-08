@@ -124,8 +124,13 @@ table {
 
 body {
   font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
-  color: #ffffff;
-  background: #eeeeee;;
+  color: #ffffff;  
+  background-image: url("img/hospitalCorridor.jpg");
+  background-repeat: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 input, textarea, select, label {

@@ -15,13 +15,13 @@
 	<h:body>
 		<h:form class="login">
 			<h1>Patient Login</h1>
-			<center><img src="img/hospitalLogo.png" height="70" width="70"/></center>
+			<center><img src="css/img/hospitalLogo.png" height="70" width="70"/></center>
 			
 			<h:inputText id="ssn" value="#{login.patientSsn}" class="login-input" required="true" requiredMessage="Ssn is required"/>
-			<h:message for="ssn" style="color:red"/>
+			<h:message for="ssn" style="color:black"/>
 			
 			<h:inputSecret id="password" value="#{login.patientPassword}" class="login-input" required="true" requiredMessage="Password is required"/>
-			<h:message for="password" style="color:red"/>
+			<h:message for="password" style="color:black"/>
 			
 			<!-- Staff Role:
 			<h:selectOneMenu value="#{login.staffRole}" class="login-input">
