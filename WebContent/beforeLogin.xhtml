@@ -9,7 +9,7 @@
 	
 	<h:head>
 		<title>Welcome</title>
-		<link rel="stylesheet" href="css/table-style.css"/>
+		<link rel="stylesheet" href="css/style2.css"/>
 		
 	</h:head>
 	
@@ -22,12 +22,15 @@
 			<h:graphicImage value="css/img/hospitalLogo.png" height="100" width="100" /><br/><br/>
 			
 				<p:commandButton align="center" value="Login here" type="button" onclick="PF('dlg2').show();" />
-				<p:dialog header="Pick an option" widgetVar="dlg2" modal="true" height="70">
+				<p:dialog header="Pick an option" widgetVar="dlg2" modal="true" height="50">
 				<h:form>
     			<p:commandButton value="Patient" type="button" onclick="patient()"/>
     			<p:remoteCommand name="patient" action="patientLogin.xhtml?faces-redirect=true"/>
     			<p:commandButton value="Staff" type="button" onclick="staff()"/>
     			<p:remoteCommand name="staff" action="login.xhtml?faces-redirect=true"/>
+    			<br/>
+    			<p:commandButton value="Department" type="button" onclick="department()"/>
+    			<p:remoteCommand name="department" action="departmentLogin.xhtml?faces-redirect=true"/>
     			</h:form>
 				</p:dialog> 
 			

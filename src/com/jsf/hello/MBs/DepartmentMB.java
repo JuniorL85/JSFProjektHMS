@@ -81,4 +81,10 @@ public class DepartmentMB {
 	public List<DepartmentMB> searchDept(){
 		return departmentEjb.searchDept(search);
 	}
+	public String LoginOK(){
+		return departmentEjb.LoginOK();
+	}
+	public String LogOut(){
+		return departmentEjb.LogOut();
+	}
 }

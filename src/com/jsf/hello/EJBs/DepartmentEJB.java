@@ -16,12 +16,27 @@ import com.jsf.hello.MBs.DepartmentMB;
 
 public class DepartmentEJB {
 	
+	private String departmentUsername;
+	private String departmentPassword;
+	
 	List<DepartmentMB> list;
 	
 	Connection con = null;
 	PreparedStatement stat = null;
 	ResultSet rs = null;
 	
+	public String getDepartmentUsername() {
+		return departmentUsername;
+	}
+	public void setDepartmentUsername(String departmentUsername) {
+		this.departmentUsername = departmentUsername;
+	}
+	public String getDepartmentPassword() {
+		return departmentPassword;
+	}
+	public void setDepartmentPassword(String departmentPassword) {
+		this.departmentPassword = departmentPassword;
+	}
 	public List<DepartmentMB> getDeptList()
 	{
 		list = new ArrayList<>();
@@ -138,6 +153,25 @@ public class DepartmentEJB {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public String LoginOK(){
+		if(departmentUsername.equals("medicalstore") && departmentPassword.equals("medicalstore")){
+			return "medicalstorePage.xhtml?faces-redirect=true";
+		}
+		if(departmentUsername.equals("statistic") && departmentPassword.equals("statistic")){
+			return "statisticPage.xhtml?faces-redirect=true";
+		}
+		if(departmentUsername.equals("lab") && departmentPassword.equals("lab")){
+			return "labPage.xhtml?faces-redirect=true";
+		}
+		else{
+				return "forgotPassword.xhtml?faces-redirect=true";
+			}
+		}
+	
+	public String LogOut(){
+		return "departmentLogin.xhtml?faces-redirect=true";
 	}
 
 }
