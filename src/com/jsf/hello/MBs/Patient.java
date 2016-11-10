@@ -10,12 +10,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.EJBs.PatientEJB;
+import com.jsf.hello.MBs.Login;
 
 @ManagedBean(name = "patient")
 @SessionScoped
 public class Patient {
 
 	PatientEJB patientEjb = new PatientEJB();
+	Login loginmb = new Login();
 
 	String search;
 
@@ -24,7 +26,7 @@ public class Patient {
 	PreparedStatement stat = null;
 	ResultSet rs = null;
 
-	private int ssn;
+	private long ssn;
 	private String firstName;
 	private String lastName;
 	private String userName;
@@ -36,6 +38,7 @@ public class Patient {
 
 
 	private String notes;
+	private int bill;
 	private int doctorId;
 	private int nurseId;
 	private int testId;
@@ -43,7 +46,7 @@ public class Patient {
 	private int receptionistId;
 	private int journalId;
 
-	public void patientById(int ssn, String firstName, String lastName, String userName, String password, int doctorId,
+	public void patientById(long ssn, String firstName, String lastName, String userName, String password, int doctorId,
 			int nurseId) {
 		this.ssn = ssn;
 		this.firstName = firstName;
@@ -59,7 +62,7 @@ public class Patient {
 		// this.notes = notes;
 	}
 
-	public void journalById(int ssn, String notes, String tests, String medicine) {
+	public void journalById(long ssn, String notes, String tests, String medicine) {
 		this.ssn = ssn;
 		this.tests = tests;
 		//this.journalId = journalId;
@@ -68,7 +71,19 @@ public class Patient {
 		//this.doctorId = doctorId;
 		//this.nurseId = nurseId;
 	}
+	public void billById(long ssn, int bill){
+		this.ssn = ssn;
+		this.bill = bill;
+	}
 	
+	public int getBill() {
+		return bill;
+	}
+
+	public void setBill(int bill) {
+		this.bill = bill;
+	}
+
 	public String getMedicine() {
 		return medicine;
 	}
@@ -149,11 +164,11 @@ public class Patient {
 		this.receptionistId = receptionistId;
 	}
 
-	public int getSsn() {
+	public long getSsn() {
 		return ssn;
 	}
 
-	public void setSsn(int ssn) {
+	public void setSsn(long ssn) {
 		this.ssn = ssn;
 	}
 
@@ -201,7 +216,7 @@ public class Patient {
 		patientEjb.add(this);
 	}
 
-	public void delete(int ssn) {
+	public void delete(long ssn) {
 		patientEjb.delete(ssn);
 	}
 
@@ -215,5 +230,10 @@ public class Patient {
 		System.out.println("in update journal.. before calling update");
 		patientEjb.updateJournal(this);
 		System.out.println("in update journal.. after calling update");
+	}
+	public void payBill(){
+		System.out.println("in pay bill.. before calling update");
+		patientEjb.payBill(this);
+		System.out.println("in pay bill.. after calling update");
 	}
 }

@@ -28,9 +28,9 @@ public class Login implements Serializable {
     private String dbpassword;
 
     //variables for patient Login
-    private int patientSsn;
+    private long patientSsn;
     private String patientPassword;
-    private int patientDbSsn;
+    private long patientDbSsn;
     private String patientDbPassword;
     
 	//list of StaffRole
@@ -135,22 +135,22 @@ public class Login implements Serializable {
 		this.patientDbPassword = patientDbPassword;
 	}
 
-	public int getPatientSsn() {
+	public long getPatientSsn() {
 		return patientSsn;
 	}
 
 
-	public void setPatientSsn(int patientSsn) {
+	public void setPatientSsn(long patientSsn) {
 		this.patientSsn = patientSsn;
 	}
 
 
-	public int getPatientDbSsn() {
+	public long getPatientDbSsn() {
 		return patientDbSsn;
 	}
 
 
-	public void setPatientDbSsn(int patientDbSsn) {
+	public void setPatientDbSsn(long patientDbSsn) {
 		this.patientDbSsn = patientDbSsn;
 	}
 	
@@ -203,7 +203,7 @@ public class Login implements Serializable {
 	}
 	
 	//Start of patient Login
-	public void PatientdbData(int patientSsn){
+	public void PatientdbData(long patientSsn){
 		
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
@@ -211,7 +211,7 @@ public class Login implements Serializable {
 	        String myStat ="SELECT * from patient WHERE ssn like('"+patientSsn+"')";
 	        rs = stat.executeQuery(myStat);
 	        rs.next();
-	        patientDbSsn = rs.getInt("ssn");
+	        patientDbSsn = rs.getLong("ssn");
 	        patientDbPassword = rs.getString("password");
    
 	    } 
