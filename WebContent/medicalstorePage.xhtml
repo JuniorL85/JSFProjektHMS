@@ -18,17 +18,35 @@
 		<div id="wrap">
 
 		<div id="header">
-			<h1 align="center"><a>Welcome to HMS</a></h1>
+			<h1 align="center"><a>Welcome to HMS-MS</a></h1>
 			
 			
 		</div>
 	<h:form>		
 		<div align="center">
 		
+	
+		<p:graphicImage value="css/img/medicalStore1.jpg"/><br/><br/>
 		
-		<p:outputLabel value="This is MedicalStore Page"/><br/>
+		<h:inputText value="#{patient.search}" />
+			<h:commandButton value="Search" /><br/><br/>
+			<p:dataTable value="#{patient.searchPat()}" var="u"
+				styleClass="book-table" headerClass="book-table-header"
+				rowClasses="book-table-odd-row,book-table-even-row">
+
+				<p:column>
+					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
+    			</p:column>
+    				<p:column>
+					<f:facet name="header">Medicine</f:facet>#{u.medicine}
+    			</p:column>
+				<p:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Buy Medicine" action="#{admin.showUpdate()}" actionListener="#{patient.medicineById(u.ssn, u.medicine)}" style="color:black;"/>
+    			</p:column>
+
+			</p:dataTable>
 		<h:outputText value="Logged in as: #{deptBean.departmentUsername}" style="margin-right:10px" />
-		
 		
 		</div>
 		<br/>
@@ -38,6 +56,33 @@
 		<p:commandButton value="Log Out" action="#{deptBean.LogOut}"/>
 		</div>
 	</h:form>
+	
+	<h:form>
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<div class="popup-panel" align="center">
+    			
+    		<h3>Buy Medicine</h3>
+				<table>
+					<tr>
+						<td>SSN:</td>
+						<td><p:outputLabel id="ssn" size="20"
+								value="#{patient.ssn}" /></td>
+					</tr>
+					<tr>
+						<td>You bought:</td>
+						<td><p:outputLabel id="medicine" size="20"
+								value="#{patient.medicine}" /></td>
+					</tr>
+
+    		</table>
+    		<br/>
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
+    		</h:form>
 		<br/>
 		<br/>
 			
