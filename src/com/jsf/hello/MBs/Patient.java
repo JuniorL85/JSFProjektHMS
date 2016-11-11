@@ -75,6 +75,10 @@ public class Patient {
 		this.ssn = ssn;
 		this.bill = bill;
 	}
+	public void medicineById(long ssn, String medicine){
+		this.ssn = ssn;
+		this.medicine = medicine;
+	}
 	
 	public int getBill() {
 		return bill;

@@ -36,7 +36,7 @@
 
 	<h:body>
 	<f:view>
-    <h3>Pay Bills</h3>
+    <h3>Buy Medicine</h3>
     
     <h:form>
   
@@ -48,11 +48,11 @@
 					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
     			</p:column>
     			<p:column>
-					<f:facet name="header">Bills</f:facet>#{u.bill}
+					<f:facet name="header">Medicine</f:facet>#{u.medicine}
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Pay bill" action="#{admin.showUpdate()}" actionListener="#{patient.billById(u.ssn, u.bill)}" style="color:black;"/>
+    				<h:commandLink value="Buy Medicine" action="#{admin.showUpdate()}" actionListener="#{patient.medicineById(u.ssn, u.medicine)}" style="color:black;"/>
     			</p:column>
     	</p:dataTable>
     	
@@ -62,22 +62,21 @@
     	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
     	<div class="popup-panel">
     			
-    		<h3>Pay Bills</h3>
+    		<h3>Buy Medicine</h3>
 				<table>
 					<tr>
 						<td>SSN</td>
-						<td><p:inputText id="ssn" size="20"
+						<td><p:outputLabel id="ssn" size="20"
 								value="#{patient.ssn}" /></td>
 					</tr>
 					<tr>
-						<td>How much you want to pay?</td>
-						<td><p:inputText id="bills" size="20"
-								value="#{patient.bill}" /></td>
+						<td>You bought:</td>
+						<td><p:outputLabel id="medicine" size="20"
+								value="#{patient.medicine}" /></td>
 					</tr>
 
     		</table>
     		<br/>
-    		<h:commandButton value="Pay" actionListener="#{patient.payBill()}" action="#{admin.hide()}"/>
     		<h:commandButton value="Close" actionListener="#{admin.hide()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
