@@ -28,7 +28,7 @@ public class LoginEJB {
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "SELECT patient.ssn, notes, tests, medicine, bill FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+patientSsn+"%'";
+			String myStat = "SELECT patient.ssn, notes, tests, medicine, bill, testResult FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+patientSsn+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){
@@ -39,6 +39,7 @@ public class LoginEJB {
 				usr.setTests(rs.getString("tests"));
 				usr.setMedicine(rs.getString("medicine"));
 				usr.setBill(rs.getInt("bill"));
+				usr.setTestResult(rs.getString("testResult"));
 				list.add(usr);
 			}
 			con.close();

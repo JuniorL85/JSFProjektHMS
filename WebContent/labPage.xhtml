@@ -35,15 +35,18 @@
 				<p:column>
 					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
     			</p:column>
-    				<p:column>
+    			<p:column>
 					<f:facet name="header">Tests</f:facet>#{u.tests}
+    			</p:column>
+    			<p:column>
+					<f:facet name="header">Test Result</f:facet>#{u.testResult}
     			</p:column>
 				<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Book Test" style="color:black;"/>
+    				<h:commandLink value="Update testresult" action="#{admin.showUpdate()}" actionListener="#{patient.testResultById(u.ssn, u.tests, u.testResult)}" style="color:black;"/>
     			</p:column>
 
-			</p:dataTable>
+		</p:dataTable>
 		<h:outputText value="Logged in as: #{deptBean.departmentUsername}" style="margin-right:10px" />
 		
 		
@@ -55,6 +58,39 @@
 		<p:commandButton value="Log Out" action="#{deptBean.LogOut}"/>
 		</div>
 	</h:form>
+	
+	<h:form>
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<div class="popup-panel" align="center">
+    			
+    		<h3>Update Testresult</h3>
+				<table>
+					<tr>
+						<td>SSN:</td>
+						<td><p:outputLabel id="ssn" size="20"
+								value="#{patient.ssn}" /></td>
+					</tr>
+					<tr>
+						<td>Test:</td>
+						<td><p:outputLabel id="tests" size="20"
+								value="#{patient.tests}" /></td>
+					</tr>
+					<tr>
+						<td>Test result:</td>
+						<td><p:inputText id="testresult" size="20"
+								value="#{patient.testResult}" /></td>
+					</tr>
+
+    		</table>
+    		<br/>
+    		<h:commandButton value="Update" actionListener="#{patient.updateTestResult()}" action="#{admin.hide()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
+    		</h:form>
 		<br/>
 		<br/>
 			

@@ -36,7 +36,7 @@
 
 	<h:body>
 	<f:view>
-    <h3>Journal</h3>
+    <h3>View Test Result</h3>
     
     <h:form>
   
@@ -47,17 +47,11 @@
 				<p:column>
 					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
     			</p:column>
-				<p:column>
-					<f:facet name="header">Patients notes</f:facet>#{u.notes}
-    			</p:column>
-				<p:column>
+    			<p:column>
 					<f:facet name="header">Tests</f:facet>#{u.tests}
     			</p:column>
     			<p:column>
-					<f:facet name="header">Medicine</f:facet>#{u.medicine}
-    			</p:column>
-    			<p:column>
-					<f:facet name="header">Bills</f:facet>#{u.bill}
+					<f:facet name="header">Test Result</f:facet>#{u.testResult}
     			</p:column>
     	</p:dataTable>
     	
@@ -69,12 +63,7 @@
 		
 		
 		</div>
-		<div align="center">
-		<p:commandButton value="Buy Medicine" action="buyMedicine.xhtml?faces-redirect=true"/>	
-		<p:commandButton value="Pay Bills" action="payBills.xhtml?faces-redirect=true"/>
-		<p:commandButton value="View Test Result" action="viewTestResult.xhtml?faces-redirect=true"/>
-		</div>	
-		<br/>	
+
 		<div align="center">
 		
 		<h:outputText value="©Fredrik - Junior"/>

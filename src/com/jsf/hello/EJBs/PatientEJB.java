@@ -176,7 +176,7 @@ public class PatientEJB {
 		
 		try{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-			String myStat = "SELECT patient.ssn, notes, tests, medicine FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
+			String myStat = "SELECT patient.ssn, notes, tests, medicine, testResult FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
 			while(rs.next()){
@@ -197,6 +197,7 @@ public class PatientEJB {
 				usr.setNotes(rs.getString("notes"));
 				usr.setTests(rs.getString("tests"));
 				usr.setMedicine(rs.getString("medicine"));
+				usr.setTestResult(rs.getString("testResult"));
 				list.add(usr);
 			}
 			con.close();
@@ -219,6 +220,31 @@ public class PatientEJB {
 	        stat = con.prepareStatement(myStat);
 	        System.out.println("in PatientEJB.update .. in patient.getBill() = "+patient.getBill());	     
 	        stat.setInt(1, patient.getBill());
+	        stat.setLong(2, patient.getSsn());
+	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
+	        stat.executeUpdate();
+	        
+	        con.close();
+			stat.close();
+
+
+	    } catch (Exception e) {
+	        System.out.println(" SQLException :(");
+	        e.printStackTrace();
+	    }
+
+	    }
+	
+	public void updateTestResult(Patient patient) {
+		
+	    try {
+	    	//Class.forName("com.mysql.jdbc.Driver");
+	    	System.out.println("in PatientEJB.updateTestResult .. in try");
+	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	        String myStat ="UPDATE journal SET testResult = ? WHERE patient_ssn = ?";
+	        stat = con.prepareStatement(myStat);
+	        System.out.println("in PatientEJB.update .. in patient.getTestResult() = "+patient.getTestResult());	     
+	        stat.setString(1, patient.getTestResult());
 	        stat.setLong(2, patient.getSsn());
 	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();

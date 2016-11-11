@@ -34,6 +34,7 @@ public class Patient {
 
 	private String tests;
 	private String medicine;
+	private String testResult;
 
 
 
@@ -79,7 +80,20 @@ public class Patient {
 		this.ssn = ssn;
 		this.medicine = medicine;
 	}
-	
+	public void testResultById(long ssn, String tests, String testResult){
+		this.ssn = ssn;
+		this.tests = tests;
+		this.testResult = testResult;
+	}
+
+	public String getTestResult() {
+		return testResult;
+	}
+
+	public void setTestResult(String testResult) {
+		this.testResult = testResult;
+	}
+
 	public int getBill() {
 		return bill;
 	}
@@ -239,5 +253,10 @@ public class Patient {
 		System.out.println("in pay bill.. before calling update");
 		patientEjb.payBill(this);
 		System.out.println("in pay bill.. after calling update");
+	}
+	public void updateTestResult(){
+		System.out.println("in updateTestResult.. before calling update");
+		patientEjb.updateTestResult(this);
+		System.out.println("in updateTestResult.. after calling update");
 	}
 }
