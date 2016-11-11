@@ -18,7 +18,7 @@
 		<div id="wrap">
 
 		<div id="header">
-			<h1 align="center"><a>Welcome to HMS</a></h1>
+			<h1 align="center"><a>Welcome to HMS-Lab</a></h1>
 			
 			
 		</div>
@@ -26,7 +26,24 @@
 		<div align="center">
 		
 		
-		<p:outputLabel value="This is Lab Page"/><br/>
+		<h:inputText value="#{patient.search}" />
+			<h:commandButton value="Search" /><br/><br/>
+			<p:dataTable value="#{patient.searchPat()}" var="u"
+				styleClass="book-table" headerClass="book-table-header"
+				rowClasses="book-table-odd-row,book-table-even-row">
+
+				<p:column>
+					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
+    			</p:column>
+    				<p:column>
+					<f:facet name="header">Tests</f:facet>#{u.tests}
+    			</p:column>
+				<p:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Book Test" style="color:black;"/>
+    			</p:column>
+
+			</p:dataTable>
 		<h:outputText value="Logged in as: #{deptBean.departmentUsername}" style="margin-right:10px" />
 		
 		
