@@ -27,6 +27,17 @@
 		
 		
 		<p:outputLabel value="This is Statistic Page"/><br/>
+		<h:outputText value="Total Employees: #{department.getEmplCount()}" style="margin-right:10px" />
+		<br/>
+		
+		<h:outputText value="Doctors: #{department.getDocCount()}" style="margin-right:10px" />
+		<br/>
+		<h:outputText value="Nurses: #{department.getNurseCount()}" style="margin-right:10px" />
+		<br/>
+		<h:outputText value="Current Patient count: #{department.getPatientCount()}" style="margin-right:10px" />
+		
+		<br/>
+		<br/>
 		<h:outputText value="Logged in as: #{deptBean.departmentUsername}" style="margin-right:10px" />
 		
 		

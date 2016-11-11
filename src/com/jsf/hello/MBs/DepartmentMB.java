@@ -1,5 +1,6 @@
 package com.jsf.hello.MBs;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class DepartmentMB {
 	private String deptName;
 	private String search;
 	
-	
+
 	List<String> departmentTypeOptions;
 	
 	public DepartmentMB(){
@@ -28,7 +29,20 @@ public class DepartmentMB {
 		departmentTypeOptions.add("Medical Store");
 		
 	}
+
 	
+	public List<String> getEmplCount(){
+		return departmentEjb.getEmplCount();
+	}
+	public List<String> getDocCount(){
+		return departmentEjb.getDocCount();
+	}
+	public List<String> getNurseCount(){
+		return departmentEjb.getNurseCount();
+	}
+	public List<String> getPatientCount(){
+		return departmentEjb.getPatientCount();
+	}
 	public String getDeptName() {
 		return deptName;
 	}
