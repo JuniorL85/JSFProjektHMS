@@ -11,19 +11,6 @@
 </h:head>
 <h:body>
 	<h:form>
-		<!--<h:selectOneMenu value="#{waiting.patient_ssn}">
-			<f:selectItems value="#{waiting.getPatientSsnList()}" var="ssn"
-				itemLabel="#{ssn.patient_ssn}" itemValue="#{ssn.patient_ssn}" />
-		</h:selectOneMenu>
-		<h:commandButton value="Search" action="sample?faces-redirect=true" />
-
-		 <h:selectOneMenu value="#{waiting.patient_ssn}">
-			<f:selectItems value="#{waiting.getPatientSsnList()}" var="ssn"
-				itemLabel="#{ssn.patient_ssn}" itemValue="#{ssn.patient_ssn}" />
-		</h:selectOneMenu>  -->
-		<br />
-		<br />
-Lista på alla rum 
 		<p:dataTable value="#{room.getRoomList()}" var="u"
 			styleClass="book-table" headerClass="book-table-header"
 			rowClasses="book-table-odd-row,book-table-even-row">
@@ -33,15 +20,9 @@ Lista på alla rum
 			<p:column>
 				<f:facet name="header">Room Type</f:facet>#{u.roomType}
     			</p:column>
-
-
 			<p:column>
 				<f:facet name="header">Max Capacity</f:facet>#{u.maxCapacity}
     			</p:column>
-			<p:column>
-				<f:facet name="header">Capacity Current</f:facet>#{u.capacityNow}
-    			</p:column>
-
 			<p:column>
 				<f:facet name="header">Action</f:facet>
 				<p:commandLink value="Delete" action="#{room.delete(u.roomId)}" style="color:black;" >
@@ -50,8 +31,8 @@ Lista på alla rum
 			</p:column>
 			<p:column>
 				<f:facet name="header">Action</f:facet>
-				<h:commandLink value="Update" action="updateRoom"
-					actionListener="#{room.roomById(u.roomId, u.roomType, u.roomStatus)}" style="color:black;" />
+				<h:commandLink value="Update" action="#{admin.showUpdate()}"
+					actionListener="#{room.roomById(u.roomId, u.roomType, u.maxCapacity)}" style="color:black;" />
 			</p:column>
 		</p:dataTable>
 		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -62,52 +43,10 @@ Lista på alla rum
 		</p:confirmDialog>
 		<br />
 		<br />
-		
-		Sök på patient: 
-		<h:inputText value="#{waiting.search}" />
-		<h:commandButton value="Search" />
-		<p:dataTable value="#{waiting.searchPatroom()}" var="v"
-			styleClass="book-table" headerClass="book-table-header"
-			rowClasses="book-table-odd-row,book-table-even-row">
-			<p:column>
-				<f:facet name="header">Patient SSN</f:facet>#{v.patient_ssn}
-    			</p:column>
-			<p:column>
-				<f:facet name="header">Room ID</f:facet>#{v.rooms_roomId}
-    			</p:column>
-			<p:column>
-				<f:facet name="header">Room Type</f:facet>#{v.roomType}
-    			</p:column>
-
-			<p:column>
-				<f:facet name="header">Max Capacity</f:facet>#{v.maxCapacity}
-    			</p:column>
-			<p:column>
-				<f:facet name="header">Capacity Current</f:facet>#{v.capacityNow}
-    			</p:column>
-
-			<p:column>
-				<f:facet name="header">Action</f:facet>
-				<h:commandLink value="Delete" action="#{room.delete(u.roomId)}"
-					style="color:black;" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">Action</f:facet>
-				<h:commandLink value="Update Waiting" action="updateWaitPat"
-					actionListener="#{waiting.waitingById(v.rooms_roomId)}"
-					style="color:black;" />
-			</p:column>
-		
-		</p:dataTable>
-		<br />
-		<br />
-		<br />
-		<br />
 
 		<h:commandButton value="Add new room" action="#{admin.show()}">
 			<f:ajax render="@form" />
 		</h:commandButton>
-		<h:commandButton value="Search" action="searchRoom" />
 		<h:commandButton value="Go back"
 			action="adminWelcomePage.xhtml?faces-redirect=true" />
 		<h:panelGroup layout="block" styleClass="popup-panel-overlay"
@@ -116,18 +55,45 @@ Lista på alla rum
 
 				<h3>Enter info</h3>
 				<table>
-					<!-- <tr>
+					<tr>
 						<td>Room Type</td>
 						<td><p:selectOneMenu value="#{room.roomType}">
 								<f:selectItems value="#{room.roomTypeOptions}" />
 							</p:selectOneMenu></td>
-					</tr> -->
+					</tr>
 					<tr>
-						<td>Room Select Room ID: </td>
-						<td><p:inputText size="20" value="#{waiting.rooms_roomId}" /></td>
+						<td>Max Capacity </td>
+						<td><p:inputText size="20" value="#{room.maxCapacity}" /></td>
 					</tr>
 				</table>
-				<h:commandButton value="Add" action="#{room.add()}" />
+				<h:commandButton value="Add" action="#{room.add()}" actionListener="#{admin.hide()}"/>
+				<h:commandButton value="Close" action="#{admin.hide()}">
+					<f:ajax render="@form" />
+				</h:commandButton>
+
+			</div>
+		</h:panelGroup>
+	</h:form>
+	
+	<!-- PopUp panel for update room -->
+	<h:form>
+			<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+			<div class="popup-panel">
+
+				<h3>Update info</h3>
+				<table>
+					<tr>
+						<td>Room Type</td>
+						<td><p:selectOneMenu value="#{room.roomType}">
+								<f:selectItems value="#{room.roomTypeOptions}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td>Max Capacity </td>
+						<td><p:inputText size="20" value="#{room.maxCapacity}" /></td>
+					</tr>
+				</table>
+				<h:commandButton value="Update" action="#{room.updateRoom()}" actionListener="#{admin.hide()}"/>
 				<h:commandButton value="Close" action="#{admin.hide()}">
 					<f:ajax render="@form" />
 				</h:commandButton>

@@ -16,7 +16,7 @@ public class WaitingMB {
 	WaitingEJB waitingEjb = new WaitingEJB();
 	private int waitingId;
 	private int receptionstId;
-	private int patient_ssn;
+	private long patient_ssn;
 	private int rooms_roomId;
 	private String roomType; 
 	private int maxCapacity;
@@ -65,10 +65,10 @@ public class WaitingMB {
 	public void setReceptionstId(int receptionstId) {
 		this.receptionstId = receptionstId;
 	}
-	public int getPatient_ssn() {
+	public long getPatient_ssn() {
 		return patient_ssn;
 	}
-	public void setPatient_ssn(int patient_ssn) {
+	public void setPatient_ssn(long patient_ssn) {
 		this.patient_ssn = patient_ssn;
 	}
 	public int getRooms_roomId() {
@@ -83,10 +83,10 @@ public class WaitingMB {
 	public List<WaitingMB> getPatientSsnList(){
 		return waitingEjb.getPatientSsnList();
 	}
-	public void waitingById(int patient_ssn) {
-		
-		
+	public void waitingById(long patient_ssn, int rooms_roomId) {
 		this.patient_ssn = patient_ssn;
+		this.rooms_roomId = rooms_roomId;
+		
 	}
 	public void UpdateWaitPat() {
 		waitingEjb.update(this);

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="css/table-style.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<!--<h:selectOneMenu value="#{waiting.patient_ssn}">
+			<f:selectItems value="#{waiting.getPatientSsnList()}" var="ssn"
+				itemLabel="#{ssn.patient_ssn}" itemValue="#{ssn.patient_ssn}" />
+		</h:selectOneMenu>
+		<h:commandButton value="Search" action="sample?faces-redirect=true" />
+
+		 <h:selectOneMenu value="#{waiting.patient_ssn}">
+			<f:selectItems value="#{waiting.getPatientSsnList()}" var="ssn"
+				itemLabel="#{ssn.patient_ssn}" itemValue="#{ssn.patient_ssn}" />
+		</h:selectOneMenu>  -->
+		<br />
+		<br />
+		Lista på alla rum 
+		<p:dataTable value="#{room.getRoomList()}" var="u"
+			styleClass="book-table" headerClass="book-table-header"
+			rowClasses="book-table-odd-row,book-table-even-row">
+			<p:column>
+				<f:facet name="header">Room ID</f:facet>#{u.roomId}
+    			</p:column>
+			<p:column>
+				<f:facet name="header">Room Type</f:facet>#{u.roomType}
+    			</p:column>
+
+
+			<p:column>
+				<f:facet name="header">Max Capacity</f:facet>#{u.maxCapacity}
+    			</p:column>
+			<p:column>
+				<f:facet name="header">Capacity Current</f:facet>#{u.capacityNow}
+    			</p:column>
+
+		</p:dataTable>
+		<br />
+		<br />
+		
+		Sök på patient: 
+		<h:inputText value="#{waiting.search}" />
+		<h:commandButton value="Search" />
+		<p:dataTable value="#{waiting.searchPatroom()}" var="v"
+			styleClass="book-table" headerClass="book-table-header"
+			rowClasses="book-table-odd-row,book-table-even-row">
+			<p:column>
+				<f:facet name="header">Patient SSN</f:facet>#{v.patient_ssn}
+    			</p:column>
+			<p:column>
+				<f:facet name="header">Room ID</f:facet>#{v.rooms_roomId}
+    			</p:column>
+			<p:column>
+				<f:facet name="header">Room Type</f:facet>#{v.roomType}
+    			</p:column>
+
+			<p:column>
+				<f:facet name="header">Max Capacity</f:facet>#{v.maxCapacity}
+    			</p:column>
+			<p:column>
+				<f:facet name="header">Capacity Current</f:facet>#{v.capacityNow}
+    			</p:column>
+			<p:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandLink value="Delete" action="#" style="color:black;" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandLink value="Update Waiting" action="#{admin.showUpdate()}"
+					actionListener="#{waiting.waitingById(v.patient_ssn, v.rooms_roomId)}"
+					style="color:black;" />
+			</p:column>
+		
+		</p:dataTable>
+		<br />
+		<br />
+		<br />
+		<br />
+
+		<h:commandButton value="Search" action="searchRoom" />
+		<h:commandButton value="Go back"
+			action="receptionistWelcomePage.xhtml?faces-redirect=true" />
+			
+			<!-- Update Waiting -->
+		<h:panelGroup layout="block" styleClass="popup-panel-overlay"
+			rendered="#{admin.showPopUp}">
+			<div class="popup-panel">
+
+				<h3>Update</h3>
+				<table>
+					<tr>
+						<td>Patient SSN</td>
+						<td><p:inputText size="20" value="#{waiting.patient_ssn}" /></td>
+					</tr>
+					<tr>
+						<td>Room Select Room ID: </td>
+						<td><p:inputText size="20" value="#{waiting.rooms_roomId}" /></td>
+					</tr>
+				</table>
+				<h:commandButton value="Update" action="#{waiting.UpdateWaitPat()}" actionListener="#{admin.hide()}" />
+				<h:commandButton value="Close" action="#{admin.hide()}">
+					<f:ajax render="@form" />
+				</h:commandButton>
+
+			</div>
+		</h:panelGroup>
+	</h:form>
+</h:body>
+</html>

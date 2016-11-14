@@ -39,7 +39,7 @@ public class WaitingEJB {
 				WaitingMB usr = new WaitingMB();
 				usr.setWaitingId(rs.getInt("waitingId"));
 				usr.setReceptionstId(rs.getInt("receptionistId"));
-				usr.setPatient_ssn(rs.getInt("patient_ssn"));
+				usr.setPatient_ssn(rs.getLong("patient_ssn"));
 				usr.setRooms_roomId(rs.getInt("rooms_roomId"));
 				
 				
@@ -70,7 +70,7 @@ public class WaitingEJB {
 				WaitingMB usr = new WaitingMB();
 				//usr.setWaitingId(rs.getInt("waitingId"));
 				//usr.setReceptionstId(rs.getInt("receptionistId"));
-				usr.setPatient_ssn(rs.getInt("patient_ssn"));
+				usr.setPatient_ssn(rs.getLong("patient_ssn"));
 				//usr.setRooms_roomId(rs.getInt("rooms_roomId"));
 				
 				
@@ -99,7 +99,7 @@ public class WaitingEJB {
 			while(rs.next()){
 				
 				WaitingMB usr = new WaitingMB();
-				usr.setPatient_ssn(rs.getInt("patient_ssn"));
+				usr.setPatient_ssn(rs.getLong("patient_ssn"));
 				usr.setRooms_roomId(rs.getInt("rooms_roomId"));
 				usr.setRoomType(rs.getString("roomType"));
 				usr.setMaxCapacity(rs.getInt("maxCapacity"));
@@ -121,11 +121,11 @@ public void update(WaitingMB waitingMB) {
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="UPDATE waiting SET rooms_roomId = ? WHERE rooms_roomId = ?";
+	        String myStat ="UPDATE waiting SET rooms_roomId = ? WHERE patient_ssn = ?";
 	        stat = con.prepareStatement(myStat);
 	        
-	       // stat.setString(1, waitingMB.getRoomType());
-	        stat.setInt(2, waitingMB.getRooms_roomId());
+	        stat.setInt(1, waitingMB.getRooms_roomId());
+	        stat.setLong(2, waitingMB.getPatient_ssn());
 	        
 	        stat.executeUpdate();
 
