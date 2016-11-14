@@ -37,6 +37,7 @@ public class Patient {
 	private String testResult;
 
 
+	private int rooms_roomId; 
 
 	private String notes;
 	private int bill;
@@ -86,6 +87,13 @@ public class Patient {
 		this.testResult = testResult;
 	}
 
+	public int getRooms_roomId() {
+		return rooms_roomId;
+	}
+
+	public void setRooms_roomId(int rooms_roomId) {
+		this.rooms_roomId = rooms_roomId;
+	}
 	public String getTestResult() {
 		return testResult;
 	}
@@ -236,6 +244,9 @@ public class Patient {
 
 	public void delete(long ssn) {
 		patientEjb.delete(ssn);
+	}
+	public List<Patient> searchPatient(){
+		return patientEjb.searchPatient(search);
 	}
 
 	public void updatePatient() {

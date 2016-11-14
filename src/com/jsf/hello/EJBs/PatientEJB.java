@@ -169,6 +169,49 @@ public class PatientEJB {
 	    }
 
 	    }
+	
+	public List<Patient> searchPatient(String search)
+	{
+		list = new ArrayList<>();
+
+		
+		try{
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			String myStat = "SELECT patient_ssn, rooms_roomId FROM waiting WHERE patient_ssn LIKE '%"+search+"%'";
+			stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery();
+			while(rs.next()){
+				
+				Patient usr = new Patient();
+				usr.setSsn(rs.getLong("patient_ssn"));
+				usr.setRooms_roomId(rs.getInt("rooms_roomId"));
+				/*usr.setFirstName(rs.getString("firstName"));
+				usr.setLastName(rs.getString("lastName"));
+				usr.setUserName(rs.getString("userName"));
+				usr.setPassword(rs.getString("password"));
+
+				usr.setDoctorId(rs.getInt("doctorId"));
+				usr.setNurseId(rs.getInt("nurseId"));
+				usr.setTestId(rs.getInt("testId"));		
+				usr.setRoomId(rs.getInt("roomId"));
+				usr.setReceptionistId(rs.getInt("receptionistId"));
+				usr.setNotes(rs.getString("notes"));
+				usr.setTests(rs.getString("tests"));
+				usr.setMedicine(rs.getString("medicine"));
+				usr.setTestResult(rs.getString("testResult"));*/
+				list.add(usr);
+			}
+			con.close();
+			stat.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
+	
+		
+	}
+	
 	public List<Patient> searchPat(String search)
 	{
 		list = new ArrayList<>();

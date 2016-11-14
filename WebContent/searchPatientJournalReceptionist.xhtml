@@ -13,12 +13,12 @@
     	<f:view>
     	<h:form>
     		<h:inputText value="#{patient.search}"/><h:commandButton value="Search"/>
-    		<p:dataTable value="#{patient.searchPat()}" var="u"
+    		<p:dataTable value="#{patient. searchPatient()}" var="u"
     			styleClass="book-table"
     			headerClass="book-table-header"
     			rowClasses="book-table-odd-row,book-table-even-row">
     			<p:column>
-    				<f:facet name="header">Room ID</f:facet>#{u.roomId}
+    				<f:facet name="header">Room ID</f:facet>#{u.rooms_roomId}
     			</p:column>
     			<p:column>
     				<f:facet name="header">Patient ID</f:facet>#{u.ssn}
