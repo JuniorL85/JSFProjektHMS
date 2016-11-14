@@ -50,7 +50,7 @@
 	
 		    	<!-- Popup-panel for update -->
     	<h:form>
-    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp1}">
     	<div class="popup-panel">
     			
 	<h3>Update info</h3>
@@ -72,8 +72,8 @@
 			<td><p:inputText id="medicine" size="20" value="#{patient.medicine}" /></td>
 		</tr>
 	</table>
-    		<h:commandButton value="Update" actionListener="#{patient.updateJournal()}" action="#{admin.hide()}"/>
-    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    		<h:commandButton value="Update" actionListener="#{patient.updateJournal()}" action="#{admin.hideUpdate()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hideUpdate()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		
