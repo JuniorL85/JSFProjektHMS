@@ -60,7 +60,7 @@
 	</h:form>
 	
 	<h:form>
-    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp1}">
     	<div class="popup-panel" align="center">
     			
     		<h3>Update Testresult</h3>
@@ -83,8 +83,8 @@
 
     		</table>
     		<br/>
-    		<h:commandButton value="Update" actionListener="#{patient.updateTestResult()}" action="#{admin.hide()}"/>
-    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    		<h:commandButton value="Update" actionListener="#{patient.updateTestResult()}" action="#{admin.hideUpdate()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hideUpdate()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		

@@ -59,7 +59,7 @@
     </h:form>
  	</f:view>
  		    	<h:form>
-    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp1}">
     	<div class="popup-panel">
     			
     		<h3>Buy Medicine</h3>
@@ -77,7 +77,7 @@
 
     		</table>
     		<br/>
-    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    		<h:commandButton value="Close" actionListener="#{admin.hideUpdate()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		

@@ -91,7 +91,7 @@
 			
 			<!-- Update Waiting -->
 		<h:panelGroup layout="block" styleClass="popup-panel-overlay"
-			rendered="#{admin.showPopUp}">
+			rendered="#{admin.showPopUp1}">
 			<div class="popup-panel">
 
 				<h3>Update</h3>
@@ -105,8 +105,8 @@
 						<td><p:inputText size="20" value="#{waiting.rooms_roomId}" /></td>
 					</tr>
 				</table>
-				<h:commandButton value="Update" action="#{waiting.UpdateWaitPat()}" actionListener="#{admin.hide()}" />
-				<h:commandButton value="Close" action="#{admin.hide()}">
+				<h:commandButton value="Update" action="#{waiting.UpdateWaitPat()}" actionListener="#{admin.hideUpdate()}" />
+				<h:commandButton value="Close" action="#{admin.hideUpdate()}">
 					<f:ajax render="@form" />
 				</h:commandButton>
 

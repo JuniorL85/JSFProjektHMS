@@ -123,7 +123,7 @@
 	</h:form>
 	
 	    	<h:form>
-    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp1}">
     	<div class="popup-panel">
     			
     		<h3>Update info</h3>
@@ -169,8 +169,8 @@
 								value="#{patient.nurseId}" /></td>
 					</tr>
     		</table>
-    		<h:commandButton value="Update" actionListener="#{patient.updatePatient()}" action="#{admin.hide()}"/>
-    		<h:commandButton value="Close" actionListener="#{admin.hide()}">
+    		<h:commandButton value="Update" actionListener="#{patient.updatePatient()}" action="#{admin.hideUpdate()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hideUpdate()}">
     			<f:ajax render="@form"/>
     			</h:commandButton>
     		

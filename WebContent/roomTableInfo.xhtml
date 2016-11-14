@@ -77,7 +77,7 @@
 	
 	<!-- PopUp panel for update room -->
 	<h:form>
-			<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp}">
+			<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp1}">
 			<div class="popup-panel">
 
 				<h3>Update info</h3>
@@ -93,8 +93,8 @@
 						<td><p:inputText size="20" value="#{room.maxCapacity}" /></td>
 					</tr>
 				</table>
-				<h:commandButton value="Update" action="#{room.updateRoom()}" actionListener="#{admin.hide()}"/>
-				<h:commandButton value="Close" action="#{admin.hide()}">
+				<h:commandButton value="Update" action="#{room.updateRoom()}" actionListener="#{admin.hideUpdate()}"/>
+				<h:commandButton value="Close" action="#{admin.hideUpdate()}">
 					<f:ajax render="@form" />
 				</h:commandButton>
 
