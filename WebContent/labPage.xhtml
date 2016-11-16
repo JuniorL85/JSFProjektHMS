@@ -81,7 +81,9 @@
 					<tr>
 						<td>Test result:</td>
 						<td><p:inputText id="testresult" size="20"
-								value="#{patient.testResult}" /></td>
+								value="#{patient.testResult}" required="true" 
+								requiredMessage="Test result is required"/>
+								<h:message for="testresult" style="color:red"/></td>
 					</tr>
 
     		</table>

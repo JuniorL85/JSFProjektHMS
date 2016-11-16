@@ -73,14 +73,16 @@
 
 					<tr>
 						<td>First Name</td>
-						<td><p:inputText id="firstName" size="20"
-								value="#{patient.firstName}" /></td>
+						<td><p:inputText id="firstName" size="20" value="#{patient.firstName}" required="true" 
+						requiredMessage="Firstname is required"/>
+    					<h:message for="firstName" style="color:red"/></td>
 					</tr>
 
 					<tr>
 						<td>Last Name</td>
-						<td><p:inputText id="lastName" size="20"
-								value="#{patient.lastName}" /></td>
+						<td><p:inputText id="lastName" size="20" value="#{patient.lastName}" required="true" 
+						requiredMessage="Lastname is required"/>
+    					<h:message for="lastName" style="color:red"/></td>
 					</tr>
 					<tr>
 						<td>Username</td>
@@ -90,8 +92,9 @@
 
 					<tr>
 						<td>Password</td>
-						<td><p:inputText id="password" size="20"
-								value="#{patient.password}" /></td>
+						<td><p:inputText id="password" size="20" value="#{patient.password}" required="true" 
+						requiredMessage="Password is required" />
+    					<h:message for="password" style="color:red"/></td>
 					</tr>
 
 					<tr>
@@ -136,14 +139,16 @@
 
 					<tr>
 						<td>First Name</td>
-						<td><p:inputText id="firstName" size="20"
-								value="#{patient.firstName}" /></td>
+						<td><p:inputText id="firstName" size="20" value="#{patient.firstName}" required="true" 
+						requiredMessage="Firstname is required" />
+    					<h:message for="firstname" style="color:red"/></td>
 					</tr>
 
 					<tr>
 						<td>Last Name</td>
-						<td><p:inputText id="lastName" size="20"
-								value="#{patient.lastName}" /></td>
+						<td><p:inputText id="lastName" size="20" value="#{patient.lastName}" required="true" 
+						requiredMessage="Lastname is required" />
+    					<h:message for="lastname" style="color:red"/></td>
 					</tr>
 					<tr>
 						<td>Username</td>
@@ -153,8 +158,9 @@
 
 					<tr>
 						<td>Password</td>
-						<td><p:inputText id="password" size="20"
-								value="#{patient.password}" /></td>
+						<td><p:inputText id="password" size="20" value="#{patient.password}" required="true" 
+						requiredMessage="Password is required" />
+    					<h:message for="password" style="color:red"/></td>
 					</tr>
 
 					<tr>

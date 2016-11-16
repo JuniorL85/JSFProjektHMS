@@ -80,14 +80,14 @@
     		<tr>
     			<td>First Name</td>
     			<td><p:inputText id="firstname" size="20" value="#{staff.firstName}" required="true" 
-    			requiredMessage="Firstname is required" validatorMessage="Firstname is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="firstname" style="color:red"/></td>
+    			requiredMessage="Firstname is required" />
+    			<h:message for="firstname" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Last Name</td>
     			<td><p:inputText id="lastname" size="20" value="#{staff.lastName}" required="true" 
-    			requiredMessage="Lastname is required" validatorMessage="Lastname is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="lastname" style="color:red"/></td>   			
+    			requiredMessage="Lastname is required" />
+    			<h:message for="lastname" style="color:red"/></td>   			
     		</tr>
     		<tr>
     			<td>Department ID</td>
@@ -98,12 +98,14 @@
     		<tr>
     			<td>Username</td>
     			<td><p:inputText id="username" size="20" value="#{staff.userName}" 
-    			required="true" requiredMessage="Username is required"/><h:message for="username" style="color:red"/></td>
+    			required="true" requiredMessage="Username is required"/>
+    			<h:message for="username" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Password</td>
     			<td><p:inputText id="password" size="20" value="#{staff.password}" 
-    			required="true" requiredMessage="Password is required"/><h:message for="password" style="color:red"/></td> 			
+    			required="true" requiredMessage="Password is required"/>
+    			<h:message for="password" style="color:red"/></td> 			
     		</tr>
     		</table>
     		<h:commandButton value="Add" action="#{staff.add()}" actionListener="#{admin.hide()}"/>
@@ -133,14 +135,14 @@
     		<tr>
     			<td>First Name</td>
     			<td><p:inputText id="firstname" size="20" value="#{staff.firstName}" required="true" 
-    			requiredMessage="Firstname is required" validatorMessage="Firstname is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="firstname" style="color:red"/></td>
+    			requiredMessage="Firstname is required" />
+    			<h:message for="firstname" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Last Name</td>
     			<td><p:inputText id="lastname" size="20" value="#{staff.lastName}" required="true" 
-    			requiredMessage="Lastname is required" validatorMessage="Lastname is invalid">
-    			<f:validateRegex pattern="[a-zA-Z]*"/></p:inputText><h:message for="lastname" style="color:red"/></td>   			
+    			requiredMessage="Lastname is required" />
+    			<h:message for="lastname" style="color:red"/></td>   			
     		</tr>
     		<tr>
     			<td>Department ID</td>
@@ -151,12 +153,14 @@
     		<tr>
     			<td>Username</td>
     			<td><p:inputText id="username" size="20" value="#{staff.userName}" 
-    			required="true" requiredMessage="Username is required"/><h:message for="username" style="color:red"/></td>
+    			required="true" requiredMessage="Username is required"/>
+    			<h:message for="username" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Password</td>
     			<td><p:inputText id="password" size="20" value="#{staff.password}" 
-    			required="true" requiredMessage="Password is required"/><h:message for="password" style="color:red"/></td> 			
+    			required="true" requiredMessage="Password is required"/>
+    			<h:message for="password" style="color:red"/></td> 			
     		</tr>
     		</table>
     		<h:commandButton value="Update" actionListener="#{staff.updateStaff()}" action="#{admin.hideUpdate()}"/>

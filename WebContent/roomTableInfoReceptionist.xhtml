@@ -11,19 +11,8 @@
 </h:head>
 <h:body>
 	<h:form>
-		<!--<h:selectOneMenu value="#{waiting.patient_ssn}">
-			<f:selectItems value="#{waiting.getPatientSsnList()}" var="ssn"
-				itemLabel="#{ssn.patient_ssn}" itemValue="#{ssn.patient_ssn}" />
-		</h:selectOneMenu>
-		<h:commandButton value="Search" action="sample?faces-redirect=true" />
-
-		 <h:selectOneMenu value="#{waiting.patient_ssn}">
-			<f:selectItems value="#{waiting.getPatientSsnList()}" var="ssn"
-				itemLabel="#{ssn.patient_ssn}" itemValue="#{ssn.patient_ssn}" />
-		</h:selectOneMenu>  -->
 		<br />
 		<br />
-		Lista på alla rum 
 		<p:dataTable value="#{room.getRoomList()}" var="u"
 			styleClass="book-table" headerClass="book-table-header"
 			rowClasses="book-table-odd-row,book-table-even-row">
@@ -33,20 +22,18 @@
 			<p:column>
 				<f:facet name="header">Room Type</f:facet>#{u.roomType}
     			</p:column>
-
-
 			<p:column>
 				<f:facet name="header">Max Capacity</f:facet>#{u.maxCapacity}
     			</p:column>
 			<p:column>
-				<f:facet name="header">Capacity Current</f:facet>#{u.capacityNow}
+				<f:facet name="header">Current Capacity</f:facet>#{u.capacityNow}
     			</p:column>
 
 		</p:dataTable>
 		<br />
 		<br />
 		
-		Sök på patient: 
+		<h:outputLabel value="Search Patient: "/>
 		<h:inputText value="#{waiting.search}" />
 		<h:commandButton value="Search" />
 		<p:dataTable value="#{waiting.searchPatroom()}" var="v"

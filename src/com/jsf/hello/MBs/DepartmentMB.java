@@ -1,6 +1,5 @@
 package com.jsf.hello.MBs;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -52,7 +52,9 @@
     		<table>
     		<tr>
     			<td>Department ID</td>
-    			<td><p:inputText size="20" value="#{department.departmentId}"/></td>
+    			<td><p:inputText id="departmentid" size="20" value="#{department.departmentId}" required="true"
+    			requiredMessage="Department Id is required"/>
+    			<h:message for="departmentid" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Department Name</td>
@@ -79,7 +81,9 @@
     		<table>
     		<tr>
     			<td>Department ID</td>
-    			<td><p:inputText size="20" value="#{department.departmentId}"/></td>
+    			<td><p:inputText id="departmentid" size="20" value="#{department.departmentId}" required="true"
+    			requiredMessage="Department Id is required"/>
+    			<h:message for="departmentid" style="color:red"/></td>
     		</tr>
     		<tr>
     			<td>Department Name</td>

@@ -42,7 +42,7 @@
     			</p:column>
 				<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Buy Medicine" action="#{admin.showUpdate()}" actionListener="#{patient.medicineById(u.ssn, u.medicine)}" style="color:black;"/>
+    				<h:commandLink value="Sell Medicine" action="#{admin.showUpdate()}" actionListener="#{patient.medicineById(u.ssn, u.medicine)}" style="color:black;"/>
     			</p:column>
 
 			</p:dataTable>
@@ -51,6 +51,24 @@
 		</div>
 		<br/>
 		<br/>
+		<p:dataTable value="#{medicalstore.getMedStoreList()}" var="u"
+				styleClass="book-table" headerClass="book-table-header"
+				rowClasses="book-table-odd-row,book-table-even-row">
+
+				<p:column>
+					<f:facet name="header">MedicalStore ID</f:facet>#{u.medicalStoreId}
+    			</p:column>
+    				<p:column>
+					<f:facet name="header">Medicine</f:facet>#{u.medicine}
+    			</p:column>
+    			<p:column>
+					<f:facet name="header">Quantity</f:facet>#{u.quantity}
+    			</p:column>
+    			<p:column>
+					<f:facet name="header">Price</f:facet>#{u.price}
+    			</p:column>
+
+			</p:dataTable>
 		
 		<div align="center">
 		<p:commandButton value="Log Out" action="#{deptBean.LogOut}"/>
@@ -73,6 +91,12 @@
 						<td><p:outputLabel id="medicine" size="20"
 								value="#{patient.medicine}" /></td>
 					</tr>
+					<tr>
+    			<td>Test</td>
+    			<td><p:selectOneMenu value="#{medicalstore.medicine}">
+						<f:selectItems value="#{medStoreBean.medicineList}" var="u" itemValue="#{u.medicine}"/>
+					</p:selectOneMenu></td>
+    		</tr>
 
     		</table>
     		<br/>

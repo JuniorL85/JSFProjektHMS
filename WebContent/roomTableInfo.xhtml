@@ -45,7 +45,7 @@
 		<br />
 
 		<h:commandButton value="Add new room" action="#{admin.show()}">
-			<f:ajax render="@form" />
+			<f:ajax render="@form"/>
 		</h:commandButton>
 		<h:commandButton value="Go back"
 			action="adminWelcomePage.xhtml?faces-redirect=true" />
@@ -63,7 +63,9 @@
 					</tr>
 					<tr>
 						<td>Max Capacity </td>
-						<td><p:inputText size="20" value="#{room.maxCapacity}" /></td>
+						<td><p:inputText id="maxcapacity" size="20" value="#{room.maxCapacity}" required="true"
+						requiredMessage="Max Capacity is required"/>
+						<h:message for="maxcapacity" style="color:red"/></td>
 					</tr>
 				</table>
 				<h:commandButton value="Add" action="#{room.add()}" actionListener="#{admin.hide()}"/>
@@ -90,7 +92,9 @@
 					</tr>
 					<tr>
 						<td>Max Capacity </td>
-						<td><p:inputText size="20" value="#{room.maxCapacity}" /></td>
+						<td><p:inputText id="maxcapacity" size="20" value="#{room.maxCapacity}" required="true"
+						requiredMessage="Max Capacity is required"/>
+						<h:message for="maxcapacity" style="color:red"/></td>
 					</tr>
 				</table>
 				<h:commandButton value="Update" action="#{room.updateRoom()}" actionListener="#{admin.hideUpdate()}"/>
