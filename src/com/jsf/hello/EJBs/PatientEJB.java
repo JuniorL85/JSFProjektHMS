@@ -73,16 +73,13 @@ public class PatientEJB {
 			stat.setString(5, patient.getPassword());
 			stat.setInt(6, patient.getDoctorId());
 			stat.setInt(7, patient.getNurseId());
-			//stat.setInt(8, patient.getTestId());
-			//stat.setInt(9, patient.getRoomId());
-			//stat.setInt(8, patient.getReceptionistId());
-			//stat.setInt(11, patient.getJournalId());
 			stat.executeUpdate();
 
 			System.out.println("Info added successfully");
 
 			con.close();
 			stat.close();
+			
 		} catch (Exception e) {
 			System.out.println(" SQLException :(");
 			e.printStackTrace();
@@ -115,11 +112,9 @@ public class PatientEJB {
 		
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
-	    	System.out.println("in HospitalStaffEJB.update .. in try");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="UPDATE patient SET firstName = ?, lastName= ?, userName= ?, password= ?, doctorId =?, nurseId=? WHERE ssn = ?";
 	        stat = con.prepareStatement(myStat);
-	        System.out.println("in PatientEJB.update .. in patient.getFirstName() = "+patient.getFirstName());
 	        stat.setString(1, patient.getFirstName());
 	        stat.setString(2, patient.getLastName());
 	        stat.setString(3, patient.getUserName());
@@ -127,7 +122,6 @@ public class PatientEJB {
 	        stat.setInt(5, patient.getDoctorId());
 	        stat.setInt(6, patient.getNurseId());
 	        stat.setLong(7, patient.getSsn());
-	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();
 	        
 	        con.close();
@@ -144,19 +138,13 @@ public class PatientEJB {
 		
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
-	    	System.out.println("in PatientEJB.update .. in try");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="UPDATE journal SET notes= ?, tests= ?, medicine= ? WHERE patient_ssn = ?";
 	        stat = con.prepareStatement(myStat);
-	        System.out.println("in PatientEJB.update .. in patient.getFirstName() = "+journal.getSsn());
-	        //stat.setInt(1, journal.getJournalId());
 	        stat.setString(1, journal.getNotes());
-	        //stat.setInt(3, journal.getDoctorId());
 	        stat.setString(2, journal.getTests());
 	        stat.setLong(4, journal.getSsn());
 	        stat.setString(3, journal.getMedicine());
-	        
-	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();
 	        
 	        con.close();
@@ -185,20 +173,6 @@ public class PatientEJB {
 				Patient usr = new Patient();
 				usr.setSsn(rs.getLong("patient_ssn"));
 				usr.setRooms_roomId(rs.getInt("rooms_roomId"));
-				/*usr.setFirstName(rs.getString("firstName"));
-				usr.setLastName(rs.getString("lastName"));
-				usr.setUserName(rs.getString("userName"));
-				usr.setPassword(rs.getString("password"));
-
-				usr.setDoctorId(rs.getInt("doctorId"));
-				usr.setNurseId(rs.getInt("nurseId"));
-				usr.setTestId(rs.getInt("testId"));		
-				usr.setRoomId(rs.getInt("roomId"));
-				usr.setReceptionistId(rs.getInt("receptionistId"));
-				usr.setNotes(rs.getString("notes"));
-				usr.setTests(rs.getString("tests"));
-				usr.setMedicine(rs.getString("medicine"));
-				usr.setTestResult(rs.getString("testResult"));*/
 				list.add(usr);
 			}
 			con.close();
@@ -226,17 +200,6 @@ public class PatientEJB {
 				
 				Patient usr = new Patient();
 				usr.setSsn(rs.getLong("ssn"));
-				//usr.setJournalId(rs.getInt("journalId"));
-				/*usr.setFirstName(rs.getString("firstName"));
-				usr.setLastName(rs.getString("lastName"));
-				usr.setUserName(rs.getString("userName"));
-				usr.setPassword(rs.getString("password"));
-
-				usr.setDoctorId(rs.getInt("doctorId"));
-				usr.setNurseId(rs.getInt("nurseId"));
-				usr.setTestId(rs.getInt("testId"));		
-				usr.setRoomId(rs.getInt("roomId"));
-				usr.setReceptionistId(rs.getInt("receptionistId"));*/
 				usr.setNotes(rs.getString("notes"));
 				usr.setTests(rs.getString("tests"));
 				usr.setMedicine(rs.getString("medicine"));
@@ -257,14 +220,11 @@ public class PatientEJB {
 		
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
-	    	System.out.println("in PatientEJB.update .. in try");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="UPDATE patient SET bill = bill - ? WHERE ssn = ?";
-	        stat = con.prepareStatement(myStat);
-	        System.out.println("in PatientEJB.update .. in patient.getBill() = "+patient.getBill());	     
+	        stat = con.prepareStatement(myStat);	     
 	        stat.setInt(1, patient.getBill());
 	        stat.setLong(2, patient.getSsn());
-	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();
 	        
 	        con.close();
@@ -282,14 +242,11 @@ public class PatientEJB {
 		
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
-	    	System.out.println("in PatientEJB.updateTestResult .. in try");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
 	        String myStat ="UPDATE journal SET testResult = ? WHERE patient_ssn = ?";
-	        stat = con.prepareStatement(myStat);
-	        System.out.println("in PatientEJB.update .. in patient.getTestResult() = "+patient.getTestResult());	     
+	        stat = con.prepareStatement(myStat);	     
 	        stat.setString(1, patient.getTestResult());
 	        stat.setLong(2, patient.getSsn());
-	        System.out.println("in PatientEJB.update .. stat.toString(); = "+stat.toString());
 	        stat.executeUpdate();
 	        
 	        con.close();

@@ -240,6 +240,7 @@ public class Patient {
 
 	public void add() {
 		patientEjb.add(this);
+		clear();
 	}
 
 	public void delete(long ssn) {
@@ -250,24 +251,25 @@ public class Patient {
 	}
 
 	public void updatePatient() {
-		System.out.println("in update patient.. before calling update");
 		patientEjb.update(this);
-		System.out.println("in update patient.. after calling update");
 	}
 
 	public void updateJournal() {
-		System.out.println("in update journal.. before calling update");
 		patientEjb.updateJournal(this);
-		System.out.println("in update journal.. after calling update");
 	}
 	public void payBill(){
-		System.out.println("in pay bill.. before calling update");
 		patientEjb.payBill(this);
-		System.out.println("in pay bill.. after calling update");
 	}
 	public void updateTestResult(){
-		System.out.println("in updateTestResult.. before calling update");
 		patientEjb.updateTestResult(this);
-		System.out.println("in updateTestResult.. after calling update");
+	}
+	public void clear(){
+		setSsn(0);
+		setFirstName(null);
+		setLastName(null);
+		setUserName(null);
+		setPassword(null);
+		setDoctorId(0);
+		setNurseId(0);
 	}
 }

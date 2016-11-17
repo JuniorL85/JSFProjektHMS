@@ -77,6 +77,7 @@ public class DepartmentMB {
 	}
 	public void add(){
 		departmentEjb.add(this);
+		clear();
     }
 	
 	public void delete(int departmentId) {
@@ -93,6 +94,11 @@ public class DepartmentMB {
 	}
 	public List<DepartmentMB> searchDept(){
 		return departmentEjb.searchDept(search);
+	}
+	
+	public void clear(){
+		setDepartmentId(0);
+		setDeptName(null);
 	}
 	public String LoginOK(){
 		return departmentEjb.LoginOK();

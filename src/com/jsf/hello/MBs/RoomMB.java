@@ -113,6 +113,12 @@ public class RoomMB {
 
 	public void add() {
 		roomEjb.add(this);
+		clear(); //Clears form after adding new room
+	}
+	
+	public void clear(){
+		setRoomType(null);
+		setMaxCapacity(0);
 	}
 
 	public void delete(int roomId) {

@@ -116,21 +116,21 @@ public class HospitalStaffMB {
 
 	public void add(){
 		hospitalStaffEjb.add(this);
+		clear(); //Clears form after adding new room
     }
 	
 	public void delete(int employeeId) {
 		hospitalStaffEjb.delete(employeeId);
 	}
 
-	//public void getData(){
-		//setEmployeeId(employeeId);
-		//setJobTitle(jobTitle);
-		//setFirstName(firstName);
-		//setLastName(lastName);
-		//setDepartmentId(departmentId);
-		//setUserName(userName);
-		//setPassword(password);
-	//}
+	public void clear(){
+		setJobTitle(null);
+		setFirstName(null);
+		setLastName(null);
+		setDepartmentId(0);
+		setUserName(null);
+		setPassword(null);
+	}
 	
 	public void staffById(int employeeId, String jobTitle, String firstName, String lastName, int departmentId, String userName, String password){
 		this.employeeId = employeeId;
@@ -143,9 +143,7 @@ public class HospitalStaffMB {
 	}
 	
 	public void updateStaff(){
-		System.out.println("in update staff.. before calling update");
 		hospitalStaffEjb.update(this);
-		System.out.println("in update staff.. after calling update");
 	}
 	
 	public List<HospitalStaffMB> searchStaff(){
