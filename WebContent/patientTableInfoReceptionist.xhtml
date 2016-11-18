@@ -24,10 +24,10 @@
 			<p:column>
 				<f:facet name="header">Last Name</f:facet>#{u.lastName}
     			</p:column>
-
-			<p:column>
-				<f:facet name="header">Username</f:facet>#{u.userName}
+    		<p:column>
+				<f:facet name="header">Checked In</f:facet>#{u.checkIn}
     			</p:column>
+
     			<p:column>
     				<f:facet name="header">Action</f:facet>
     				<p:commandLink value="Release patient" action="#{patient.delete(u.ssn)}" style="color:black;">
@@ -37,7 +37,7 @@
     			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.userName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
+    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
     			</p:column>
 			<!-- <h:column>
     				<f:facet name="header">Password</f:facet>#{u.password}
@@ -83,11 +83,6 @@
 						<td><p:inputText id="lastName" size="20" value="#{patient.lastName}" required="true" 
 						requiredMessage="Lastname is required"/>
     					<h:message for="lastName" style="color:red"/></td>
-					</tr>
-					<tr>
-						<td>Username</td>
-						<td><p:inputText id="Username" size="20"
-								value="#{patient.userName}" /></td>
 					</tr>
 
 					<tr>
@@ -141,19 +136,14 @@
 						<td>First Name</td>
 						<td><p:inputText id="firstName" size="20" value="#{patient.firstName}" required="true" 
 						requiredMessage="Firstname is required" />
-    					<h:message for="firstname" style="color:red"/></td>
+    					<h:message for="firstName" style="color:red"/></td>
 					</tr>
 
 					<tr>
 						<td>Last Name</td>
 						<td><p:inputText id="lastName" size="20" value="#{patient.lastName}" required="true" 
 						requiredMessage="Lastname is required" />
-    					<h:message for="lastname" style="color:red"/></td>
-					</tr>
-					<tr>
-						<td>Username</td>
-						<td><p:inputText id="Username" size="20"
-								value="#{patient.userName}" /></td>
+    					<h:message for="lastName" style="color:red"/></td>
 					</tr>
 
 					<tr>

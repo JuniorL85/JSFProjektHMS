@@ -39,14 +39,10 @@ public class PatientEJB {
 				usr.setSsn(rs.getLong("ssn"));
 				usr.setFirstName(rs.getString("firstName"));
 				usr.setLastName(rs.getString("lastName"));
-				usr.setUserName(rs.getString("userName"));
 				usr.setPassword(rs.getString("password"));
 				usr.setDoctorId(rs.getInt("doctorId"));
 				usr.setNurseId(rs.getInt("nurseId"));
-				//usr.setTestId(rs.getInt("testId"));		
-				//usr.setRoomId(rs.getInt("roomId"));
-				//usr.setReceptionistId(rs.getInt("receptionistId"));
-				//usr.setJournalId(rs.getInt("journalId"));
+				usr.setCheckIn(rs.getTimestamp("checkIn"));
 
 				list.add(usr);
 			}
@@ -63,16 +59,15 @@ public class PatientEJB {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "INSERT INTO patient(ssn,firstName,lastName,username,password, doctorId, nurseId) VALUES(?,?,?,?,?,?,?)";
+			String myStat = "INSERT INTO patient(ssn,firstName,lastName,password,doctorId,nurseId) VALUES(?,?,?,?,?,?)";
 			stat = con.prepareStatement(myStat);
 
 			stat.setLong(1, patient.getSsn());
 			stat.setString(2, patient.getFirstName());
 			stat.setString(3, patient.getLastName());
-			stat.setString(4, patient.getUserName());
-			stat.setString(5, patient.getPassword());
-			stat.setInt(6, patient.getDoctorId());
-			stat.setInt(7, patient.getNurseId());
+			stat.setString(4, patient.getPassword());
+			stat.setInt(5, patient.getDoctorId());
+			stat.setInt(6, patient.getNurseId());
 			stat.executeUpdate();
 
 			System.out.println("Info added successfully");
@@ -113,15 +108,14 @@ public class PatientEJB {
 	    try {
 	    	//Class.forName("com.mysql.jdbc.Driver");
 	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
-	        String myStat ="UPDATE patient SET firstName = ?, lastName= ?, userName= ?, password= ?, doctorId =?, nurseId=? WHERE ssn = ?";
+	        String myStat ="UPDATE patient SET firstName = ?, lastName= ?, password= ?, doctorId =?, nurseId=? WHERE ssn = ?";
 	        stat = con.prepareStatement(myStat);
 	        stat.setString(1, patient.getFirstName());
 	        stat.setString(2, patient.getLastName());
-	        stat.setString(3, patient.getUserName());
-	        stat.setString(4, patient.getPassword());
-	        stat.setInt(5, patient.getDoctorId());
-	        stat.setInt(6, patient.getNurseId());
-	        stat.setLong(7, patient.getSsn());
+	        stat.setString(3, patient.getPassword());
+	        stat.setInt(4, patient.getDoctorId());
+	        stat.setInt(5, patient.getNurseId());
+	        stat.setLong(6, patient.getSsn());
 	        stat.executeUpdate();
 	        
 	        con.close();

@@ -3,6 +3,7 @@ package com.jsf.hello.MBs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -29,8 +30,8 @@ public class Patient {
 	private long ssn;
 	private String firstName;
 	private String lastName;
-	private String userName;
 	private String password;
+	private Timestamp checkIn;
 
 	private String tests;
 	private String medicine;
@@ -48,12 +49,11 @@ public class Patient {
 	private int receptionistId;
 	private int journalId;
 
-	public void patientById(long ssn, String firstName, String lastName, String userName, String password, int doctorId,
+	public void patientById(long ssn, String firstName, String lastName, String password, int doctorId,
 			int nurseId) {
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userName = userName;
 		this.password = password;
 		this.doctorId = doctorId;
 		this.nurseId = nurseId;
@@ -85,6 +85,13 @@ public class Patient {
 		this.ssn = ssn;
 		this.tests = tests;
 		this.testResult = testResult;
+	}
+	public Timestamp getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(Timestamp checkIn) {
+		this.checkIn = checkIn;
 	}
 
 	public int getRooms_roomId() {
@@ -214,14 +221,6 @@ public class Patient {
 		this.lastName = lastName;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -267,7 +266,6 @@ public class Patient {
 		setSsn(0);
 		setFirstName(null);
 		setLastName(null);
-		setUserName(null);
 		setPassword(null);
 		setDoctorId(0);
 		setNurseId(0);

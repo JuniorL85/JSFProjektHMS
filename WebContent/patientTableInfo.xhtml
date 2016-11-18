@@ -24,13 +24,9 @@
 			<p:column>
 				<f:facet name="header">Last Name</f:facet>#{u.lastName}
     			</p:column>
-
-			<p:column>
-				<f:facet name="header">Username</f:facet>#{u.userName}
-    			</p:column>
     			<p:column>
     				<f:facet name="header">Action</f:facet>
-    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.userName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
+    				<h:commandLink value="Update" action="#{admin.showUpdate()}" actionListener="#{patient.patientById(u.ssn, u.firstName, u.lastName, u.password, u.doctorId, u.nurseId)}" style="color:black;"/>
     			</p:column>
 			<!-- <h:column>
     				<f:facet name="header">Password</f:facet>#{u.password}
@@ -69,12 +65,6 @@
 						requiredMessage="Lastname is required" />
     					<h:message for="lastName" style="color:red"/></td>
 					</tr>
-					<tr>
-						<td>Username</td>
-						<td><p:inputText id="Username" size="20"
-								value="#{patient.userName}" readonly="true" /></td>
-					</tr>
-
 					<tr>
 						<td>Password</td>
 						<td><p:inputText id="password" size="20"
