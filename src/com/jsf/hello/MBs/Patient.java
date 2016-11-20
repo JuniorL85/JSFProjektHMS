@@ -32,7 +32,7 @@ public class Patient {
 	private String lastName;
 	private String password;
 	private Timestamp checkIn;
-
+	private String remissNotes;
 	private String tests;
 	private String medicine;
 	private String testResult;
@@ -63,7 +63,13 @@ public class Patient {
 		// this.journalId = journalId;
 		// this.notes = notes;
 	}
-
+	public void PatientRemissById(long ssn, String firstName, String lastName, int doctorId, int nurseId){
+		this.ssn = ssn; 
+		this.firstName = firstName; 
+		this.lastName = lastName; 
+		this.doctorId = doctorId; 
+		this.nurseId = nurseId;
+	}
 	public void journalById(long ssn, String notes, String tests, String medicine) {
 		this.ssn = ssn;
 		this.tests = tests;
@@ -88,6 +94,14 @@ public class Patient {
 	}
 	public Timestamp getCheckIn() {
 		return checkIn;
+	}
+
+	public String getRemissNotes() {
+		return remissNotes;
+	}
+
+	public void setRemissNotes(String remissNotes) {
+		this.remissNotes = remissNotes;
 	}
 
 	public void setCheckIn(Timestamp checkIn) {
@@ -248,7 +262,12 @@ public class Patient {
 	public List<Patient> searchPatient(){
 		return patientEjb.searchPatient(search);
 	}
-
+	public List<Patient> searchPatientRemiss(){
+		return patientEjb.searchPatientRemiss(search);
+	}
+	public void updatePatientRemiss(){
+		patientEjb.updatePatientRemiss(this);
+	}
 	public void updatePatient() {
 		patientEjb.update(this);
 	}

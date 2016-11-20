@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="css/table-style.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<h:form>
+			<h:inputText value="#{patient.search}" />
+			<h:commandButton value="Search" />
+			<p:dataTable value="#{patient.searchPatientRemiss()}" var="u"
+				styleClass="book-table" headerClass="book-table-header"
+				rowClasses="book-table-odd-row,book-table-even-row">
+
+				<p:column>
+					<f:facet name="header">Patient ID</f:facet>#{u.ssn}
+    			</p:column>
+				<p:column>
+					<f:facet name="header">Patient Firstname</f:facet>#{u.firstName}
+    			</p:column>
+				<p:column>
+					<f:facet name="header">Patient Lastname</f:facet>#{u.lastName}
+    			</p:column>
+    				<p:column>
+					<f:facet name="header">Patient Doctor</f:facet>#{u.doctorId}
+    			</p:column>
+    			<p:column>
+					<f:facet name="header">Patient Nurse</f:facet>#{u.nurseId}
+    			</p:column>
+				
+				<p:column>
+					<f:facet name="header">Action</f:facet>
+					<h:commandLink value="Update Journal" action="#{admin.showUpdate()}"
+						actionListener="#{patient.PatientRemissById(u.ssn, u.firstName, u.lastName, u.doctorId, u.nurseId)}"
+						style="color:black;" />
+				</p:column>
+							
+			</p:dataTable>
+			<br />
+			<br />
+			<h:commandButton value="Go back"
+				action="welcomePage.xhtml?faces-redirect=true" />
+		</h:form>
+	</f:view>
+	
+		    	<!-- Popup-panel for update -->
+    	<h:form>
+    	<h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{admin.showPopUp1}">
+    	<div class="popup-panel">
+    			
+	<h3>Update info</h3>
+	<table>
+		<tr>
+			<td>DoctorId</td>
+			<td><p:inputText id="ssn" size="20" value="#{patient.doctorId}" /></td>
+		</tr>
+		<tr>
+			<td>NurseId</td>
+			<td><p:inputText id="notes" size="20" value="#{patient.nurseId}" /></td>
+		</tr>
+	
+	</table>
+    		<h:commandButton value="Update" actionListener="#{patient.updatePatientRemiss()}" action="#{admin.hideUpdate()}"/>
+    		<h:commandButton value="Close" actionListener="#{admin.hideUpdate()}">
+    			<f:ajax render="@form"/>
+    			</h:commandButton>
+    		
+    			</div>
+    		</h:panelGroup>
+    		</h:form>
+</h:body>
+</html>
