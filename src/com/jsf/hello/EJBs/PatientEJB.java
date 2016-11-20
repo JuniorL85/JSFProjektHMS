@@ -184,7 +184,7 @@ public class PatientEJB {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "SELECT patient.ssn, notes, tests, medicine, testResult FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"
+			String myStat = "SELECT patient.ssn, notes, tests, medicine, testResult, remissNotes FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"
 					+ search + "%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -196,6 +196,7 @@ public class PatientEJB {
 				usr.setTests(rs.getString("tests"));
 				usr.setMedicine(rs.getString("medicine"));
 				usr.setTestResult(rs.getString("testResult"));
+				usr.setRemissNotes(rs.getString("remissNotes"));
 				list.add(usr);
 			}
 			con.close();
@@ -257,11 +258,12 @@ public class PatientEJB {
 			// Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "UPDATE patient SET doctorId = ?, nurseId = ?  WHERE ssn = ?";
+			String myStat = "UPDATE patient SET doctorId = ?, remissNotes = ?, nurseId = ?  WHERE ssn = ?";
 			stat = con.prepareStatement(myStat);
 			stat.setInt(1, patient.getDoctorId());
-			stat.setInt(2, patient.getNurseId());
-			stat.setLong(3, patient.getSsn());
+			stat.setString(2, patient.getRemissNotes());
+			stat.setInt(3, patient.getNurseId());
+			stat.setLong(4, patient.getSsn());
 			stat.executeUpdate();
 
 			con.close();

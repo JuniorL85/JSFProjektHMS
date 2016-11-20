@@ -11,14 +11,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.EJBs.PatientEJB;
-import com.jsf.hello.MBs.Login;
 
 @ManagedBean(name = "patient")
 @SessionScoped
 public class Patient {
 
 	PatientEJB patientEjb = new PatientEJB();
-	Login loginmb = new Login();
 
 	String search;
 
