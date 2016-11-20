@@ -36,7 +36,7 @@
 				
 				<p:column>
 					<f:facet name="header">Action</f:facet>
-					<h:commandLink value="Update Journal" action="#{admin.showUpdate()}"
+					<h:commandLink value="Remiss Patient" action="#{admin.showUpdate()}"
 						actionListener="#{patient.PatientRemissById(u.ssn, u.firstName, u.lastName, u.doctorId, u.nurseId)}"
 						style="color:black;" />
 				</p:column>
@@ -63,6 +63,10 @@
 		<tr>
 			<td>NurseId</td>
 			<td><p:inputText id="notes" size="20" value="#{patient.nurseId}" /></td>
+		</tr>
+		<tr>
+			<td>Remiss notes</td>
+			<td><p:inputText id="remissNotes" size="20" value="#{patient.remissNotes}" /></td>
 		</tr>
 	
 	</table>
