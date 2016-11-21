@@ -25,13 +25,29 @@ public class Patient {
 	private String medicine;
 	private String testResult;
 	private String search;
-
+	private String PatNurseDuties;
 	private int rooms_roomId; 
 
 	private String notes;
 	private int bill;
 	private int doctorId;
 	private int nurseId;
+	private Integer id; 
+	
+	
+
+	public void process() {
+		
+	}
+	
+	
+	public List<Patient> getContent() {
+		 return patientEjb.getDoctorList();
+	}
+
+
+	public void setContent(List<Patient> content) {
+	}
 
 	public void patientById(long ssn, String firstName, String lastName, String password, int doctorId,
 			int nurseId) {
@@ -51,11 +67,12 @@ public class Patient {
 		this.nurseId = nurseId;
 	}
 	
-	public void journalById(long ssn, String notes, String tests, String medicine) {
+	public void journalById(long ssn, String notes, String tests, String medicine, String PatNurseDuties ) {
 		this.ssn = ssn;
 		this.tests = tests;
 		this.notes = notes;
 		this.medicine = medicine;
+		this.PatNurseDuties = PatNurseDuties;
 	}
 	
 	public void billById(long ssn, int bill){
@@ -74,6 +91,16 @@ public class Patient {
 	public Timestamp getCheckIn() {
 		return checkIn;
 	}
+
+	public String getPatNurseDuties() {
+		return PatNurseDuties;
+	}
+
+
+	public void setPatNurseDuties(String patNurseDuties) {
+		PatNurseDuties = patNurseDuties;
+	}
+
 
 	public String getRemissNotes() {
 		return remissNotes;
@@ -197,7 +224,10 @@ public class Patient {
 	public List<Patient> getPatList() {
 		return patientEjb.getPatList();
 	}
-
+	
+	public List<Patient> getDoctorList(){
+		return patientEjb.getDoctorList();
+	}
 	public void add() {
 		patientEjb.add(this);
 		clear();
@@ -236,4 +266,34 @@ public class Patient {
 		setDoctorId(0);
 		setNurseId(0);
 	}
+
+
+
+
+
+	@Override
+    public boolean equals(Object other) {
+        return (other instanceof Patient) && (id != null)
+            ? id.equals(((Patient) other).id)
+            : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (id != null)
+            ? (this.getClass().hashCode() + id.hashCode())
+            : super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Patient: " + ssn + " Treatment:  " + PatNurseDuties);
+    }
+
+	
+   
+
+
+
+
 }

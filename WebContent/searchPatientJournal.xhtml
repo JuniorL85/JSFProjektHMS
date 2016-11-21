@@ -39,11 +39,18 @@
 				<p:column>
 					<f:facet name="header">Action</f:facet>
 					<h:commandLink value="Update Journal" action="#{admin.showUpdate()}"
-						actionListener="#{patient.journalById(u.ssn, u.notes, u.tests, u.medicine)}"
+						actionListener="#{patient.journalById(u.ssn, u.notes, u.tests, u.medicine, u.patNurseDuties)}"
 						style="color:black;" />
 				</p:column>
 
 			</p:dataTable>
+			<br />
+			<br />
+			<h:form>
+			Special treatment for the patient: 
+			<h:outputText id="patientNotes" value="#{patient.searchPat()}" cols="30" rows="10" > </h:outputText>
+			
+			</h:form>
 			<br />
 			<br />
 			<h:commandButton value="Go back"
@@ -73,6 +80,11 @@
 			<tr>
 			<td>Medicine</td>
 			<td><p:inputText id="medicine" size="20" value="#{patient.medicine}" /></td>
+		</tr>
+		
+			<tr>
+			<td>Special treatment</td>
+			<td><p:inputText id="patNurseDuties" size="20" value="#{patient.patNurseDuties}" /></td>
 		</tr>
 	</table>
     		<h:commandButton value="Update" actionListener="#{patient.updateJournal()}" action="#{admin.hideUpdate()}"/>

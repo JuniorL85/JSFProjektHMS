@@ -17,10 +17,38 @@ import com.jsf.hello.MBs.Patient;
 public class PatientEJB {
 
 	List<Patient> list;
+	List<Patient> doctors;
 	Connection con = null;
 	PreparedStatement stat = null;
 	ResultSet rs = null;
 
+	public List<Patient> getDoctorList() {
+		doctors = new ArrayList<>();
+
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
+					"root", "Sommar15");
+			String myStat = "SELECT doctorId FROM doctor";
+			stat = con.prepareStatement(myStat);
+			rs = stat.executeQuery();
+			while (rs.next()) {
+
+				Patient usr = new Patient();
+			
+				usr.setDoctorId(rs.getInt("doctorId"));
+			
+
+				doctors.add(usr);
+			}
+			con.close();
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return doctors;
+	}
+	
+	
 	public List<Patient> getPatList() {
 		list = new ArrayList<>();
 
@@ -40,7 +68,8 @@ public class PatientEJB {
 				usr.setDoctorId(rs.getInt("doctorId"));
 				usr.setNurseId(rs.getInt("nurseId"));
 				usr.setCheckIn(rs.getTimestamp("checkIn"));
-
+				
+				
 				list.add(usr);
 			}
 			con.close();
@@ -135,12 +164,13 @@ public class PatientEJB {
 			// Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "UPDATE journal SET notes= ?, tests= ?, medicine= ? WHERE patient_ssn = ?";
+			String myStat = "UPDATE journal SET notes= ?, tests= ?, medicine= ?, PatNurseDuties = ?  WHERE patient_ssn = ?";
 			stat = con.prepareStatement(myStat);
 			stat.setString(1, journal.getNotes());
 			stat.setString(2, journal.getTests());
-			stat.setLong(4, journal.getSsn());
 			stat.setString(3, journal.getMedicine());
+			stat.setString(4, journal.getPatNurseDuties());
+			stat.setLong(5, journal.getSsn());
 			stat.executeUpdate();
 
 			con.close();
@@ -184,7 +214,7 @@ public class PatientEJB {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
 					"root", "Sommar15");
-			String myStat = "SELECT patient.ssn, notes, tests, medicine, testResult, remissNotes FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"
+			String myStat = "SELECT patient.ssn, notes, tests, medicine, testResult, remissNotes, PatNurseDuties FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"
 					+ search + "%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -197,6 +227,7 @@ public class PatientEJB {
 				usr.setMedicine(rs.getString("medicine"));
 				usr.setTestResult(rs.getString("testResult"));
 				usr.setRemissNotes(rs.getString("remissNotes"));
+				usr.setPatNurseDuties(rs.getString("PatNurseDuties"));
 				list.add(usr);
 			}
 			con.close();
