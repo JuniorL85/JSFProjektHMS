@@ -1,5 +1,4 @@
 package com.jsf.hello.MBs;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,7 +10,6 @@ import com.jsf.hello.EJBs.WaitingEJB;
 @ManagedBean(name="waiting")
 @SessionScoped
 public class WaitingMB {
-	String search;
 
 	WaitingEJB waitingEjb = new WaitingEJB();
 	private int waitingId;
@@ -21,7 +19,7 @@ public class WaitingMB {
 	private String roomType; 
 	private int maxCapacity;
 	private int capacityNow;
-
+	private String search;
 	
 	public String getSearch() {
 		return search;
@@ -29,10 +27,6 @@ public class WaitingMB {
 
 	public void setSearch(String search) {
 		this.search = search;
-	}
-
-	public List<WaitingMB> searchPatroom() {
-		return waitingEjb.searchPatroom(search);
 	}
 
 	public int getMaxCapacity() {
@@ -77,6 +71,9 @@ public class WaitingMB {
 	public void setRooms_roomId(int rooms_roomId) {
 		this.rooms_roomId = rooms_roomId;
 	} 
+	public List<WaitingMB> searchPatroom() {
+		return waitingEjb.searchPatroom(search);
+	}
 	public List<WaitingMB> getWaitList(){
 		return waitingEjb.getWaitList();
 	}

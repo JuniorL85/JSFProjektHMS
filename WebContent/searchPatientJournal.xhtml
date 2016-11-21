@@ -46,11 +46,10 @@
 			</p:dataTable>
 			<br />
 			<br />
-			<h:form>
-			Special treatment for the patient: 
-			<h:outputText id="patientNotes" value="#{patient.searchPat()}" cols="30" rows="10" > </h:outputText>
+			<h:outputLabel value="Special treatment for the patient: " />
+			<h:outputText id="patientNotes" value="#{patient.searchPat()}" />
 			
-			</h:form>
+			
 			<br />
 			<br />
 			<h:commandButton value="Go back"

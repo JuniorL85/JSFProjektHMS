@@ -10,8 +10,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.jsf.hello.MBs.Patient;
-import com.jsf.hello.MBs.RoomMB;
 import com.jsf.hello.MBs.WaitingMB;
 @ManagedBean(name="waitBean")
 @SessionScoped
