@@ -17,9 +17,7 @@ public class RoomMB {
 	private int roomId;
 	private String roomType;
 	private int roomStatus;
-	private int receptionistId;
 	private String search;
-	private int patient_ssn;
 
 	private int maxCapacity;
 	private int capacityNow;
@@ -49,14 +47,6 @@ public class RoomMB {
 
 	public void setCapacityNow(int capacityNow) {
 		this.capacityNow = capacityNow;
-	}
-
-	public int getPatient_ssn() {
-		return patient_ssn;
-	}
-
-	public void setPatient_ssn(int patient_ssn) {
-		this.patient_ssn = patient_ssn;
 	}
 
 	public int getRoomId() {
@@ -89,14 +79,6 @@ public class RoomMB {
 
 	public void setRoomStatus(int roomStatus) {
 		this.roomStatus = roomStatus;
-	}
-
-	public int getReceptionistId() {
-		return receptionistId;
-	}
-
-	public void setReceptionistId(int receptionistId) {
-		this.receptionistId = receptionistId;
 	}
 
 	public String getSearch() {

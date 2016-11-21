@@ -1,8 +1,5 @@
 package com.jsf.hello.MBs;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -18,13 +15,6 @@ public class Patient {
 
 	PatientEJB patientEjb = new PatientEJB();
 
-	String search;
-
-	List<Patient> list;
-	Connection con = null;
-	PreparedStatement stat = null;
-	ResultSet rs = null;
-
 	private long ssn;
 	private String firstName;
 	private String lastName;
@@ -34,7 +24,7 @@ public class Patient {
 	private String tests;
 	private String medicine;
 	private String testResult;
-
+	private String search;
 
 	private int rooms_roomId; 
 
@@ -42,10 +32,6 @@ public class Patient {
 	private int bill;
 	private int doctorId;
 	private int nurseId;
-	private int testId;
-	private int roomId;
-	private int receptionistId;
-	private int journalId;
 
 	public void patientById(long ssn, String firstName, String lastName, String password, int doctorId,
 			int nurseId) {
@@ -55,12 +41,8 @@ public class Patient {
 		this.password = password;
 		this.doctorId = doctorId;
 		this.nurseId = nurseId;
-		// this.testId = testId;
-		// this.roomId = roomId;
-		// this.receptionistId = receptionistId;
-		// this.journalId = journalId;
-		// this.notes = notes;
 	}
+	
 	public void PatientRemissById(long ssn, String firstName, String lastName, int doctorId, int nurseId){
 		this.ssn = ssn; 
 		this.firstName = firstName; 
@@ -68,15 +50,14 @@ public class Patient {
 		this.doctorId = doctorId; 
 		this.nurseId = nurseId;
 	}
+	
 	public void journalById(long ssn, String notes, String tests, String medicine) {
 		this.ssn = ssn;
 		this.tests = tests;
-		//this.journalId = journalId;
 		this.notes = notes;
 		this.medicine = medicine;
-		//this.doctorId = doctorId;
-		//this.nurseId = nurseId;
 	}
+	
 	public void billById(long ssn, int bill){
 		this.ssn = ssn;
 		this.bill = bill;
@@ -153,14 +134,6 @@ public class Patient {
 		this.notes = notes;
 	}
 
-	public int getJournalId() {
-		return journalId;
-	}
-
-	public void setJournalId(int journalId) {
-		this.journalId = journalId;
-	}
-
 	public String getSearch() {
 		return search;
 	}
@@ -183,30 +156,6 @@ public class Patient {
 
 	public void setNurseId(int nurseId) {
 		this.nurseId = nurseId;
-	}
-
-	public int getTestId() {
-		return testId;
-	}
-
-	public void setTestId(int testId) {
-		this.testId = testId;
-	}
-
-	public int getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-
-	public int getReceptionistId() {
-		return receptionistId;
-	}
-
-	public void setReceptionistId(int receptionistId) {
-		this.receptionistId = receptionistId;
 	}
 
 	public long getSsn() {
