@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.MBs.MedicalStoreMB;
+import com.jsf.hello.Util.DBHelper;
 
 @ManagedBean(name = "medStoreBean")
 @SessionScoped
@@ -27,8 +28,7 @@ public class MedicalStoreEJB {
 		list = new ArrayList<>();
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM medicalstore";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -53,8 +53,7 @@ public class MedicalStoreEJB {
 		List<MedicalStoreMB> list = new ArrayList<MedicalStoreMB>();
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT medicine FROM medicalstore";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.jsf.hello.MBs.DepartmentMB;
+import com.jsf.hello.Util.DBHelper;
 
 @ManagedBean(name = "deptBean")
 @SessionScoped
@@ -46,8 +47,7 @@ public class DepartmentEJB {
 		List<String> count= new ArrayList<String>();
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT COUNT(*) as rowcount FROM patient";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -72,8 +72,7 @@ public class DepartmentEJB {
 		List<String> count= new ArrayList<String>();
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT COUNT(*) as rowcount FROM nurse";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -97,8 +96,7 @@ public class DepartmentEJB {
 		List<String> count= new ArrayList<String>();
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT COUNT(*) as rowcount FROM doctor";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -122,8 +120,7 @@ public class DepartmentEJB {
 		List<String> count= new ArrayList<String>();
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT COUNT(*) as rowcount FROM employee";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -148,8 +145,7 @@ public class DepartmentEJB {
 		list = new ArrayList<>();
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM department";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -171,8 +167,7 @@ public class DepartmentEJB {
 	public void add(DepartmentMB departmentmb) {
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "INSERT INTO department(departmentId,deptName) VALUES(?,?)";
 			stat = con.prepareStatement(myStat);
 
@@ -195,9 +190,7 @@ public class DepartmentEJB {
 
 		if (departmentId != 0) {
 			try {
-				// Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-						"root", "Sommar15");
+				con = DBHelper.getDBConnection();
 				String myStat = "delete FROM department WHERE departmentId=" + departmentId;
 				stat = con.prepareStatement(myStat);
 				int i = stat.executeUpdate();
@@ -219,9 +212,7 @@ public class DepartmentEJB {
 	public void update(DepartmentMB departmentmb) {
 
 		try {
-			// Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "UPDATE department SET deptName = ? WHERE departmentId = ?";
 			stat = con.prepareStatement(myStat);
 
@@ -243,8 +234,7 @@ public class DepartmentEJB {
 		list = new ArrayList<>();
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false",
-					"root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM department WHERE deptName LIKE '%" + search + "%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
