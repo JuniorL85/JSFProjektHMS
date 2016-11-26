@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.MBs.WaitingMB;
+import com.jsf.hello.Util.DBHelper;
 @ManagedBean(name="waitBean")
 @SessionScoped
 public class WaitingEJB {
@@ -28,7 +29,7 @@ public class WaitingEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM waiting";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -59,7 +60,7 @@ public class WaitingEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT patient_ssn FROM waiting";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -90,7 +91,7 @@ public class WaitingEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT patient_ssn, rooms_roomId, roomType, maxCapacity, capacityNow FROM waiting LEFT JOIN rooms ON roomId = waiting.rooms_roomId WHERE waiting.patient_ssn LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -117,8 +118,7 @@ public class WaitingEJB {
 public void update(WaitingMB waitingMB) {
 		
 	    try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	    	con = DBHelper.getDBConnection();
 	        String myStat ="UPDATE waiting SET rooms_roomId = ? WHERE patient_ssn = ?";
 	        stat = con.prepareStatement(myStat);
 	        

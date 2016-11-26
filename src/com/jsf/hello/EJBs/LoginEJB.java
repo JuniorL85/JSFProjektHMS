@@ -11,9 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.MBs.Patient;
+import com.jsf.hello.Util.DBHelper;
 
-@ManagedBean(name="loginBean")
-@SessionScoped
+
 public class LoginEJB {
 	
 	List<Patient> list;
@@ -27,7 +27,7 @@ public class LoginEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT patient.ssn, notes, tests, medicine, bill, testResult FROM patient JOIN journal ON journal.patient_ssn = patient.ssn WHERE patient.ssn LIKE '%"+patientSsn+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();

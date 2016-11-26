@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.jsf.hello.MBs.HospitalStaffMB;
+import com.jsf.hello.Util.DBHelper;
 
 @ManagedBean(name="userBean")
 @SessionScoped
@@ -27,7 +28,7 @@ public class HospitalStaffEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM employee";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -55,7 +56,7 @@ public class HospitalStaffEJB {
 	public void add(HospitalStaffMB hospitalstaffmb){
 		
 		try {
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 	        String myStat ="INSERT INTO employee(jobTitle,firstName,lastName,departmentId,userName,password) VALUES(?,?,?,?,?,?)";
 	        stat = con.prepareStatement(myStat); 
 	        
@@ -83,8 +84,7 @@ public class HospitalStaffEJB {
 		
 		if (employeeId !=0){
 	    try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	    	con = DBHelper.getDBConnection();
 	        String myStat ="delete FROM employee WHERE employeeId=" + employeeId;
 	        stat = con.prepareStatement(myStat); 
 	        int i = stat.executeUpdate();
@@ -106,8 +106,7 @@ public class HospitalStaffEJB {
 	public void update(HospitalStaffMB hospitalmb) {
 		
 	    try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	    	con = DBHelper.getDBConnection();
 	        String myStat ="UPDATE employee SET jobTitle = ?, firstName = ?, lastName= ?, departmentId= ?, userName= ?, password= ? WHERE employeeId = ?";
 	        stat = con.prepareStatement(myStat); 
 	        stat.setString(1, hospitalmb.getJobTitle());
@@ -135,7 +134,7 @@ public class HospitalStaffEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM employee WHERE firstName LIKE '%"+search+"%' OR lastName LIKE '%"+search+"%' OR jobTitle LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();

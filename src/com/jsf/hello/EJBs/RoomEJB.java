@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.hello.MBs.RoomMB;
+import com.jsf.hello.Util.DBHelper;
 
 @ManagedBean(name="roomBean")
 @SessionScoped
@@ -28,7 +29,7 @@ public class RoomEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM rooms";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
@@ -54,7 +55,7 @@ public class RoomEJB {
 	public void add(RoomMB roommb){
 		
 		try {
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 	        String myStat ="INSERT INTO rooms(roomType,maxCapacity) VALUES(?,?)";
 	        stat = con.prepareStatement(myStat); 
 
@@ -78,8 +79,7 @@ public class RoomEJB {
 		
 		if (roomId !=0){
 	    try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	    	con = DBHelper.getDBConnection();
 	        String myStat ="delete FROM rooms WHERE roomId=" + roomId;
 	        stat = con.prepareStatement(myStat); 
 	        int i = stat.executeUpdate();
@@ -100,8 +100,7 @@ public class RoomEJB {
 	public void update(RoomMB roommb) {
 		
 	    try {
-	    	//Class.forName("com.mysql.jdbc.Driver");
-	        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+	    	con = DBHelper.getDBConnection();
 	        String myStat ="UPDATE rooms SET roomType = ?, maxCapacity = ? WHERE roomId = ?";
 	        stat = con.prepareStatement(myStat);
 	        
@@ -124,7 +123,7 @@ public class RoomEJB {
 
 		
 		try{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hmsdb?autoReconnect=true&useSSL=false", "root", "Sommar15");
+			con = DBHelper.getDBConnection();
 			String myStat = "SELECT * FROM rooms WHERE roomType LIKE '%"+search+"%' OR roomId LIKE '%"+search+"%'";
 			stat = con.prepareStatement(myStat);
 			rs = stat.executeQuery();
