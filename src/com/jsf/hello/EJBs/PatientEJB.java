@@ -1,7 +1,6 @@
 package com.jsf.hello.EJBs;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,7 +12,8 @@ import javax.faces.bean.SessionScoped;
 import com.jsf.hello.MBs.Patient;
 import com.jsf.hello.Util.DBHelper;
 
-
+@ManagedBean(name="patBean")
+@SessionScoped
 public class PatientEJB {
 
 	List<Patient> list;

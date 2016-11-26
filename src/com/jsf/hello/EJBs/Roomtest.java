@@ -1,7 +1,6 @@
 package com.jsf.hello.EJBs;
 
 import java.io.Serializable;
-import javax.faces.model.SelectItem;
 
 
 
